@@ -1,0 +1,9 @@
+.popupContainer {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  height: 250px;
+  width: 95%;
+  z-index: 2;
+  border: 5px solid yellow;
+}
