@@ -14,7 +14,7 @@ function Body() {
 
   if (homePage) {
     return (
-      <div>
+      <div className="bodyContainer">
         <HomePage />
       </div>
     );

@@ -1,0 +1,35 @@
+.aboutContainer {
+  height: 90vh;
+}
+
+.aboutWrapper {
+  display: flex;
+  margin: 30px;
+}
+
+.aboutLeft {
+  flex: 0.5;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutLeftTitle {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.aboutLeftDescription {
+  margin-top: 20px;
+  line-height: 25px;
+}
+
+.aboutRight {
+  flex: 0.5;
+  margin-left: 20px;
+}
+.aboutRightImage {
+  height: 500px;
+  width: 100%;
+  border: none;
+}

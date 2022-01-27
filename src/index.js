@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { PagesContextProvider } from "./Context-Api/Pages/Context";
+import { ScrollContextProvider } from "./Context-Api/Scroll/Context";
 
 ReactDOM.render(
   <React.StrictMode>
     <PagesContextProvider>
-      <App />
+      <ScrollContextProvider>
+        <App />
+      </ScrollContextProvider>
     </PagesContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

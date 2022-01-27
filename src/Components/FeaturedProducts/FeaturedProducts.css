@@ -1,0 +1,57 @@
+.featuredProductsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.featuredProductsTitle {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.featuredProductsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.featuredProductsImg-SerachIcon {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+.featuredProductsImg-SerachIcon:hover {
+  opacity: 0.8;
+}
+
+.featuredProductsImg-SerachIcon:hover .featuredProductsSearchIcon {
+  visibility: visible;
+}
+
+.featuredProductsSearchIcon {
+  position: absolute;
+  top: 120px;
+  left: 125px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(189, 187, 185);
+  visibility: hidden;
+}
+
+.featuredProductsSearchIcon:hover {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: chocolate;
+  cursor: pointer;
+}
+
+.featuredProductsImg {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  vertical-align: middle;
+  cursor: pointer;
+}

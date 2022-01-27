@@ -1,3 +1,7 @@
+.bodyContainer {
+  overflow-x: hidden;
+}
+
 .bodyProgressBar {
   display: flex;
   justify-content: center;

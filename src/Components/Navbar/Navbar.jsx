@@ -5,9 +5,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Badge from "@mui/material/Badge";
-import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined";
-import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Popup from "./../Popup/Popup";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -19,13 +17,13 @@ import {
   renderChocolatePage,
   renderAdminPage,
 } from "./../../Context-Api/Pages/Actions";
+import { ScrollContext } from "./../../Context-Api/Scroll/Context";
 
 function Navbar() {
-  const [showCat, setShowCat] = useState(false);
-  const [showChocs, setShowChocs] = useState(false);
   const userIsAdmin = true;
   const { dispatch, homePage, categories, chocolate, blog, admin } =
     useContext(PagesContext);
+  const { scroll } = useContext(ScrollContext);
 
   // Whenever this application renders, automatically render the homepage
   useEffect(() => {
@@ -50,20 +48,8 @@ function Navbar() {
     [dispatch]
   );
 
-  //Display Menu
-  const displayPopUpMenu = useCallback(
-    (type) => {
-      if (type === 1) {
-        setShowCat(!showCat);
-      } else {
-        setShowChocs(!showChocs);
-      }
-    },
-    [showCat, showChocs]
-  );
-
   return (
-    <div className="navbarContainer">
+    <div className={scroll ? "navbarContainer color" : "navbarContainer"}>
       <div className="navbarWrapper">
         <div className="navbarLeft">
           <h1 className="navbarLogo">Cocoa</h1>
@@ -79,50 +65,50 @@ function Navbar() {
               Home
             </span>
           </div>
-          <div
-            className="navbarcenterMenuItems"
-            onClick={() => RenderPages("categories")}
-          >
-            <span
-              className={categories ? "navbarMenuCat color" : "navbarMenuCat"}
-            >
-              Categories
-            </span>
-            {showCat ? (
-              <ArrowDropUpOutlinedIcon onClick={() => displayPopUpMenu(1)} />
-            ) : (
-              <ArrowDropDownOutlinedIcon onClick={() => displayPopUpMenu(1)} />
-            )}
+          <div className="navbarcenterMenuItems">
+            <div className="Category-dropdown">
+              <span
+                onClick={() => RenderPages("categories")}
+                className={categories ? "navbarMenuCat color" : "navbarMenuCat"}
+              >
+                Categories
+              </span>
+              <div className="Category-dropdown-content">
+                <div className="Category-dropdown-content-items">
+                  Category items to be built soon
+                </div>
+              </div>
+            </div>
           </div>
-          <div
-            className="navbarcenterMenuItems"
-            onClick={() => RenderPages("chocolates")}
-          >
-            <span
-              className={chocolate ? "navbarMenuChoc color" : "navbarMenuChoc"}
-            >
-              Chocolates
-            </span>
-            {showChocs ? (
-              <ArrowDropUpOutlinedIcon onClick={() => displayPopUpMenu(2)} />
-            ) : (
-              <ArrowDropDownOutlinedIcon onClick={() => displayPopUpMenu(2)} />
-            )}
+          <div className="navbarcenterMenuItems">
+            <div className="Chocolate-dropdown">
+              <span
+                onClick={() => RenderPages("chocolates")}
+                className={
+                  chocolate ? "navbarMenuChoc color" : "navbarMenuChoc"
+                }
+              >
+                Chocolates
+              </span>
+              <div className="Chocolate-dropdown-content">
+                <div className="Chocolate-dropdown-content-items">
+                  Chocolate items to be built soon
+                </div>
+              </div>
+            </div>
           </div>
-          <div
-            className="navbarcenterMenuItems"
-            onClick={() => RenderPages("blog")}
-          >
-            <span className={blog ? "navbarMenuBlog color" : "navbarMenuBlog"}>
+          <div className="navbarcenterMenuItems">
+            <span
+              className={blog ? "navbarMenuBlog color" : "navbarMenuBlog"}
+              onClick={() => RenderPages("blog")}
+            >
               Blog
             </span>
           </div>
           {userIsAdmin && (
-            <div
-              className="navbarcenterMenuItems"
-              onClick={() => RenderPages("admin")}
-            >
+            <div className="navbarcenterMenuItems">
               <span
+                onClick={() => RenderPages("admin")}
                 className={admin ? "navbarMenuAdmin color" : "navbarMenuBlog"}
               >
                 Admin
@@ -159,9 +145,6 @@ function Navbar() {
           </div>
         </div>
       </div>
-      {showCat || showChocs ? (
-        <Popup showCat={showCat} showChocs={showChocs} />
-      ) : null}
     </div>
   );
 }

@@ -1,0 +1,86 @@
+.footerContainer {
+  height: 300px;
+  width: 100%;
+  background-color: rgb(97, 79, 33);
+  margin-top: 20px;
+}
+
+.footerWrapper {
+  display: flex;
+  margin: 20px;
+}
+
+.footerLeft {
+  flex: 0.5;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerLeftCompanyName {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.footerLeftItem {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  color: white;
+}
+
+.footerLeftbusinessItem {
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footerRight {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.socialMediaHandles {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.socialIcon {
+  margin-left: 20px;
+}
+
+.footerItems {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.footerItem {
+  margin-left: 20px;
+  font-size: 22px;
+  color: white;
+  font-weight: 500;
+}
+
+.footerCopyRight {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.footerCompanyName {
+  margin-right: 5px;
+}
+
+.FooterYear {
+  margin-left: 5px;
+}
