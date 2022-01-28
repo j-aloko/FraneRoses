@@ -1,0 +1,198 @@
+.checkoutContainer {
+  margin-top: 80px;
+}
+
+.checkoutWrapper {
+  display: flex;
+  margin: 20px;
+}
+
+.checkoutLeft {
+  flex: 0.6;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutLeftBusinessName {
+  margin-bottom: 20px;
+}
+
+.checkoutLeftContactInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.inputItem {
+  width: 60%;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.checkBox {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.newsLetter {
+  margin-left: 10px;
+}
+
+.deliveryInformation {
+  margin-top: 35px;
+}
+.selectionItems {
+  width: 63%;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.firstNameLastName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 63%;
+  margin-top: 20px;
+}
+
+.namefields {
+  padding: 10px;
+}
+
+.returnToCart {
+  margin-top: 20px;
+  width: 170px;
+  padding: 15px 10px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(196, 50, 50);
+  cursor: pointer;
+}
+
+.checkoutRight {
+  flex: 0.4;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutRightProductInfoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.productInfoWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.checkoutProductInfo {
+  display: flex;
+  align-items: center;
+}
+
+.checkoutProductAmt {
+  font-weight: bold;
+}
+
+.checkoutImgAndIcon {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.badgeIcon {
+  position: absolute;
+  top: -5px;
+}
+
+.checkoutProductImg {
+  height: 80px;
+  width: 140px;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.checkoutProductDetails {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.checkoutProductName {
+  font-weight: bold;
+}
+
+.checkoutProductSizeFlavour {
+  font-weight: 500;
+}
+
+.horizontalLine {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.checkoutProductsSubtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkoutProductSubtotalAmt {
+  font-weight: bold;
+  font-weight: 500;
+}
+
+.checkoutProductsDeliveryFee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkoutProductDeliveryFeeAmt {
+  font-weight: bold;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.amountToBePaid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ToatalAmountTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.TotalAmount {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.payButton {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payNow {
+  padding: 10px 10px;
+  font-weight: 500;
+  font-size: 18px;
+  width: 170px;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(4, 4, 65);
+  cursor: pointer;
+}

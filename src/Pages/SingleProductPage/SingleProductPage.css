@@ -36,6 +36,8 @@
 .singleProductDownLeft {
   flex: 0.4;
   margin: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .singleProductLeftImg {
@@ -43,6 +45,24 @@
   width: 100%;
   object-fit: cover;
   vertical-align: middle;
+}
+
+.singleProductLeftImgsArray {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.arrayImg {
+  height: 60px;
+  width: 120px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .singleProductDownRight {
@@ -113,7 +133,6 @@
 }
 
 .singleProductFlavourSelection {
-  width: 130px;
   padding: 5px;
   font-weight: 500;
   border: 2px soild #703f07;

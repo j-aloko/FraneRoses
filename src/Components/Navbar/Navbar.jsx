@@ -49,7 +49,7 @@ function Navbar() {
     <div className={scroll ? "navbarContainer color" : "navbarContainer"}>
       <div className="navbarWrapper">
         <div className="navbarLeft">
-          <h1 className="navbarLogo">Cocoa</h1>
+          <h1 className="navbarLogo">FraneRoses</h1>
         </div>
         <div className="navbarCenter">
           <div

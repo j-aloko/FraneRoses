@@ -7,10 +7,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 function SingleProductPage() {
   const [count, setCount] = useState(1);
+  const [productImg, setProductImg] = useState("/assets/100g.jpg");
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
-      top: 0,
+      top: 50,
       left: 0,
       behavior: "smooth",
     });
@@ -31,11 +32,27 @@ function SingleProductPage() {
         </div>
         <div className="singleProductDown">
           <div className="singleProductDownLeft">
-            <img
-              src="/assets/50g.jpg"
-              alt=""
-              className="singleProductLeftImg"
-            />
+            <img src={productImg} alt="" className="singleProductLeftImg" />
+            <div className="singleProductLeftImgsArray">
+              <img
+                src="/assets/100g.jpg"
+                alt=""
+                className="arrayImg"
+                onClick={() => setProductImg("/assets/100g.jpg")}
+              />
+              <img
+                src="/assets/50g.jpg"
+                alt=""
+                className="arrayImg"
+                onClick={() => setProductImg("/assets/50g.jpg")}
+              />
+              <img
+                src="/assets/20g.jpg"
+                alt=""
+                className="arrayImg"
+                onClick={() => setProductImg("/assets/20g.jpg")}
+              />
+            </div>
           </div>
           <div className="singleProductDownRight">
             <div className="singleProduct-name-isocert">

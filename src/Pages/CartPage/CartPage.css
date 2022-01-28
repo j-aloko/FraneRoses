@@ -43,16 +43,20 @@
   width: 100%;
   background-color: rgb(240, 235, 235);
   margin-bottom: 20px;
+  opacity: 0.5;
 }
 
 .cartProductItems {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .cartProducts {
   width: 350px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .cartProductImg {
@@ -140,6 +144,7 @@
   width: 100%;
   background-color: rgb(240, 235, 235);
   margin-bottom: 20px;
+  opacity: 0.5;
 }
 
 .cartRightSubtotal {
@@ -193,11 +198,12 @@
   width: 100%;
   background-color: rgb(240, 235, 235);
   margin-bottom: 20px;
+  opacity: 0.5;
 }
 
 .regionSelection {
   padding: 10px;
-  width: 300px;
+  width: 400px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -206,11 +212,11 @@
 
 .regions {
   margin-bottom: 5px;
-  font-size: 16px;
 }
 
 .calculateShipping {
   margin-top: 20px;
+  width: 400px;
   padding: 10px 10px;
   font-weight: 500;
   color: white;

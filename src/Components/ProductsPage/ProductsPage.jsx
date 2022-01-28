@@ -7,7 +7,7 @@ function ProductsPage() {
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
-      top: 0,
+      top: 50,
       left: 0,
       behavior: "smooth",
     });

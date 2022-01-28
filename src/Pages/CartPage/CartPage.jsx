@@ -1,9 +1,10 @@
 import "./CartPage.css";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Link } from "react-router-dom";
 
 function CartPage() {
   const [quantity, setQuantity] = useState(4);
@@ -12,6 +13,15 @@ function CartPage() {
   const [region, setRegion] = useState("Northern Region");
   const [rate, setRate] = useState();
   const [fetching, setFetching] = useState(false);
+
+  //autoScroll window to top when this component renders
+  useEffect(() => {
+    window.scrollTo({
+      top: 50,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   //Calculate Delivery Rate
   const calculateDeliveryRate = (e) => {
@@ -88,10 +98,82 @@ function CartPage() {
                   </h3>
                 </div>
               </div>
+              <div className="cartProducts">
+                <div className="cartProductImg">
+                  <div className="removeCartProduct">
+                    <CancelRoundedIcon />
+                  </div>
+                  <img src="/assets/100g.jpg" alt="" className="cartImage" />
+                </div>
+                <div className="cartProductInfo">
+                  <span className="cartProductName">Kingsbite</span>
+                  <span className="cartProductSizeFlavour">
+                    100g / Kingsbite
+                  </span>
+                  <div className="cartProductCounter">
+                    <AddIcon
+                      onClick={() => {
+                        setTotal(total + price * 1);
+                        setQuantity(quantity + 1);
+                      }}
+                    />
+                    <span className="cartProductCount">{quantity}</span>
+                    <RemoveIcon
+                      onClick={() => {
+                        total > price && setTotal(total - price * 1);
+                        quantity > 1 && setQuantity(quantity - 1);
+                      }}
+                    />
+                  </div>
+                  <h3 className="cartProductTotal">
+                    Total :
+                    <span className="cartProductTotalAmt">
+                      GHS{Math.round((total + Number.EPSILON) * 100) / 100}
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              <div className="cartProducts">
+                <div className="cartProductImg">
+                  <div className="removeCartProduct">
+                    <CancelRoundedIcon />
+                  </div>
+                  <img src="/assets/100g.jpg" alt="" className="cartImage" />
+                </div>
+                <div className="cartProductInfo">
+                  <span className="cartProductName">Kingsbite</span>
+                  <span className="cartProductSizeFlavour">
+                    100g / Kingsbite
+                  </span>
+                  <div className="cartProductCounter">
+                    <AddIcon
+                      onClick={() => {
+                        setTotal(total + price * 1);
+                        setQuantity(quantity + 1);
+                      }}
+                    />
+                    <span className="cartProductCount">{quantity}</span>
+                    <RemoveIcon
+                      onClick={() => {
+                        total > price && setTotal(total - price * 1);
+                        quantity > 1 && setQuantity(quantity - 1);
+                      }}
+                    />
+                  </div>
+                  <h3 className="cartProductTotal">
+                    Total :
+                    <span className="cartProductTotalAmt">
+                      GHS{Math.round((total + Number.EPSILON) * 100) / 100}
+                    </span>
+                  </h3>
+                </div>
+              </div>
               <div className="continue-Update">
-                <button className="contShop-UpadteCart">
-                  CONTINUE SHOPPING
-                </button>
+                <Link to="/products" className="links">
+                  <button className="contShop-UpadteCart">
+                    CONTINUE SHOPPING
+                  </button>
+                </Link>
                 <button className="contShop-UpadteCart">UPDATE CART</button>
               </div>
             </div>
@@ -114,7 +196,9 @@ function CartPage() {
             <p className="noteTobuyer">
               Delivery fee and discount will be calculated at Checkout
             </p>
-            <button className="proceedToCheckout">PROCEED TO CHECKOUT</button>
+            <Link to="/checkout" className="links">
+              <button className="proceedToCheckout">PROCEED TO CHECKOUT</button>
+            </Link>
             <div className="cartRightShippingEstimate">
               <div className="cartShippingEstimateTitle">
                 <h3 className="cartShippingEstimate">GET SHIPPING ESTIMATE</h3>
