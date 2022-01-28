@@ -1,6 +1,7 @@
 import { featuredProducts } from "../../Data";
 import "./FeaturedProducts.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Link } from "react-router-dom";
 
 function FeaturedProducts() {
   return (
@@ -9,11 +10,13 @@ function FeaturedProducts() {
       <div className="featuredProductsWrapper">
         {featuredProducts?.map((f) => (
           <div className="featuredProductsImg-SerachIcon" key={f.id}>
-            <div className="featuredProductsSearchIcon">
-              <SearchOutlinedIcon
-                style={{ fontSize: 40, marginLeft: "6px", marginTop: "6px" }}
-              />
-            </div>
+            <Link to="/product" className="links">
+              <div className="featuredProductsSearchIcon">
+                <SearchOutlinedIcon
+                  style={{ fontSize: 40, marginLeft: "6px", marginTop: "6px" }}
+                />
+              </div>
+            </Link>
             <img src={f.image} alt="" className="featuredProductsImg" />
           </div>
         ))}

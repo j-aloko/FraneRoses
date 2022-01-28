@@ -1,0 +1,224 @@
+.singleProductContainer {
+  width: 100%;
+  height: 100%;
+  margin-top: 80px;
+}
+
+.singleProductWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.singleProductTop {
+  width: 100%;
+  height: 250px;
+  background-color: black;
+}
+
+.singleProductTitles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 80px;
+}
+
+.singleProductName {
+  margin-bottom: 20px;
+}
+
+.singleProductDown {
+  display: flex;
+  margin-top: 50px;
+}
+
+.singleProductDownLeft {
+  flex: 0.4;
+  margin: 20px;
+}
+
+.singleProductLeftImg {
+  height: 450px;
+  width: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.singleProductDownRight {
+  flex: 0.6;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.singleProduct-name-isocert {
+  display: flex;
+  align-items: center;
+}
+.isoCertification {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  margin-left: 80px;
+}
+
+.singleProductDescription {
+  margin-top: 30px;
+  max-width: 700px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.singleProductLeftInfo {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+}
+.singleProductPriceWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.singleProductPrice {
+  font-size: 20px;
+  color: chocolate;
+  font-weight: 500;
+}
+
+.singleProductSizeWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.singleProductSizeSelection {
+  padding: 5px;
+  border: 2px soild chocolate;
+  font-weight: 500;
+}
+
+.singleProductInStock {
+  margin-top: 30px;
+}
+
+.singleProductFlavourWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.singleProductFlavourSelection {
+  width: 130px;
+  padding: 5px;
+  font-weight: 500;
+  border: 2px soild chocolate;
+}
+
+.singleProductBrand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.singleProductAvailability {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.singleProductnumberAvailable {
+  font-weight: bold;
+  color: green;
+}
+
+.singleProductQuantityContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.singleProductquantityWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.singleProductSubtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.singleProductSubtotalAmount {
+  font-size: 20px;
+  color: chocolate;
+  font-weight: 500;
+}
+
+.singleProduct-AddToCart-WishList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.singleProductAddToCart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  background-color: chocolate;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.AddToCart {
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.singleProductAddToWishList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  background-color: rgb(219, 218, 216);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.addToWishList {
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.buySingleProductNow {
+  display: flex;
+  justify-content: center;
+}
+
+.buySingleProduct {
+  margin-top: 20px;
+  padding: 10px 10px;
+  border: none;
+  background-color: rgb(97, 79, 33);
+  border-radius: 10px;
+  width: 120px;
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}

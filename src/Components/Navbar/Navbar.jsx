@@ -6,7 +6,6 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Badge from "@mui/material/Badge";
 import { useContext } from "react";
-import Popup from "./../Popup/Popup";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
@@ -18,6 +17,7 @@ import {
   renderAdminPage,
 } from "./../../Context-Api/Pages/Actions";
 import { ScrollContext } from "./../../Context-Api/Scroll/Context";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const userIsAdmin = true;
@@ -59,20 +59,26 @@ function Navbar() {
             className="navbarcenterMenuItems"
             onClick={() => RenderPages("home")}
           >
-            <span
-              className={homePage ? "navbarMenuHome color" : "navbarMenuHome"}
-            >
-              Home
-            </span>
+            <Link to="/" className="links">
+              <span
+                className={homePage ? "navbarMenuHome color" : "navbarMenuHome"}
+              >
+                Home
+              </span>
+            </Link>
           </div>
           <div className="navbarcenterMenuItems">
             <div className="Category-dropdown">
-              <span
-                onClick={() => RenderPages("categories")}
-                className={categories ? "navbarMenuCat color" : "navbarMenuCat"}
-              >
-                Categories
-              </span>
+              <Link to="/" className="links">
+                <span
+                  onClick={() => RenderPages("categories")}
+                  className={
+                    categories ? "navbarMenuCat color" : "navbarMenuCat"
+                  }
+                >
+                  Categories
+                </span>
+              </Link>
               <div className="Category-dropdown-content">
                 <div className="Category-dropdown-content-items">
                   Category items to be built soon
@@ -82,14 +88,16 @@ function Navbar() {
           </div>
           <div className="navbarcenterMenuItems">
             <div className="Chocolate-dropdown">
-              <span
-                onClick={() => RenderPages("chocolates")}
-                className={
-                  chocolate ? "navbarMenuChoc color" : "navbarMenuChoc"
-                }
-              >
-                Chocolates
-              </span>
+              <Link to="/" className="links">
+                <span
+                  onClick={() => RenderPages("chocolates")}
+                  className={
+                    chocolate ? "navbarMenuChoc color" : "navbarMenuChoc"
+                  }
+                >
+                  Chocolates
+                </span>
+              </Link>
               <div className="Chocolate-dropdown-content">
                 <div className="Chocolate-dropdown-content-items">
                   Chocolate items to be built soon

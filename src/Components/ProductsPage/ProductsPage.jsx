@@ -1,4 +1,5 @@
 import "./ProductsPage.css";
+import { Link } from "react-router-dom";
 
 function ProductsPage({ products }) {
   return (
@@ -16,14 +17,18 @@ function ProductsPage({ products }) {
           <div className="productsPageDownContents">
             {products?.map((p) => (
               <div className="productsInfo" key={p.id}>
-                <img src={p?.image} alt="" className="productImg" />
-                <h3 className="productName">{p?.title}</h3>
-                <div className="productPriceWrapper">
-                  <span className="productCurrentPrice">GHS{p?.newPrice}</span>
-                  <span className="productOldPrice">
-                    <del>GHS{p?.oldPrice}</del>
-                  </span>
-                </div>
+                <Link to="/product" className="links">
+                  <img src={p?.image} alt="" className="productImg" />
+                  <h3 className="productName">{p?.title}</h3>
+                  <div className="productPriceWrapper">
+                    <span className="productCurrentPrice">
+                      GHS{p?.newPrice}
+                    </span>
+                    <span className="productOldPrice">
+                      <del>GHS{p?.oldPrice}</del>
+                    </span>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
