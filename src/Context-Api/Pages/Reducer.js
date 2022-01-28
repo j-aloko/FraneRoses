@@ -3,36 +3,28 @@ export const pageReducer = (state, action) => {
     case "RENDER_HOME_PAGE":
       return {
         homePage: true,
-        categories: false,
-        chocolate: false,
+        products: false,
         blog: false,
+        admin: false,
       };
-    case "RENDER_CATEGORIES_PAGE":
+    case "RENDER_PRODUCTS_PAGE":
       return {
         homePage: false,
-        categories: true,
-        chocolate: false,
+        products: true,
         blog: false,
-      };
-    case "RENDER_CHOCOLATE_PAGE":
-      return {
-        homePage: false,
-        categories: false,
-        chocolate: true,
-        blog: false,
+        admin: false,
       };
     case "RENDER_BLOG_PAGE":
       return {
         homePage: false,
-        categories: false,
-        chocolate: false,
+        products: false,
         blog: true,
+        admin: false,
       };
     case "RENDER_ADMIN_PAGE":
       return {
         homePage: false,
-        categories: false,
-        chocolate: false,
+        products: false,
         blog: false,
         admin: true,
       };

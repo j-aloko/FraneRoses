@@ -3,8 +3,7 @@ import { pageReducer } from "./Reducer";
 
 const pageInitialState = {
   homePage: false,
-  categories: false,
-  chocolate: false,
+  products: false,
   blog: false,
   admin: false,
 };
@@ -17,8 +16,7 @@ export const PagesContextProvider = ({ children }) => {
     <PagesContext.Provider
       value={{
         homePage: state.homePage,
-        categories: state.categories,
-        chocolate: state.chocolate,
+        products: state.products,
         blog: state.blog,
         admin: state.admin,
         dispatch,

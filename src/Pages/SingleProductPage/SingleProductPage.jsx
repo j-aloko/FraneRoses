@@ -10,11 +10,13 @@ function SingleProductPage() {
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
-      top: 100,
-      left: 100,
+      top: 0,
+      left: 0,
       behavior: "smooth",
     });
   }, []);
+
+  const price = 60.89;
 
   return (
     <div className="singleProductContainer">
@@ -23,7 +25,7 @@ function SingleProductPage() {
           <div className="singleProductTitles">
             <h1 className="singleProductName">Kingsbite 100g</h1>
             <h3 className="singleProductRou">
-              Home / Dark Chocolates / Kingsbite 100g
+              Products / Dark Chocolates / Kingsbite 100g
             </h3>
           </div>
         </div>
@@ -51,7 +53,7 @@ function SingleProductPage() {
             <div className="singleProductLeftInfo">
               <div className="singleProductPriceWrapper">
                 <h3 className="singleProductPriceTitle">Price:</h3>
-                <span className="singleProductPrice">GHS60.89</span>
+                <span className="singleProductPrice">GHS{price}</span>
               </div>
               <h3 className="singleProductInStock">HURRY ONLY 4 IN STOCK</h3>
               <div className="singleProductSizeWrapper">
@@ -104,7 +106,9 @@ function SingleProductPage() {
               </div>
               <div className="singleProductSubtotal">
                 <h3 className="singleProductSubtotalTitle">Subtotal</h3>
-                <span className="singleProductSubtotalAmount">GHS100.00</span>
+                <span className="singleProductSubtotalAmount">
+                  GHS{Math.round((price * count + Number.EPSILON) * 100) / 100}
+                </span>
               </div>
               <div className="singleProduct-AddToCart-WishList">
                 <div className="singleProductAddToCart">

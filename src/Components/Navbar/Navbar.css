@@ -6,11 +6,11 @@
   top: 0;
   width: 100%;
   z-index: 999;
-  background-color: rgb(97, 79, 33);
+  background-color: #703f07;
 }
 
 .navbarContainer.color {
-  background-color: rgb(97, 79, 33);
+  background-color: #703f07;
 }
 
 .navbarWrapper {
@@ -21,7 +21,7 @@
 }
 
 .navbarLeft {
-  color: white;
+  color: rgb(211, 196, 111);
   opacity: 1;
 }
 
@@ -99,27 +99,27 @@
 }
 
 .navbarcenterMenuItems:hover {
-  color: chocolate;
+  color: rgb(211, 196, 111);
 }
 
 .navbarMenuHome.color {
-  color: chocolate;
+  color: rgb(211, 196, 111);
 }
 
 .navbarMenuCat.color {
-  color: chocolate;
+  color: rgb(211, 196, 111);
 }
 
 .navbarMenuChoc.color {
-  color: chocolate;
+  color: rgb(211, 196, 111);
 }
 
 .navbarMenuBlog.color {
-  color: chocolate;
+  color: rgb(211, 196, 111);
 }
 
 .navbarMenuAdmin.color {
-  color: chocolate;
+  color: rgb(211, 196, 111);
 }
 
 .navbarRight {

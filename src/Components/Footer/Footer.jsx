@@ -47,6 +47,12 @@ function Footer() {
             <span className="footerItem">Terms</span>
             <span className="footerItem">Privacy Policy</span>
           </div>
+          <div className="footerPaymentGateways">
+            <img src="/assets/mtn.png" alt="" className="gatewayItem" />
+            <img src="/assets/vodafone.png" alt="" className="gatewayItem" />
+            <img src="/assets/visa.png" alt="" className="gatewayItem" />
+            <img src="/assets/mastercard.png" alt="" className="gatewayItem" />
+          </div>
           <div className="footerCopyRight">
             <span className="footerCompanyName">FraneRoses Ventures</span>
             <CopyrightIcon />

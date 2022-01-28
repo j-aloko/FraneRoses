@@ -12,8 +12,7 @@ import { PagesContext } from "./../../Context-Api/Pages/Context";
 import {
   renderHomePage,
   renderBlogPage,
-  renderCategoriesPage,
-  renderChocolatePage,
+  renderProductsPage,
   renderAdminPage,
 } from "./../../Context-Api/Pages/Actions";
 import { ScrollContext } from "./../../Context-Api/Scroll/Context";
@@ -21,7 +20,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   const userIsAdmin = true;
-  const { dispatch, homePage, categories, chocolate, blog, admin } =
+  const { dispatch, homePage, products, blog, admin } =
     useContext(PagesContext);
   const { scroll } = useContext(ScrollContext);
 
@@ -35,10 +34,8 @@ function Navbar() {
     (type) => {
       if (type === "home") {
         dispatch(renderHomePage());
-      } else if (type === "categories") {
-        dispatch(renderCategoriesPage());
-      } else if (type === "chocolates") {
-        dispatch(renderChocolatePage());
+      } else if (type === "products") {
+        dispatch(renderProductsPage());
       } else if (type === "blog") {
         dispatch(renderBlogPage());
       } else {
@@ -68,34 +65,15 @@ function Navbar() {
             </Link>
           </div>
           <div className="navbarcenterMenuItems">
-            <div className="Category-dropdown">
-              <Link to="/" className="links">
-                <span
-                  onClick={() => RenderPages("categories")}
-                  className={
-                    categories ? "navbarMenuCat color" : "navbarMenuCat"
-                  }
-                >
-                  Categories
-                </span>
-              </Link>
-              <div className="Category-dropdown-content">
-                <div className="Category-dropdown-content-items">
-                  Category items to be built soon
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="navbarcenterMenuItems">
             <div className="Chocolate-dropdown">
-              <Link to="/" className="links">
+              <Link to="/products" className="links">
                 <span
-                  onClick={() => RenderPages("chocolates")}
+                  onClick={() => RenderPages("products")}
                   className={
-                    chocolate ? "navbarMenuChoc color" : "navbarMenuChoc"
+                    products ? "navbarMenuChoc color" : "navbarMenuChoc"
                   }
                 >
-                  Chocolates
+                  Products
                 </span>
               </Link>
               <div className="Chocolate-dropdown-content">
@@ -106,21 +84,25 @@ function Navbar() {
             </div>
           </div>
           <div className="navbarcenterMenuItems">
-            <span
-              className={blog ? "navbarMenuBlog color" : "navbarMenuBlog"}
-              onClick={() => RenderPages("blog")}
-            >
-              Blog
-            </span>
+            <Link to="/blog" className="links">
+              <span
+                className={blog ? "navbarMenuBlog color" : "navbarMenuBlog"}
+                onClick={() => RenderPages("blog")}
+              >
+                Blog
+              </span>
+            </Link>
           </div>
           {userIsAdmin && (
             <div className="navbarcenterMenuItems">
-              <span
-                onClick={() => RenderPages("admin")}
-                className={admin ? "navbarMenuAdmin color" : "navbarMenuBlog"}
-              >
-                Admin
-              </span>
+              <Link to="/admin" className="links">
+                <span
+                  onClick={() => RenderPages("admin")}
+                  className={admin ? "navbarMenuAdmin color" : "navbarMenuBlog"}
+                >
+                  Admin
+                </span>
+              </Link>
             </div>
           )}
         </div>
@@ -133,7 +115,9 @@ function Navbar() {
           </div>
           <div className="navbarIcon">
             <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlinedIcon />
+              <Link to="/cart" className="links">
+                <ShoppingCartOutlinedIcon />
+              </Link>
             </Badge>
           </div>
           <div className="dropdown">

@@ -1,16 +1,25 @@
 import "./ProductsPage.css";
 import { Link } from "react-router-dom";
+import { products } from "./../../Data";
+import { useEffect } from "react";
 
-function ProductsPage({ products }) {
+function ProductsPage() {
+  //autoScroll window to top when this component renders
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <div className="productsPageContainer">
       <div className="productsPageWrapper">
         <div className="productsPageTop">
           <div className="productsPageTopContents">
-            <h1 className="productsPageCategoryTitle">Dark Chocolate</h1>
-            <h3 className="productsPageCategoryType">
-              Premium / Dark Chocolate
-            </h3>
+            <h1 className="productsPageCategoryTitle">Products</h1>
+            <h3 className="productsPageCategoryType">Home / Products</h3>
           </div>
         </div>
         <div className="productsPageDown">
