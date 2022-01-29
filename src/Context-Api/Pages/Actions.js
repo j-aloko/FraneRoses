@@ -13,3 +13,7 @@ export const renderBlogPage = () => ({
 export const renderAdminPage = () => ({
   type: "RENDER_ADMIN_PAGE",
 });
+
+export const renderDisplayNone = () => ({
+  type: "RENDER_DISPLAY_NAME",
+});

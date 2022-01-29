@@ -28,6 +28,13 @@ export const pageReducer = (state, action) => {
         blog: false,
         admin: true,
       };
+    case "RENDER_DISPLAY_NAME":
+      return {
+        homePage: false,
+        products: false,
+        blog: false,
+        admin: false,
+      };
     default:
       return { ...state };
   }

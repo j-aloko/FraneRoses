@@ -14,6 +14,7 @@ import {
   renderBlogPage,
   renderProductsPage,
   renderAdminPage,
+  renderDisplayNone,
 } from "./../../Context-Api/Pages/Actions";
 import { ScrollContext } from "./../../Context-Api/Scroll/Context";
 import { Link } from "react-router-dom";
@@ -38,8 +39,10 @@ function Navbar() {
         dispatch(renderProductsPage());
       } else if (type === "blog") {
         dispatch(renderBlogPage());
-      } else {
+      } else if (type === "admin") {
         dispatch(renderAdminPage());
+      } else {
+        dispatch(renderDisplayNone());
       }
     },
     [dispatch]
@@ -76,9 +79,79 @@ function Navbar() {
                   Products
                 </span>
               </Link>
-              <div className="Chocolate-dropdown-content">
+              <div
+                className="Chocolate-dropdown-content"
+                onClick={() => RenderPages("products")}
+              >
                 <div className="Chocolate-dropdown-content-items">
-                  Chocolate items to be built soon
+                  <img
+                    src="/assets/navbar1.jpg"
+                    alt=""
+                    className="dropDownImg"
+                  />
+                  <div className="dropDown">
+                    <Link to="/products" className="links">
+                      <h5 className="dropDownTitle">CHOCOLATE BARS</h5>
+                    </Link>
+                    <ul className="dropDownItems">
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Kingsbite</li>
+                      </Link>
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">TQ Premium Dark</li>
+                      </Link>
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Akuafo Bar</li>
+                      </Link>
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Oranco</li>
+                      </Link>
+                    </ul>
+                  </div>
+                  <div className="dropDown">
+                    <Link to="/products" className="links">
+                      <h5 className="dropDownTitle">CHOCOLATE DRAGEE</h5>
+                    </Link>
+                    <ul className="dropDownItems">
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Pebbles</li>
+                      </Link>
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Nutty Chocs</li>
+                      </Link>
+                    </ul>
+                  </div>
+                  <div className="dropDown">
+                    <Link to="/products" className="links">
+                      <h5 className="dropDownTitle">DRINKING CHOCOLATE</h5>
+                    </Link>
+                    <ul className="dropDownItems">
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Alltime</li>
+                      </Link>
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Royale</li>
+                      </Link>
+                    </ul>
+                  </div>
+                  <div className="dropDown">
+                    <Link to="/products" className="links">
+                      <h5 className="dropDownTitle">CHOCO SPREAD / BUTTER</h5>
+                    </Link>
+                    <ul className="dropDownItems">
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Chocolate Spread</li>
+                      </Link>
+                      <Link to="/product" className="links">
+                        <li className="dropDownLineItem">Cocoa Butter</li>
+                      </Link>
+                    </ul>
+                  </div>
+                  <img
+                    src="/assets/navbar2.jpg"
+                    alt=""
+                    className="dropDownImg"
+                  />
                 </div>
               </div>
             </div>
@@ -106,7 +179,7 @@ function Navbar() {
             </div>
           )}
         </div>
-        <div className="navbarRight">
+        <div className="navbarRight" onClick={() => RenderPages("default")}>
           <div className="navbarIcon">
             <SearchOutlinedIcon />
           </div>
