@@ -12,7 +12,6 @@ function Footer() {
     <div className="footerContainer">
       <div className="footerWrapper">
         <div className="footerLeft">
-          <h1 className="footerLeftCompanyName">FraneRoses Ventures</h1>
           <div className="footerLeftItem">
             <RoomIcon />
             <span className="footerLeftbusinessItem">
@@ -31,13 +30,13 @@ function Footer() {
         <div className="footerRight">
           <div className="socialMediaHandles">
             <div className="socialIcon">
-              <FacebookIcon style={{ fontSize: 35, color: "#3b5998" }} />
+              <FacebookIcon style={{ color: "#3b5998" }} />
             </div>
             <div className="socialIcon">
-              <InstagramIcon style={{ fontSize: 35, color: "#c32aa3" }} />
+              <InstagramIcon style={{ color: "#c32aa3" }} />
             </div>
             <div className="socialIcon">
-              <TwitterIcon style={{ fontSize: 35, color: "#1da1f2" }} />
+              <TwitterIcon style={{ color: "#1da1f2" }} />
             </div>
           </div>
           <div className="footerItems">

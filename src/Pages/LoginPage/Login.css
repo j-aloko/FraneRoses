@@ -1,0 +1,169 @@
+.loginContainer {
+  height: 100vh;
+  background-color: rgb(212, 211, 211);
+}
+
+.returnHome {
+  margin-left: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginLeft {
+  flex: 0.4;
+  max-width: 450px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.socialLoginButtons {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.googleLogin {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  border: 0.5px solid white;
+  color: white;
+  font-size: 20px;
+  background-color: #db4437;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loginWithGoogle {
+  margin-left: 10px;
+  font-size: 19.5px;
+}
+
+.facebookLogin {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  border: 0.5px solid white;
+  color: white;
+  font-size: 20px;
+  background-color: #3b5998;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loginWithFacebook {
+  margin-left: 10px;
+  font-size: 19.5px;
+}
+
+.or {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+  left: 200px;
+}
+
+.loginForm {
+  display: flex;
+}
+
+.loginAlternative {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginInputItem {
+  width: 410px;
+  padding: 15px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.loginExtras {
+  max-width: 470px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rememberMe {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.forgotPassword {
+  margin-left: 20px;
+  font-weight: 500;
+  transition: 1s ease-in-out;
+  cursor: pointer;
+}
+.forgotPassword:hover {
+  color: blue;
+}
+
+.loginActionButtons {
+  max-width: 470px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.loginNow {
+  width: 120px;
+  padding: 10px;
+  border: none;
+  background-color: rgb(26, 3, 90);
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signUp {
+  width: 120px;
+  padding: 10px;
+  border: none;
+  background-color: rgb(133, 133, 146);
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bySigningUp {
+  margin-top: 50px;
+  max-width: 350px;
+}
+
+.termsAndConditions {
+  color: blue;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.loginRight {
+  flex: 0.6;
+  margin: 10px;
+}
+
+.loginRightBcImg {
+  height: 500px;
+}

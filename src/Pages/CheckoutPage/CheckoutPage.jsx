@@ -1,6 +1,7 @@
 import "./CheckoutPage.css";
 import Badge from "@mui/material/Badge";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function CheckoutPage() {
   //autoScroll window to top when this component renders
@@ -16,9 +17,8 @@ function CheckoutPage() {
     <div className="checkoutContainer">
       <div className="checkoutWrapper">
         <div className="checkoutLeft">
-          <h1 className="checkoutLeftBusinessName">FraneRoses</h1>
           <form action="" className="checkoutLeftContactInfo">
-            <h3 className="contactinformation">Contact information</h3>
+            <span className="contactinformation">Contact information</span>
             <input
               type="number"
               className="inputItem"
@@ -32,12 +32,15 @@ function CheckoutPage() {
                 name="newsLetter"
                 value="subscribe"
               />
-              <label for="newsLetter" className="newsLetter">
+              <label htmlFor="newsLetter" className="newsLetter">
                 Email me with news and offers
               </label>
             </div>
-            <h3 className="deliveryInformation">Delivery address</h3>
+            <span className="deliveryInformation">Delivery address</span>
             <select className="selectionItems" placeholder="region">
+              <option value="Northern Region" className="checkoutregions">
+                Select Region
+              </option>
               <option value="Northern Region" className="checkoutregions">
                 Northern Region
               </option>
@@ -96,7 +99,9 @@ function CheckoutPage() {
               </label>
             </div>
           </form>
-          <button className="returnToCart">RETURN TO CART</button>
+          <Link to="/cart" className="links">
+            <button className="returnToCart">RETURN TO CART</button>
+          </Link>
         </div>
         <div className="checkoutRight">
           <div className="checkoutRightProductInfoWrapper">

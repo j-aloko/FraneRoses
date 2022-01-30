@@ -2,9 +2,15 @@ import "./HomePage.css";
 import Featured from "./../../Components/Featured/Featured";
 import About from "./../../Components/About-Us/About";
 import FeaturedProducts from "./../../Components/FeaturedProducts/FeaturedProducts";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import Footer from "./../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import { PagesContext } from "./../../Context-Api/Pages/Context";
+import { renderHomePage } from "./../../Context-Api/Pages/Actions";
 
 function HomePage() {
+  const { dispatch } = useContext(PagesContext);
+
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
@@ -14,14 +20,23 @@ function HomePage() {
     });
   }, []);
 
+  // Whenever this Component renders activate the homepage
+  useEffect(() => {
+    dispatch(renderHomePage());
+  }, [dispatch]);
+
   return (
-    <div className="homePageContainer">
-      <div className="homePageWrapper">
-        <Featured />
-        <About />
-        <FeaturedProducts />
+    <>
+      <Navbar />
+      <div className="homePageContainer">
+        <div className="homePageWrapper">
+          <Featured />
+          <About />
+          <FeaturedProducts />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

@@ -1,0 +1,56 @@
+.wishListContainer {
+  margin-top: 80px;
+}
+
+.wishListWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.wishListTop {
+  background-color: black;
+  width: 100%;
+  height: 250px;
+  color: white;
+}
+
+.wishListTopDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.wishListTopTitle {
+  margin-bottom: 20px;
+}
+
+.wishListDown {
+  margin: 60px;
+}
+
+.productRow {
+  display: flex;
+  align-items: center;
+}
+
+.productRowImg {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.productRowName {
+  margin-left: 10px;
+}
+
+.productStatus {
+  display: flex;
+  align-items: center;
+}
+
+.stockStatus {
+  margin-left: 10px;
+}

@@ -1,0 +1,129 @@
+.signupContainer {
+  height: 100vh;
+  background-color: rgb(212, 211, 211);
+}
+
+.signupWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signupLeft {
+  flex: 0.4;
+  max-width: 500px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.socialSignupButtons {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.googleSignup {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  border: 0.5px solid white;
+  color: white;
+  font-size: 20px;
+  background-color: #db4437;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signupWithGoogle {
+  margin-left: 10px;
+  font-size: 19.5px;
+}
+
+.facebookSignup {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  border: 0.5px solid white;
+  color: white;
+  font-size: 20px;
+  background-color: #3b5998;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signupWithFacebook {
+  margin-left: 10px;
+  font-size: 19.5px;
+}
+
+.signupOr {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  left: 206px;
+}
+
+.signupForm {
+  display: flex;
+}
+
+.signupAlternative {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupInputItem {
+  width: 440px;
+  padding: 15px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.signupActionButtons {
+  max-width: 470px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.signupNow {
+  width: 120px;
+  padding: 10px;
+  border: none;
+  background-color: rgb(26, 3, 90);
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signupLogin {
+  width: 120px;
+  padding: 10px;
+  border: none;
+  background-color: rgb(133, 133, 146);
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signupRight {
+  flex: 0.6;
+  margin: 10px;
+}
+
+.signupRightBcImg {
+  height: 500px;
+}

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import "./Navbar.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -9,39 +9,18 @@ import { useContext } from "react";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
-import {
-  renderHomePage,
-  renderBlogPage,
-  renderProductsPage,
-  renderAdminPage,
-  renderDisplayNone,
-} from "./../../Context-Api/Pages/Actions";
-import { ScrollContext } from "./../../Context-Api/Scroll/Context";
+import { renderDisplayNone } from "./../../Context-Api/Pages/Actions";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   const userIsAdmin = true;
   const { dispatch, homePage, products, blog, admin } =
     useContext(PagesContext);
-  const { scroll } = useContext(ScrollContext);
-
-  // Whenever this application renders, automatically render the homepage
-  useEffect(() => {
-    dispatch(renderHomePage());
-  }, [dispatch]);
 
   //Render Pages as per Menu Items
   const RenderPages = useCallback(
     (type) => {
-      if (type === "home") {
-        dispatch(renderHomePage());
-      } else if (type === "products") {
-        dispatch(renderProductsPage());
-      } else if (type === "blog") {
-        dispatch(renderBlogPage());
-      } else if (type === "admin") {
-        dispatch(renderAdminPage());
-      } else {
+      if (type === "default") {
         dispatch(renderDisplayNone());
       }
     },
@@ -49,16 +28,13 @@ function Navbar() {
   );
 
   return (
-    <div className={scroll ? "navbarContainer color" : "navbarContainer"}>
+    <div className="navbarContainer">
       <div className="navbarWrapper">
         <div className="navbarLeft">
           <h1 className="navbarLogo">FraneRoses</h1>
         </div>
         <div className="navbarCenter">
-          <div
-            className="navbarcenterMenuItems"
-            onClick={() => RenderPages("home")}
-          >
+          <div className="navbarcenterMenuItems">
             <Link to="/" className="links">
               <span
                 className={homePage ? "navbarMenuHome color" : "navbarMenuHome"}
@@ -71,7 +47,6 @@ function Navbar() {
             <div className="Chocolate-dropdown">
               <Link to="/products" className="links">
                 <span
-                  onClick={() => RenderPages("products")}
                   className={
                     products ? "navbarMenuChoc color" : "navbarMenuChoc"
                   }
@@ -79,10 +54,7 @@ function Navbar() {
                   Products
                 </span>
               </Link>
-              <div
-                className="Chocolate-dropdown-content"
-                onClick={() => RenderPages("products")}
-              >
+              <div className="Chocolate-dropdown-content">
                 <div className="Chocolate-dropdown-content-items">
                   <img
                     src="/assets/navbar1.jpg"
@@ -160,7 +132,6 @@ function Navbar() {
             <Link to="/blog" className="links">
               <span
                 className={blog ? "navbarMenuBlog color" : "navbarMenuBlog"}
-                onClick={() => RenderPages("blog")}
               >
                 Blog
               </span>
@@ -170,7 +141,6 @@ function Navbar() {
             <div className="navbarcenterMenuItems">
               <Link to="/admin" className="links">
                 <span
-                  onClick={() => RenderPages("admin")}
                   className={admin ? "navbarMenuAdmin color" : "navbarMenuBlog"}
                 >
                   Admin
@@ -184,7 +154,11 @@ function Navbar() {
             <SearchOutlinedIcon />
           </div>
           <div className="navbarIcon">
-            <FavoriteBorderOutlinedIcon />
+            <Badge badgeContent={4} color="primary">
+              <Link to="/wishList" className="links">
+                <FavoriteBorderOutlinedIcon />
+              </Link>
+            </Badge>
           </div>
           <div className="navbarIcon">
             <Badge badgeContent={4} color="primary">
@@ -200,11 +174,15 @@ function Navbar() {
             <div className="dropdown-content">
               <div className="dropdown-content-items">
                 <LoginOutlinedIcon />
-                <span className="Login">Login</span>
+                <Link to="/login" className="links">
+                  <span className="Login">Login</span>
+                </Link>
               </div>
               <div className="dropdown-content-items">
                 <PersonOutlineOutlinedIcon />
-                <span className="createAccount">Create Account</span>
+                <Link to="/signup" className="links">
+                  <span className="createAccount">Create Account</span>
+                </Link>
               </div>
             </div>
           </div>
