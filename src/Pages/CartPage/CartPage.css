@@ -160,11 +160,9 @@
 
 .specialInstructions {
   margin-top: 20px;
-}
-
-.specialInstructions:focus {
   outline: none;
 }
+
 .checkoutInstructions {
   margin-top: 20px;
   padding: 10px;

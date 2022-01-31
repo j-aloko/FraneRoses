@@ -5,14 +5,17 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Badge from "@mui/material/Badge";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderDisplayNone } from "./../../Context-Api/Pages/Actions";
 import { Link } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Navbar() {
+  const [inputField, setInputField] = useState(false);
+  const [displayResult, setDisplayResult] = useState(false);
   const userIsAdmin = true;
   const { dispatch, homePage, products, blog, admin } =
     useContext(PagesContext);
@@ -150,8 +153,67 @@ function Navbar() {
           )}
         </div>
         <div className="navbarRight" onClick={() => RenderPages("default")}>
-          <div className="navbarIcon">
-            <SearchOutlinedIcon />
+          <div className="navbarSearchIcon">
+            {inputField && (
+              <div className="searchBar">
+                <div className="searchBarWrapper">
+                  <div
+                    className="closeSearchBarIcon"
+                    onClick={() => {
+                      setInputField(false);
+                      setDisplayResult(false);
+                    }}
+                  >
+                    <CloseIcon />
+                  </div>
+                  <div className="searchInput">
+                    <input
+                      type="text"
+                      className="searchInputField"
+                      placeholder="Search"
+                      onChange={() => setDisplayResult(true)}
+                    />
+                    <div className="searchIconBackground">
+                      <SearchOutlinedIcon
+                        style={{ marginTop: "2px", marginLeft: "2px" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {displayResult && (
+                  <div className="searchResult">
+                    <div className="searchResultWrapper">
+                      <div className="seeAllProducts">
+                        <span className="yourSearchFor">
+                          Your search for{" "}
+                          <span className="searchKeyWord">Chocolate</span>{" "}
+                          revealed the following:
+                        </span>
+                        <div className="seeProductsOption">
+                          <span className="seeProducts">See all products</span>
+                          <hr className="underline" />
+                          <br />
+                        </div>
+                      </div>
+                      <div className="productResults">
+                        <img
+                          src="/assets/50g.jpg"
+                          alt=""
+                          className="productResultImg"
+                        />
+                        <span className="productResultName">Kingsbite</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+            <div
+              className="searchOutlinedIcon"
+              onClick={() => setInputField(true)}
+            >
+              <SearchOutlinedIcon />
+            </div>
           </div>
           <div className="navbarIcon">
             <Badge badgeContent={4} color="primary">

@@ -6,6 +6,9 @@ const pageInitialState = {
   products: false,
   blog: false,
   admin: false,
+  delivery: false,
+  privacy: false,
+  terms: false,
 };
 
 export const PagesContext = createContext(pageInitialState);
@@ -19,6 +22,9 @@ export const PagesContextProvider = ({ children }) => {
         products: state.products,
         blog: state.blog,
         admin: state.admin,
+        delivery: state.delivery,
+        privacy: state.privacy,
+        terms: state.terms,
         dispatch,
       }}
     >

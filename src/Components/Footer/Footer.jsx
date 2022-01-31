@@ -6,8 +6,13 @@ import CopyrightIcon from "@mui/icons-material/Copyright";
 import RoomIcon from "@mui/icons-material/Room";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
+import { Link } from "react-router-dom";
+import { PagesContext } from "./../../Context-Api/Pages/Context";
+import { useContext } from "react";
 
 function Footer() {
+  const { privacy, terms, delivery } = useContext(PagesContext);
+
   return (
     <div className="footerContainer">
       <div className="footerWrapper">
@@ -40,11 +45,21 @@ function Footer() {
             </div>
           </div>
           <div className="footerItems">
-            <span className="footerItem">Home</span>
-            <span className="footerItem">Services</span>
-            <span className="footerItem">Refund</span>
-            <span className="footerItem">Terms</span>
-            <span className="footerItem">Privacy Policy</span>
+            <Link to="/deliveries" className="links">
+              <span className={delivery ? "footerItem active" : "footerItem"}>
+                Deliveries & Refund
+              </span>
+            </Link>
+            <Link to="/privacy" className="links">
+              <span className={privacy ? "footerItem active" : "footerItem"}>
+                Privacy policy
+              </span>
+            </Link>
+            <Link to="/terms" className="links">
+              <span className={terms ? "footerItem active" : "footerItem"}>
+                Terms of service
+              </span>
+            </Link>
           </div>
           <div className="footerPaymentGateways">
             <img src="/assets/mtn.png" alt="" className="gatewayItem" />

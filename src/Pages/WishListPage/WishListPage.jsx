@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "./../../Components/Footer/Footer";
 
 function WishListPage() {
   //autoScroll window to top when this component renders
@@ -121,6 +122,7 @@ function WishListPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

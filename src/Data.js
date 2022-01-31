@@ -20,7 +20,7 @@ export const featuredProducts = [
   },
   {
     id: 2,
-    image: "/assets/1-2-chocolate-png-2.png",
+    image: "/assets/20g.jpg",
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ export const featuredProducts = [
   },
   {
     id: 4,
-    image: "/assets/1-2-chocolate-png-2.png",
+    image: "/assets/50g.jpg",
   },
   {
     id: 5,
@@ -36,7 +36,7 @@ export const featuredProducts = [
   },
   {
     id: 6,
-    image: "/assets/1-2-chocolate-png-2.png",
+    image: "/assets/100g.jpg",
   },
   {
     id: 7,
@@ -44,23 +44,7 @@ export const featuredProducts = [
   },
   {
     id: 8,
-    image: "/assets/1-2-chocolate-png-2.png",
-  },
-  {
-    id: 9,
     image: "/assets/handmade.jpg",
-  },
-  {
-    id: 10,
-    image: "/assets/1-2-chocolate-png-2.png",
-  },
-  {
-    id: 11,
-    image: "/assets/100g.jpg",
-  },
-  {
-    id: 12,
-    image: "/assets/1-2-chocolate-png-2.png",
   },
 ];
 

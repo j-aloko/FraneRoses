@@ -1,0 +1,42 @@
+.deliveries-Refund-Container {
+  margin-top: 100px;
+  height: 100vh;
+}
+.deliveries-Refund-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.internationalDeliveries {
+  margin-top: 30px;
+}
+
+.internationalTerms {
+  max-width: 600px;
+  margin-top: 20px;
+  line-height: 25px;
+  font-size: 18px;
+}
+
+.localDeliveries {
+  margin-top: 30px;
+}
+
+.localterms {
+  max-width: 600px;
+  margin-top: 20px;
+  line-height: 25px;
+  font-size: 18px;
+}
+
+.returnAndExchages {
+  margin-top: 30px;
+}
+
+.exchageTerms {
+  max-width: 600px;
+  margin-top: 20px;
+  line-height: 25px;
+  font-size: 18px;
+}

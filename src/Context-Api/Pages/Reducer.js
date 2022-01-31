@@ -6,6 +6,9 @@ export const pageReducer = (state, action) => {
         products: false,
         blog: false,
         admin: false,
+        delivery: false,
+        privacy: false,
+        terms: false,
       };
     case "RENDER_PRODUCTS_PAGE":
       return {
@@ -13,6 +16,9 @@ export const pageReducer = (state, action) => {
         products: true,
         blog: false,
         admin: false,
+        delivery: false,
+        privacy: false,
+        terms: false,
       };
     case "RENDER_BLOG_PAGE":
       return {
@@ -20,13 +26,39 @@ export const pageReducer = (state, action) => {
         products: false,
         blog: true,
         admin: false,
+        delivery: false,
+        privacy: false,
+        terms: false,
       };
-    case "RENDER_ADMIN_PAGE":
+    case "RENDER_DELIVERY_PAGE":
       return {
         homePage: false,
         products: false,
         blog: false,
-        admin: true,
+        admin: false,
+        delivery: true,
+        privacy: false,
+        terms: false,
+      };
+    case "RENDER_PRIVACY_PAGE":
+      return {
+        homePage: false,
+        products: false,
+        blog: false,
+        admin: false,
+        delivery: false,
+        privacy: true,
+        terms: false,
+      };
+    case "RENDER_TERMS_PAGE":
+      return {
+        homePage: false,
+        products: false,
+        blog: false,
+        admin: false,
+        delivery: false,
+        privacy: false,
+        terms: true,
       };
     case "RENDER_DISPLAY_NAME":
       return {
@@ -34,7 +66,11 @@ export const pageReducer = (state, action) => {
         products: false,
         blog: false,
         admin: false,
+        delivery: false,
+        privacy: false,
+        terms: false,
       };
+
     default:
       return { ...state };
   }

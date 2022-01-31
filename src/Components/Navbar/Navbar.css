@@ -141,6 +141,118 @@
 .navbarIcon {
   margin-right: 20px;
   color: white;
+  transition: 1s ease-in-out;
+}
+
+.navbarSearchIcon {
+  margin-right: 20px;
+}
+
+.navbarIcon:hover {
+  color: rgb(211, 196, 111);
+}
+
+.searchOutlinedIcon {
+  color: white;
+  transition: 1s ease-in-out;
+}
+
+.searchOutlinedIcon:hover {
+  color: rgb(211, 196, 111);
+}
+
+.searchBar {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+}
+
+.searchBarWrapper {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchInput {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchInputField {
+  width: 100%;
+  padding: 15px;
+  background-color: rgb(240, 235, 235);
+  font-size: 16px;
+  outline: none;
+}
+
+.searchIconBackground {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  margin-left: -45px;
+  color: white;
+  background-color: #703f07;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.closeSearchBarIcon {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.searchResult {
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+.searchResultWrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.yourSearchFor {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.searchKeyWord {
+  font-weight: bold;
+}
+
+.seeAllProducts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seeProducts {
+  font-size: 18px;
+  font-weight: 500;
+  color: #703f07;
+}
+
+.productResults {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.productResultImg {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.productResultName {
+  margin-left: 20px;
 }
 
 .dropdown {

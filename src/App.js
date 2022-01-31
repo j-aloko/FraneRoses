@@ -12,6 +12,9 @@ import Login from "./Pages/LoginPage/Login";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import Signup from "./Pages/SignUpPage/Signup";
+import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
+import TermsOfService from "./Pages/TermsOfService/TermsOfService";
+import DeliveriesRefund from "./Pages/Deliveries&Refund/Deliveries&Refund";
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
             element={<ResetPassword />}
           />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/deliveries" element={<DeliveriesRefund />} />
         </Routes>
       </div>
     </BrowserRouter>
