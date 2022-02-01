@@ -3,6 +3,8 @@ import "./Admin.css";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderAdminPage } from "../../Context-Api/Pages/Actions";
 import Navbar from "../../Components/Navbar/Navbar";
+import AdminSidebar from "./../../Components/AdminSidebar/AdminSidebar";
+import AdminContent from "./../../Components/AdminContent/AdminContent";
 
 function Admin() {
   const { dispatch } = useContext(PagesContext);
@@ -15,7 +17,16 @@ function Admin() {
   return (
     <>
       <Navbar />
-      <div className="adminContainer"> Admin Panel</div>
+      <div className="adminContainer">
+        <div className="adminWrapper">
+          <div className="adminSidebar">
+            <AdminSidebar />
+          </div>
+          <div className="adminContent">
+            <AdminContent />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

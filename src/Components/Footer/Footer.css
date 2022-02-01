@@ -62,7 +62,7 @@
   font-size: 18px;
   color: white;
   font-weight: 500;
-  transition: 1s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .footerItem.active {

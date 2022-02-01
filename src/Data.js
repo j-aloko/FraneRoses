@@ -247,3 +247,103 @@ export const rows = [
     status: "in stock",
   },
 ];
+
+export const userData = [
+  {
+    name: "Jan",
+    "Active Users": 1000,
+  },
+
+  {
+    name: "Feb",
+    "Active Users": 1300,
+  },
+
+  {
+    name: "Mar",
+    "Active Users": 1700,
+  },
+
+  {
+    name: "Apr",
+    "Active Users": 2000,
+  },
+
+  {
+    name: "May",
+    "Active Users": 3000,
+  },
+
+  {
+    name: "Jun",
+    "Active Users": 1000,
+  },
+
+  {
+    name: "Jul",
+    "Active Users": 2800,
+  },
+
+  {
+    name: "Aug",
+    "Active Users": 4000,
+  },
+
+  {
+    name: "Sept",
+    "Active Users": 3000,
+  },
+
+  {
+    name: "Oct",
+    "Active Users": 3500,
+  },
+
+  {
+    name: "Nov",
+    "Active Users": 300,
+  },
+
+  {
+    name: "Dec",
+    "Active Users": 4000,
+  },
+];
+
+export const latestTransaction = [
+  {
+    id: 1,
+    customer: "Rose Peprah",
+    date: "12 Feb 2022",
+    amount: 600,
+    stat: "Paid",
+  },
+  {
+    id: 2,
+    customer: "Joey Tsino",
+    date: "15 Jan 2022",
+    amount: 200,
+    stat: "Paid",
+  },
+  {
+    id: 3,
+    customer: "Anderson Aloko",
+    date: "9 Jan 2022",
+    amount: 600,
+    stat: "Paid",
+  },
+  {
+    id: 4,
+    customer: "Francis Mahdi",
+    date: "06 Jan 2022",
+    amount: 400,
+    stat: "Paid",
+  },
+  {
+    id: 5,
+    customer: "Junior Francis",
+    date: "1 Feb 2022",
+    amount: 800,
+    stat: "Paid",
+  },
+];

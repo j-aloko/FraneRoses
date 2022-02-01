@@ -20,10 +20,18 @@ function WishListPage() {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 150 },
+    {
+      field: "id",
+      headerName: "ID",
+      width: 150,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+    },
     {
       field: "product",
       headerName: "PRODUCT NAME",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
       width: 150,
       renderCell: (params) => {
         return (
@@ -34,13 +42,45 @@ function WishListPage() {
         );
       },
     },
-    { field: "size", headerName: "SIZE", width: 100 },
-    { field: "quantity", headerName: "QTY", width: 100 },
-    { field: "price", headerName: "PRICE (GHS)", width: 150 },
-    { field: "date", headerName: "DATE ADDED", width: 150 },
+    {
+      field: "size",
+      headerName: "SIZE",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+      width: 100,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "quantity",
+      headerName: "QTY",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+      width: 100,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "price",
+      headerName: "PRICE (GHS)",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+      width: 150,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "date",
+      headerName: "DATE ADDED",
+      width: 150,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+    },
     {
       field: "status",
       headerName: "STATUS",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
       width: 150,
       renderCell: (params) => {
         return (
@@ -63,6 +103,8 @@ function WishListPage() {
     {
       field: "add",
       headerName: "ADD TO CART",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
       width: 120,
       renderCell: (params) => {
         return (
@@ -81,7 +123,9 @@ function WishListPage() {
     {
       field: "remove",
       headerName: "REMOVE",
-      width: 100,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+      width: 170,
       renderCell: (params) => {
         return (
           <div className="productAddToCart">
@@ -115,8 +159,24 @@ function WishListPage() {
                 rows={rows}
                 columns={columns}
                 pageSize={10}
-                checkboxSelection
                 disableSelectionOnClick
+                sx={{
+                  "& .super-app-theme--header": {
+                    backgroundColor: "#8585d6",
+                    color: "white",
+                    fontWeight: "bold",
+                  },
+                  "& .super-app-theme--cell": {
+                    fontSize: "17px",
+                    color: "#04061f",
+                    fontWeight: "600",
+                    backgroundColor: "#dedee0",
+                    cursor: "pointer",
+                    "&:hover": {
+                      backgroundColor: "gray",
+                    },
+                  },
+                }}
               />
             </div>
           </div>

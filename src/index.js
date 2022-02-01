@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { PagesContextProvider } from "./Context-Api/Pages/Context";
+import { AdminPagesContextProvider } from "./Context-Api/AdminPages/Context";
 
 ReactDOM.render(
   <React.StrictMode>
     <PagesContextProvider>
-      <App />
+      <AdminPagesContextProvider>
+        <App />
+      </AdminPagesContextProvider>
     </PagesContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
