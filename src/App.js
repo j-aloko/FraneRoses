@@ -1,10 +1,10 @@
 import "./App.css";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleProductPage from "./Pages/SingleProductPage/SingleProductPage";
 import ProductsPage from "./Components/ProductsPage/ProductsPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import BlogPage from "./Pages/BlogPage/BlogPage";
-import Admin from "./Pages/AdminPanel/Admin";
 import CartPage from "./Pages/CartPage/CartPage";
 import CheckoutPage from "./Pages/CheckoutPage/CheckoutPage";
 import WishListPage from "./Pages/WishListPage/WishListPage";
@@ -15,6 +15,9 @@ import Signup from "./Pages/SignUpPage/Signup";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import DeliveriesRefund from "./Pages/Deliveries&Refund/Deliveries&Refund";
+import CircularProgress from "@mui/material/CircularProgress";
+
+const LazyAdmin = React.lazy(() => import("./Pages/AdminPanel/Admin"));
 
 function App() {
   return (
@@ -22,8 +25,21 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/blog" element={<BlogPage />} />
-          <Route exact path="/admin" element={<Admin />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route
+            path="/admin"
+            element={
+              <React.Suspense
+                fallback={
+                  <div className="fallback">
+                    <CircularProgress color="secondary" />
+                  </div>
+                }
+              >
+                <LazyAdmin />
+              </React.Suspense>
+            }
+          />
           <Route path="/product" element={<SingleProductPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />

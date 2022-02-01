@@ -20,6 +20,16 @@ export const pageReducer = (state, action) => {
         privacy: false,
         terms: false,
       };
+    case "RENDER_ADMIN_PAGE":
+      return {
+        homePage: false,
+        products: false,
+        blog: false,
+        admin: true,
+        delivery: false,
+        privacy: false,
+        terms: false,
+      };
     case "RENDER_BLOG_PAGE":
       return {
         homePage: false,
