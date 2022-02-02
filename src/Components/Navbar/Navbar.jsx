@@ -142,7 +142,7 @@ function Navbar() {
           </div>
           {userIsAdmin && (
             <div className="navbarcenterMenuItems">
-              <Link to="/admin" className="links">
+              <Link to="/admin/:id" className="links">
                 <span
                   className={admin ? "navbarMenuAdmin color" : "navbarMenuBlog"}
                 >
@@ -157,14 +157,17 @@ function Navbar() {
             {inputField && (
               <div className="searchBar">
                 <div className="searchBarWrapper">
-                  <div
-                    className="closeSearchBarIcon"
-                    onClick={() => {
-                      setInputField(false);
-                      setDisplayResult(false);
-                    }}
-                  >
-                    <CloseIcon />
+                  <div className="closeIconWrapper">
+                    <span></span>
+                    <div
+                      className="closeSearchBarIcon"
+                      onClick={() => {
+                        setInputField(false);
+                        setDisplayResult(false);
+                      }}
+                    >
+                      <CloseIcon />
+                    </div>
                   </div>
                   <div className="searchInput">
                     <input

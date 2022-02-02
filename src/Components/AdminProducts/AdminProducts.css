@@ -1,0 +1,57 @@
+.AdminProductInfo {
+  display: flex;
+  align-items: center;
+}
+
+.AdminProductImg {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.productStatusWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.productStatusCircle {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: green;
+}
+
+.productStatus {
+  margin-left: 20px;
+}
+
+.editProductContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.productStatusCircle.red {
+  background-color: rgb(199, 7, 7);
+}
+
+.editProductTitleCreate {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.createNewProduct {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(8, 129, 28);
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+}

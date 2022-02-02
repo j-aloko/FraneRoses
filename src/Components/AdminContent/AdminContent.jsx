@@ -4,6 +4,8 @@ import React from "react";
 import { useContext } from "react";
 import { adminPagesContext } from "./../../Context-Api/AdminPages/Context";
 import Dashboard from "./../AdminDashboard/Dashboard";
+import Users from "./../Users/Users";
+import AdminProducts from "./../AdminProducts/AdminProducts";
 
 function AdminContent() {
   const { home, users, products, order } = useContext(adminPagesContext);
@@ -15,13 +17,25 @@ function AdminContent() {
       </>
     );
   } else if (users) {
-    return <>users</>;
+    return (
+      <>
+        <Users />
+      </>
+    );
   } else if (products) {
-    return <>Products</>;
+    return (
+      <>
+        <AdminProducts />
+      </>
+    );
   } else if (order) {
     return <>Order</>;
   } else {
-    return <><Dashboard /></>;
+    return (
+      <>
+        <Dashboard />
+      </>
+    );
   }
 }
 

@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route
-            path="/admin"
+            path="/admin/:id"
             element={
               <React.Suspense
                 fallback={

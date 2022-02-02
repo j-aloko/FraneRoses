@@ -1,0 +1,111 @@
+.editProductWrapper {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.editProductTop {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  padding: 20px 40px;
+  -webkit-box-shadow: 0px 0px 12px 0px #04061f;
+  box-shadow: 0px 0px 12px 0px #04061f;
+}
+
+.editProductProfile {
+  display: flex;
+  align-items: center;
+}
+
+.editProductImg {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.editProductInfo {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+.editProductInfoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.editProductDown {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 12px 0px #04061f;
+  box-shadow: 0px 0px 12px 0px #04061f;
+}
+
+.editProductDownLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.editProductForms {
+  display: flex;
+  flex-direction: column;
+}
+
+.editProductFormInputs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.editProductInput {
+  width: 250px;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+}
+
+.editProductSelectItem {
+  width: 275px;
+  padding: 10px;
+}
+
+.editProductDownRight {
+  display: flex;
+  flex-direction: column;
+}
+.editProductRightUpload {
+  display: flex;
+  align-items: center;
+}
+
+.editProductRightImg {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  vertical-align: middle;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.updateProductButton {
+  width: 170px;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(17, 5, 90);
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+}

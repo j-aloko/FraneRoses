@@ -24,7 +24,7 @@ function CheckoutPage() {
             <form action="" className="checkoutLeftContactInfo">
               <span className="contactinformation">Contact information</span>
               <input
-                type="number"
+                type="text"
                 className="inputItem"
                 placeholder="Phone Number"
               />

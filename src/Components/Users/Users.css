@@ -1,0 +1,40 @@
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userImg {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.actionWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Actionedit {
+  background-color: rgb(38, 156, 48);
+  width: 50px;
+  color: white;
+  padding: 5px 5px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.editUserContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrowBack {
+  cursor: pointer;
+}

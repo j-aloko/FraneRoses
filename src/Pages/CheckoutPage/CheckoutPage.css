@@ -28,6 +28,7 @@
   width: 60%;
   padding: 10px;
   margin-top: 15px;
+  outline: none;
 }
 
 .checkBox {
@@ -61,6 +62,7 @@
 
 .namefields {
   padding: 10px;
+  outline: none;
 }
 
 .returnToCart {

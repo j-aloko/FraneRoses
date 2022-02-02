@@ -167,9 +167,9 @@ function WishListPage() {
                     fontWeight: "bold",
                   },
                   "& .super-app-theme--cell": {
-                    fontSize: "17px",
+                    fontSize: "16px",
                     color: "#04061f",
-                    fontWeight: "600",
+                    fontWeight: "500",
                     backgroundColor: "#dedee0",
                     cursor: "pointer",
                     "&:hover": {

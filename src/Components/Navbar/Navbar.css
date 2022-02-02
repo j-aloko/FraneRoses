@@ -185,7 +185,8 @@
 .searchInputField {
   width: 100%;
   padding: 15px;
-  background-color: rgb(240, 235, 235);
+  border: none;
+  background-color: rgb(204, 201, 201);
   font-size: 16px;
   outline: none;
 }
@@ -201,10 +202,21 @@
   z-index: 2;
 }
 
-.closeSearchBarIcon {
-  display: flex;
-  justify-content: flex-end;
+.closeIconWrapper {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeSearchBarIcon {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.closeSearchBarIcon:hover {
+  background-color: red;
+  color: white;
 }
 
 .searchResult {

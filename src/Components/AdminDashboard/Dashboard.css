@@ -59,6 +59,16 @@
   margin-bottom: 20px;
 }
 
-.MuiDataGrid-cellCenter {
-  justify-content: center;
+.customerInfo {
+  display: flex;
+  align-items: center;
+}
+
+.customerImg {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 20px;
 }

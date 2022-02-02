@@ -16,7 +16,6 @@ import { latestTransaction } from "./../../Data";
 
 function Dashboard() {
   //Data Grid
-
   const columns = [
     {
       field: "customer",
@@ -24,6 +23,18 @@ function Dashboard() {
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-customer--cell",
       width: 250,
+      renderCell: (params) => {
+        return (
+          <div className="customerInfo">
+            <img
+              src={`${params.row.img || "/assets/avatar.png"}`}
+              alt=""
+              className="customerImg"
+            />
+            <span className="customerName">{params.row.customer}</span>
+          </div>
+        );
+      },
     },
     {
       field: "date",
@@ -44,8 +55,8 @@ function Dashboard() {
       align: "center",
     },
     {
-      field: "stat",
-      headerName: "STATUS",
+      field: "summary",
+      headerName: "SUMMARY",
       headerClassName: "super-app-theme--header",
       width: 290,
       headerAlign: "center",
@@ -115,11 +126,11 @@ function Dashboard() {
               sx={{
                 "& .super-app-theme--cell": {
                   color: "green",
-                  fontSize: "17px",
-                  fontWeight: "bold",
+                  fontSize: "16px",
+                  fontWeight: "500",
                   backgroundColor: "#dedee0",
                   "&:hover": {
-                    backgroundColor: "gray",
+                    backgroundColor: "#d0d4db",
                   },
                 },
                 "& .super-app-theme--header": {
@@ -128,30 +139,30 @@ function Dashboard() {
                   fontWeight: "bold",
                 },
                 "& .super-app-customer--cell": {
-                  fontSize: "17px",
+                  fontSize: "16px",
                   color: "#04061f",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   backgroundColor: "#dedee0",
                   "&:hover": {
-                    backgroundColor: "gray",
+                    backgroundColor: "#d0d4db",
                   },
                 },
                 "& .super-app-amount--cell": {
-                  fontSize: "17px",
+                  fontSize: "16px",
                   color: "#04061f",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   backgroundColor: "#dedee0",
                   "&:hover": {
-                    backgroundColor: "gray",
+                    backgroundColor: "#d0d4db",
                   },
                 },
                 "& .super-app-date--cell": {
-                  fontSize: "17px",
+                  fontSize: "16px",
                   color: "#04061f",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   backgroundColor: "#dedee0",
                   "&:hover": {
-                    backgroundColor: "gray",
+                    backgroundColor: "#d0d4db",
                   },
                 },
               }}
