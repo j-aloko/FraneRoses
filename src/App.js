@@ -16,12 +16,13 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import DeliveriesRefund from "./Pages/Deliveries&Refund/Deliveries&Refund";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import Navbar from "./Components/Navbar/Navbar";
 const LazyAdmin = React.lazy(() => import("./Pages/AdminPanel/Admin"));
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <div className="App">
         <Routes>
           <Route exact path="/" element={<HomePage />} />

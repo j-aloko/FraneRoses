@@ -15,8 +15,13 @@ import CloseIcon from "@mui/icons-material/Close";
 
 function Navbar() {
   const [inputField, setInputField] = useState(false);
+
   const [displayResult, setDisplayResult] = useState(false);
+
+  const [color, setColor] = useState(false);
+
   const userIsAdmin = true;
+
   const { dispatch, homePage, products, blog, admin } =
     useContext(PagesContext);
 
@@ -30,8 +35,25 @@ function Navbar() {
     [dispatch]
   );
 
+  //change navbar color when Y axis is >= 80px
+  const changeColor = () => {
+    if (window.scrollY >= 80) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+
+  window.addEventListener("scroll", changeColor);
+
   return (
-    <div className="navbarContainer">
+    <div
+      className={
+        homePage
+          ? `${color ? "navbarContainer color" : "navbarContainer change"}`
+          : "navbarContainer"
+      }
+    >
       <div className="navbarWrapper">
         <div className="navbarLeft">
           <h1 className="navbarLogo">FraneRoses</h1>
@@ -219,18 +241,18 @@ function Navbar() {
             </div>
           </div>
           <div className="navbarIcon">
-            <Badge badgeContent={4} color="primary">
-              <Link to="/wishList" className="links">
+            <Link to="/wishList" className="links">
+              <Badge badgeContent={4} color="primary">
                 <FavoriteBorderOutlinedIcon />
-              </Link>
-            </Badge>
+              </Badge>
+            </Link>
           </div>
           <div className="navbarIcon">
-            <Badge badgeContent={4} color="primary">
-              <Link to="/cart" className="links">
+            <Link to="/cart" className="links">
+              <Badge badgeContent={4} color="primary">
                 <ShoppingCartOutlinedIcon />
-              </Link>
-            </Badge>
+              </Badge>
+            </Link>
           </div>
           <div className="dropdown">
             <div className="navbarIcon">

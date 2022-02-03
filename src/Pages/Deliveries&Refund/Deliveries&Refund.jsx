@@ -1,9 +1,8 @@
 import "./Deliveries&Refund.css";
 import React, { useContext, useEffect } from "react";
-import Footer from "./../../Components/Footer/Footer";
-import Navbar from "./../../Components/Navbar/Navbar";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderDeliveryPage } from "./../../Context-Api/Pages/Actions";
+import Footer from "./../../Components/Footer/Footer";
 
 function DeliveriesRefund() {
   const { dispatch } = useContext(PagesContext);
@@ -24,7 +23,6 @@ function DeliveriesRefund() {
 
   return (
     <>
-      <Navbar />
       <div className="deliveries-Refund-Container">
         <div className="deliveries-Refund-Wrapper">
           <h1 className="deliveriesTitle">Deliveries & Refund</h1>

@@ -1,9 +1,8 @@
 import "./PrivacyPolicy.css";
 import React, { useContext, useEffect } from "react";
-import Footer from "./../../Components/Footer/Footer";
-import Navbar from "./../../Components/Navbar/Navbar";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderPrivacyPage } from "../../Context-Api/Pages/Actions";
+import Footer from "./../../Components/Footer/Footer";
 
 function PrivacyPolicy() {
   const { dispatch } = useContext(PagesContext);
@@ -24,7 +23,6 @@ function PrivacyPolicy() {
 
   return (
     <>
-      <Navbar />
       <div className="privacyPolicyContainer">
         <div className="privacyPolicyWrapper">
           <h1 className="privacyPolicyTitle">Privacy Policy</h1>

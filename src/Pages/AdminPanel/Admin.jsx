@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import "./Admin.css";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderAdminPage } from "../../Context-Api/Pages/Actions";
-import Navbar from "../../Components/Navbar/Navbar";
 import AdminSidebar from "./../../Components/AdminSidebar/AdminSidebar";
 import AdminContent from "./../../Components/AdminContent/AdminContent";
 
@@ -15,19 +14,16 @@ function Admin() {
   }, [dispatch]);
 
   return (
-    <>
-      <Navbar />
-      <div className="adminContainer">
-        <div className="adminWrapper">
-          <div className="adminSidebar">
-            <AdminSidebar />
-          </div>
-          <div className="adminContent">
-            <AdminContent />
-          </div>
+    <div className="adminContainer">
+      <div className="adminWrapper">
+        <div className="adminSidebar">
+          <AdminSidebar />
+        </div>
+        <div className="adminContent">
+          <AdminContent />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

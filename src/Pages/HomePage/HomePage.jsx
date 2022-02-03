@@ -4,7 +4,6 @@ import About from "./../../Components/About-Us/About";
 import FeaturedProducts from "./../../Components/FeaturedProducts/FeaturedProducts";
 import { useContext, useEffect } from "react";
 import Footer from "./../../Components/Footer/Footer";
-import Navbar from "../../Components/Navbar/Navbar";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderHomePage } from "./../../Context-Api/Pages/Actions";
 
@@ -27,7 +26,6 @@ function HomePage() {
 
   return (
     <>
-      <Navbar />
       <div className="homePageContainer">
         <div className="homePageWrapper">
           <Featured />

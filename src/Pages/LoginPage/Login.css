@@ -1,18 +1,13 @@
 .loginContainer {
-  height: 100vh;
   background-color: rgb(212, 211, 211);
-}
-
-.returnHome {
-  margin-left: 10px;
-  font-weight: 500;
-  cursor: pointer;
+  height: 100vh;
 }
 
 .loginWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
 }
 
 .loginLeft {

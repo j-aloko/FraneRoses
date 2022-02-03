@@ -1,9 +1,8 @@
 import "./TermsOfService.css";
 import React, { useContext, useEffect } from "react";
-import Footer from "./../../Components/Footer/Footer";
-import Navbar from "./../../Components/Navbar/Navbar";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderTermsPage } from "./../../Context-Api/Pages/Actions";
+import Footer from "./../../Components/Footer/Footer";
 
 function TermsOfService() {
   const { dispatch } = useContext(PagesContext);
@@ -23,7 +22,6 @@ function TermsOfService() {
 
   return (
     <>
-      <Navbar />
       <div className="termsOfServiceContainer">
         <div className="termsOfServiceWrapper">
           <h1 className="termsofServiceTitle">Terms of Service</h1>

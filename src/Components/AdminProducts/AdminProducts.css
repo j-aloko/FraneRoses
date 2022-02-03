@@ -37,7 +37,7 @@
   background-color: rgb(199, 7, 7);
 }
 
-.editProductTitleCreate {
+.createProductTitleCreate {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;

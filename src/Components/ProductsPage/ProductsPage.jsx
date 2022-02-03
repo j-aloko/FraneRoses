@@ -2,7 +2,6 @@ import "./ProductsPage.css";
 import { Link } from "react-router-dom";
 import { products } from "./../../Data";
 import { useContext, useEffect } from "react";
-import Navbar from "../Navbar/Navbar";
 import Footer from "./../Footer/Footer";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
@@ -26,7 +25,6 @@ function ProductsPage() {
 
   return (
     <>
-      <Navbar />
       <div className="productsPageContainer">
         <div className="productsPageWrapper">
           <div className="productsPageTop">

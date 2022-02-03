@@ -9,6 +9,10 @@
   background-color: #703f07;
 }
 
+.navbarContainer.change {
+  background-color: transparent;
+}
+
 .navbarContainer.color {
   background-color: #703f07;
 }
@@ -141,11 +145,12 @@
 .navbarIcon {
   margin-right: 20px;
   color: white;
-  transition: 1s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .navbarSearchIcon {
   margin-right: 20px;
+  transition: 0.5s ease-in-out;
 }
 
 .navbarIcon:hover {
@@ -285,6 +290,11 @@
   align-items: center;
   margin-top: 5px;
   margin-bottom: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+.dropdown-content-items:hover {
+  color: orangered;
 }
 
 .dropdown:hover .dropdown-content {

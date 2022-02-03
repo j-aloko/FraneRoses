@@ -3,7 +3,6 @@ import Badge from "@mui/material/Badge";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./../../Components/Footer/Footer";
-import Navbar from "./../../Components/Navbar/Navbar";
 
 function CheckoutPage() {
   //autoScroll window to top when this component renders
@@ -17,7 +16,6 @@ function CheckoutPage() {
 
   return (
     <>
-      <Navbar />
       <div className="checkoutContainer">
         <div className="checkoutWrapper">
           <div className="checkoutLeft">

@@ -6,7 +6,6 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "./../../Components/Footer/Footer";
 
 function WishListPage() {
@@ -144,7 +143,6 @@ function WishListPage() {
 
   return (
     <>
-      <Navbar />
       <div className="wishListContainer">
         <div className="wishListWrapper">
           <div className="wishListTop">

@@ -46,8 +46,8 @@ function AdminEditProduct() {
             <div className="editProductFormInputs">
               <label htmlFor="instock">In stock</label>
               <select className="editProductSelectItem">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="in stock">Yes</option>
+                <option value="out of stock">No</option>
               </select>
             </div>
             <div className="editProductFormInputs">

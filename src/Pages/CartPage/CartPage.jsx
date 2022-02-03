@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
-import Navbar from "../../Components/Navbar/Navbar";
 import Footer from './../../Components/Footer/Footer';
+
 
 function CartPage() {
   const [quantity, setQuantity] = useState(4);
@@ -51,7 +51,7 @@ function CartPage() {
   };
 
   return (
-    <><Navbar /><div className="cartContainer">
+    <><div className="cartContainer">
     <div className="cartWrapper">
       <div className="cartTop">
         <div className="cartTopInfos">

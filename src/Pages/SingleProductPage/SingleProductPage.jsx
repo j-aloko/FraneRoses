@@ -4,10 +4,9 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "./../../Components/Footer/Footer";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
+import Footer from "./../../Components/Footer/Footer";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
@@ -32,7 +31,6 @@ function SingleProductPage() {
 
   return (
     <>
-      <Navbar />
       <div className="singleProductContainer">
         <div className="singleProductWrapper">
           <div className="singleProductTop">
