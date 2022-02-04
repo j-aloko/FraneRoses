@@ -459,3 +459,136 @@ export const latestTransaction = [
     img: "",
   },
 ];
+
+export const order = [
+  {
+    id: 1,
+    products: [
+      {
+        productName: "Kingsbite",
+        quantity: 60,
+      },
+      {
+        productName: "Oranco",
+        quantity: 60,
+      },
+      {
+        productName: "Dark Chocolate",
+        quantity: 60,
+      },
+    ],
+    fullName: "Joey Tsino",
+    quantity: 60,
+    amount: 300,
+    phone: "0202335987",
+    email: "tsy@gmail.com",
+    region: "Greater Accra",
+    city: "Tema",
+    apartmentSuite: "123 Bolevan",
+    status: "Fullfilled",
+  },
+  {
+    id: 2,
+    products: [
+      {
+        productName: "Kingsbite",
+        quantity: 60,
+      },
+      {
+        productName: "Oranco",
+        quantity: 60,
+      },
+      {
+        productName: "Dark Chocolate",
+        quantity: 60,
+      },
+    ],
+    fullName: "Joey Tsino",
+    quantity: 60,
+    amount: 300,
+    phone: "0202335987",
+    email: "tsy@gmail.com",
+    region: "Greater Accra",
+    city: "Tema",
+    apartmentSuite: "123 Bolevan",
+    status: "Pending",
+  },
+  {
+    id: 3,
+    products: [
+      {
+        productName: "Kingsbite",
+        quantity: 60,
+      },
+      {
+        productName: "Oranco",
+        quantity: 60,
+      },
+      {
+        productName: "Dark Chocolate",
+        quantity: 60,
+      },
+    ],
+    fullName: "Joey Tsino",
+    quantity: 60,
+    amount: 300,
+    phone: "0202335987",
+    email: "tsy@gmail.com",
+    region: "Greater Accra",
+    city: "Tema",
+    apartmentSuite: "123 Bolevan",
+    status: "Pending",
+  },
+  {
+    id: 4,
+    products: [
+      {
+        productName: "Kingsbite",
+        quantity: 60,
+      },
+      {
+        productName: "Oranco",
+        quantity: 60,
+      },
+      {
+        productName: "Dark Chocolate",
+        quantity: 60,
+      },
+    ],
+    fullName: "Joey Tsino",
+    quantity: 60,
+    amount: 300,
+    phone: "0202335987",
+    email: "tsy@gmail.com",
+    region: "Greater Accra",
+    city: "Tema",
+    apartmentSuite: "123 Bolevan",
+    status: "Fullfilled",
+  },
+  {
+    id: 5,
+    products: [
+      {
+        productName: "Kingsbite",
+        quantity: 60,
+      },
+      {
+        productName: "Oranco",
+        quantity: 60,
+      },
+      {
+        productName: "Dark Chocolate",
+        quantity: 60,
+      },
+    ],
+    fullName: "Joey Tsino",
+    quantity: 60,
+    amount: 300,
+    phone: "0202335987",
+    email: "tsy@gmail.com",
+    region: "Greater Accra",
+    city: "Tema",
+    apartmentSuite: "123 Bolevan",
+    status: "Pending",
+  },
+];

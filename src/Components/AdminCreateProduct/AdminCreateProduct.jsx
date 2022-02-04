@@ -20,7 +20,7 @@ function AdminCreateProduct() {
 
   return (
     <div className="createNewProductWrapper">
-      <h1 className="addProducts">Add Products</h1>
+      <h1 className="addProducts">Add New Product</h1>
       <form className="addProductsForm">
         <select className="productTitleSelection">
           <option className="productTitle">Choose a Title </option>
@@ -88,9 +88,6 @@ function AdminCreateProduct() {
               className="mediaFiles"
               onChange={handlePreview}
             />
-            <span className="allowedExtension">
-              Tip: Use CTRL + Select to choose multiple images
-            </span>
           </div>
           <div className="myAddProducts">
             {file?.map((url, index) => (
@@ -117,16 +114,6 @@ function AdminCreateProduct() {
           placeholder="Cost per Item"
         />
         <input type="number" className="quantity" placeholder="Quantity" />
-        <select className="productStockLevel">
-          <option>Choose Stock Status</option>
-          <option value="in stock">In Stock</option>
-          <option value="out of stock">Out of Stock</option>
-        </select>
-        <select className="productActiveStatus">
-          <option>Choose Product Status</option>
-          <option value="active">Active</option>
-          <option value="passive">Passive</option>
-        </select>
         <button className="createProductButton">Publish</button>
       </form>
     </div>

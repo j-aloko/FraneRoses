@@ -5,22 +5,13 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import EmailIcon from "@mui/icons-material/Email";
 import GpsNotFixedIcon from "@mui/icons-material/GpsNotFixed";
-import PublishIcon from "@mui/icons-material/Publish";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-function EditExistingUser({ setCreateUser }) {
+function EditExistingUser() {
   return (
     <>
       <div className="editUserCreate">
         <h1 className="editUser">Edit User</h1>
-        <button
-          className="createNewUser"
-          onClick={(e) => {
-            e.preventDefault();
-            setCreateUser(true);
-          }}
-        >
-          Create
-        </button>
       </div>
       <div className="editUserWrapper">
         <div className="editUserLeft">
@@ -50,6 +41,7 @@ function EditExistingUser({ setCreateUser }) {
             <GpsNotFixedIcon />
             <span className="accountDetailsItem">Tema, Ghana</span>
           </div>
+          <button className="deleteUser">Delete User</button>
         </div>
         <div className="editUserRight">
           <h2 className="editUserRightTitle">Edit</h2>
@@ -72,7 +64,9 @@ function EditExistingUser({ setCreateUser }) {
                 />
                 <div className="uploadIcon">
                   <label htmlFor="file">
-                    <PublishIcon style={{ cursor: "pointer" }} />
+                    <CloudUploadIcon
+                      style={{ color: "blue", cursor: "pointer" }}
+                    />
                   </label>
                   <input type="file" id="file" style={{ display: "none" }} />
                 </div>

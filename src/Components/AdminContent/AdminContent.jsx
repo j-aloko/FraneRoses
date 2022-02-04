@@ -6,6 +6,7 @@ import { adminPagesContext } from "./../../Context-Api/AdminPages/Context";
 import Dashboard from "./../AdminDashboard/Dashboard";
 import Users from "./../Users/Users";
 import AdminProducts from "./../AdminProducts/AdminProducts";
+import AdminOrders from "./../AdminOrders/AdminOrders";
 
 function AdminContent() {
   const { home, users, products, order } = useContext(adminPagesContext);
@@ -29,7 +30,11 @@ function AdminContent() {
       </>
     );
   } else if (order) {
-    return <>Order</>;
+    return (
+      <>
+        <AdminOrders />
+      </>
+    );
   } else {
     return (
       <>

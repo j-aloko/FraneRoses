@@ -5,20 +5,22 @@
   align-items: center;
 }
 
-.createNewUser {
-  width: 120px;
-  padding: 10px;
-  background-color: rgb(11, 100, 42);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-}
 .editUserWrapper {
   margin-top: 20px;
   display: flex;
+}
+
+.deleteUser {
+  margin-top: 50px;
+  width: 170px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(179, 7, 7);
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .editUserLeft {

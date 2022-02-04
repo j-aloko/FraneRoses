@@ -1,98 +1,90 @@
-import "./Users.css";
+import "./AdminOrders.css";
 import React, { useState } from "react";
-import { users } from "./../../Data";
 import { DataGrid } from "@mui/x-data-grid";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Link, useLocation } from "react-router-dom";
+import { order } from "../../Data";
+import { Link } from "react-router-dom";
+import CheckIcon from "@mui/icons-material/Check";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import EditExistingUser from "../EditExistingUser/EditExistingUser";
 
-function Users() {
-  const [editUser, setEditUser] = useState(false);
-
-  const location = useLocation();
-  console.log(location);
+function AdminOrders() {
+  const [orderDetails, setOrderDetails] = useState(false);
 
   const columns = [
     {
-      field: "username",
-      headerName: "USERNAME",
+      field: "id",
+      headerName: "ORDER ID",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
-      width: 170,
-      renderCell: (params) => {
-        return (
-          <div className="userInfo">
-            <img
-              src={`${params.row.avatar || "/assets/avatar.png"}`}
-              alt=""
-              className="userImg"
-            />
-            <span className="userName">{params.row.username}</span>
-          </div>
-        );
-      },
+      width: 220,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "fullName",
+      headerName: "FULLNAME",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
-      width: 200,
+      width: 220,
+    },
+    {
+      field: "amount",
+      headerName: "TOTAL AMOUNT",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+      headerAlign: "center",
+      align: "center",
+      width: 220,
     },
     {
       field: "status",
       headerName: "STATUS",
       headerClassName: "super-app-theme--header",
-      width: 170,
+      cellClassName: "super-app-theme--cell",
       headerAlign: "center",
       align: "center",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "transaction",
-      headerName: "TRANSACTION",
-      headerClassName: "super-app-theme--header",
-      width: 200,
-      headerAlign: "center",
-      align: "center",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "action",
-      headerName: "ACTION",
-      headerClassName: "super-app-theme--header",
-      width: 300,
-      headerAlign: "center",
-      align: "center",
-      cellClassName: "super-app-theme--cell",
+      width: 220,
       renderCell: (params) => {
         return (
-          <div className="actionWrapper">
+          <>
+            {params.row.status === "Pending" ? (
+              <span className="orderStatus">{params.row.status}....</span>
+            ) : (
+              <div className="orderFulfilled">
+                <span className="orderFulFilled">{params.row.status}</span>
+                <CheckIcon />
+              </div>
+            )}
+          </>
+        );
+      },
+    },
+    {
+      field: "details",
+      headerName: "ORDER DETAILS",
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+      width: 220,
+      renderCell: (params) => {
+        return (
+          <>
             <Link to={`/admin/${params.row.id}`} className="links">
-              <span className="Actionedit" onClick={() => setEditUser(true)}>
-                Edit
+              <span
+                className="viewDetails"
+                onClick={() => setOrderDetails(true)}
+              >
+                View Details
               </span>
             </Link>
-            <DeleteForeverIcon
-              style={{
-                color: "red",
-                marginLeft: "30px",
-                cursor: "pointer",
-              }}
-            />
-          </div>
+          </>
         );
       },
     },
   ];
 
   return (
-    <div className="usersContainer">
-      {!editUser ? (
+    <div className="adminOrdersContainer">
+      {!orderDetails ? (
         <div style={{ height: 700, width: "100%" }}>
           <DataGrid
-            rows={users}
+            rows={order}
             columns={columns}
             pageSize={10}
             rowsPerPageOptions={[10]}
@@ -116,8 +108,8 @@ function Users() {
           />
         </div>
       ) : (
-        <div className="editUserContainer">
-          <div className="arrowBack" onClick={() => setEditUser(false)}>
+        <div className="orderDetailsContainer">
+          <div className="arrowBack" onClick={() => setOrderDetails(false)}>
             <ArrowRightAltIcon
               style={{
                 fontSize: 40,
@@ -126,11 +118,10 @@ function Users() {
               }}
             />
           </div>
-          <EditExistingUser />
         </div>
       )}
     </div>
   );
 }
 
-export default Users;
+export default AdminOrders;

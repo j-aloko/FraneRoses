@@ -137,7 +137,7 @@ function AdminProducts() {
                 />
               </div>
               <div className="editProductTitleCreate">
-                <h1 className="editProductTitle">Product</h1>
+                <h1 className="editProductTitle">Update Product</h1>
                 <button
                   className="createNewProduct"
                   onClick={() => setCreateNewProduct(true)}

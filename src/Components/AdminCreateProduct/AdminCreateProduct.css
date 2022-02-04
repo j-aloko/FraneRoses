@@ -29,6 +29,8 @@ option {
   width: 400px;
   font-size: 16px;
   margin-top: 15px;
+  border: 0.5px solid gray;
+  outline: none;
 }
 
 .addProductDescription {
@@ -50,7 +52,7 @@ option {
 
 .media {
   margin-right: 30px;
-  border: 1px solid gray;
+  border: 1px solid rgb(94, 92, 92);
   border-style: dotted;
   border-radius: 5px;
   width: 425px;
@@ -88,13 +90,6 @@ option {
   border-radius: 5px;
   margin-right: 10px;
   margin-bottom: 10px;
-}
-
-.allowedExtension {
-  margin-top: 10px;
-  margin-right: 10px;
-  color: red;
-  font-weight: 500;
 }
 
 .pricing {
@@ -137,26 +132,6 @@ option {
   border: 0.5px solid gray;
   outline: none;
   margin-top: 15px;
-}
-
-.productStockLevel {
-  padding: 10px;
-  border-radius: 5px;
-  width: 400px;
-  font-size: 16px;
-  margin-top: 15px;
-  border: 0.5px solid gray;
-  outline: none;
-}
-
-.productActiveStatus {
-  padding: 10px;
-  border-radius: 5px;
-  width: 400px;
-  font-size: 16px;
-  margin-top: 15px;
-  border: 0.5px solid gray;
-  outline: none;
 }
 
 .createProductButton {

@@ -167,6 +167,8 @@
   margin-top: 20px;
   padding: 10px;
   height: 120px;
+  border: 0.5px solid gray;
+  outline: none;
   border-radius: 15px;
 }
 
@@ -202,6 +204,8 @@
 .regionSelection {
   padding: 10px;
   width: 400px;
+  border: 0.5px solid gray;
+  outline: none;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

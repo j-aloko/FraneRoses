@@ -28,6 +28,11 @@
   opacity: 1;
 }
 
+.navbarLogo {
+  font-family: "Parisienne", cursive;
+  cursor: pointer;
+}
+
 .navbarCenter {
   display: flex;
   align-items: center;

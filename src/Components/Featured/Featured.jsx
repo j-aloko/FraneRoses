@@ -1,4 +1,5 @@
 import "./Featured.css";
+import { Link } from "react-router-dom";
 
 function Featured() {
   return (
@@ -12,7 +13,9 @@ function Featured() {
         <div className="featuredCallToAction">
           <span className="featuredDescription">Happiness</span>
           <span className="featuredDescription">Full of Delight</span>
-          <button className="featuredShopNow">Shop Now</button>
+          <Link to="/products" className="links">
+            <button className="featuredShopNow">Shop Now</button>
+          </Link>
         </div>
       </div>
     </div>

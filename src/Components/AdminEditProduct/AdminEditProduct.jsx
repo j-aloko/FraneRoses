@@ -1,22 +1,32 @@
 import "./AdminEditProduct.css";
-import React from "react";
-import PublishIcon from "@mui/icons-material/Publish";
+import React, { useState } from "react";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 function AdminEditProduct() {
+  const [file, setFile] = useState();
+  const [preview, setPreview] = useState("/assets/100g.jpg");
+
+  //handle image preview
+
+  var fileObj = [];
+  var fileArray = [];
+
+  const handlePreview = (e) => {
+    fileObj.push(e.target.files);
+    for (let i = 0; i < fileObj[0].length; i++) {
+      fileArray.push(URL.createObjectURL(fileObj[0][i]));
+    }
+    setFile(fileArray);
+  };
+
   return (
     <div className="editProductWrapper">
       <div className="editProductTop">
         <div className="editProductProfile">
           <img src="/assets/100g.jpg" alt="" className="editProductImg" />
-          <div className="editProductName">Kingsbite 100g</div>
+          <div className="editProductName">Kingsbite</div>
         </div>
         <div className="editProductInfo">
-          <div className="editProductInfoItem">
-            <span className="editProductLineItem">Id:</span>
-            <span className="editProductLineItem2">
-              23665665489993348996666
-            </span>
-          </div>
           <div className="editProductInfoItem">
             <span className="editProductLineItem">Sales:</span>
             <span className="editProductLineItem2">569</span>
@@ -34,15 +44,34 @@ function AdminEditProduct() {
       <div className="editProductDown">
         <div className="editProductDownLeft">
           <form className="editProductForms">
-            <div className="editProductFormInputs">
-              <label htmlFor="title">Product Name</label>
+            <textarea
+              type="text"
+              className="editProductInput"
+              name="description"
+              placeholder="Update product description...."
+            ></textarea>
+            <div className="editProductPrice">
               <input
                 type="text"
-                className="editProductInput"
-                name="title"
-                placeholder="Kingsbite"
+                className="editPriceItem"
+                placeholder="Update current price...."
+              />
+              <input
+                type="text"
+                className="editPriceItem"
+                placeholder="Update old price...."
               />
             </div>
+            <input
+              type="text"
+              className="updateCostPerProduct"
+              placeholder="Update cost per item"
+            />
+            <input
+              type="number"
+              className="editProductQuantity"
+              placeholder="Update quantity"
+            />
             <div className="editProductFormInputs">
               <label htmlFor="instock">In stock</label>
               <select className="editProductSelectItem">
@@ -61,12 +90,32 @@ function AdminEditProduct() {
         </div>
         <div className="editProductDownRight">
           <div className="editProductRightUpload">
-            <img
-              src="/assets/100g.jpg"
-              alt=""
-              className="editProductRightImg"
-            />
-            <PublishIcon />
+            <img src={preview} alt="" className="editProductRightImg" />
+            <div className="uploadUpdateImgs">
+              <label htmlFor="file">
+                <CloudUploadIcon style={{ color: "blue", cursor: "pointer" }} />
+              </label>
+              <input
+                type="file"
+                id="file"
+                name="files"
+                accept=".jpg, .jpeg, .png"
+                multiple
+                className="uploadEditedProductInput"
+                onChange={handlePreview}
+              />
+            </div>
+          </div>
+          <div className="updateImgsPreview">
+            {file?.map((url, index) => (
+              <img
+                key={index}
+                src={url}
+                alt=""
+                className="EditImgsPreview"
+                onClick={() => setPreview(url)}
+              />
+            ))}
           </div>
           <button className="updateProductButton">Update</button>
         </div>

@@ -56,7 +56,9 @@ function Navbar() {
     >
       <div className="navbarWrapper">
         <div className="navbarLeft">
-          <h1 className="navbarLogo">FraneRoses</h1>
+          <Link to="/" className="links">
+            <h2 className="navbarLogo">FraneRoses</h2>
+          </Link>
         </div>
         <div className="navbarCenter">
           <div className="navbarcenterMenuItems">
