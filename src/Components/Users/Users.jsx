@@ -98,6 +98,7 @@ function Users() {
             rows={users}
             columns={columns}
             pageSize={10}
+            rowsPerPageOptions={[10]}
             disableSelectionOnClick
             sx={{
               "& .super-app-theme--header": {

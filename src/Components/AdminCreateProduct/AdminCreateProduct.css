@@ -1,3 +1,173 @@
 .createNewProductWrapper {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+option {
+  padding: 10px;
+}
+
+.addProductsForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productTitleSelection {
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  font-size: 16px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.addProductCategory {
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.addProductDescription {
+  margin-top: 15px;
+  height: 170px;
+  padding: 10px;
+  width: 400px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.mediaFilesContainer {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.media {
+  margin-right: 30px;
+  border: 1px solid gray;
+  border-style: dotted;
+  border-radius: 5px;
+  width: 425px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mediaFilesWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mediaTitle {
+  margin-right: 10px;
+}
+
+.mediaFiles {
+  display: none;
+}
+
+.myAddProducts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.productImgsPreview {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.allowedExtension {
+  margin-top: 10px;
+  margin-right: 10px;
+  color: red;
+  font-weight: 500;
+}
+
+.pricing {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.priceInput {
+  width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+  font-size: 16px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.costPerItem {
+  width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 15px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.addProductQuantity {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.quantity {
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: 0.5px solid gray;
+  outline: none;
+  margin-top: 15px;
+}
+
+.productStockLevel {
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  font-size: 16px;
+  margin-top: 15px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.productActiveStatus {
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  font-size: 16px;
+  margin-top: 15px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.createProductButton {
+  margin-top: 20px;
+  border: none;
+  width: 180px;
+  background-color: rgb(19, 4, 71);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }

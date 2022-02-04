@@ -33,6 +33,13 @@
   flex-direction: column;
 }
 
+.editProductTitleCreate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .productStatusCircle.red {
   background-color: rgb(199, 7, 7);
 }

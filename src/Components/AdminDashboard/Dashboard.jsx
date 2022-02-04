@@ -122,6 +122,7 @@ function Dashboard() {
               rows={latestTransaction}
               columns={columns}
               pageSize={5}
+              rowsPerPageOptions={[5]}
               disableSelectionOnClick
               sx={{
                 "& .super-app-theme--cell": {
