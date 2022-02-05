@@ -53,9 +53,11 @@ function Signup() {
                 </div>
                 <span className="bySigningUp">
                   By signing up you agree to our{" "}
-                  <span className="termsAndConditions">
-                    terms and conditions & privacy policy
-                  </span>
+                  <Link to="/privacy" className="links">
+                    <span className="termsAndConditions">
+                      terms and conditions & privacy policy
+                    </span>
+                  </Link>
                 </span>
               </form>
             </div>

@@ -1,0 +1,142 @@
+.orderDetailsWrapper {
+  display: flex;
+  margin-top: 30px;
+}
+
+.orderDetailsLeft {
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderId {
+  margin-top: 15px;
+}
+
+.orderDate {
+  margin-top: -10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.orderTotals {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dddddd;
+}
+
+.subtotalWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 16px;
+}
+.subtotalAmt {
+  margin-right: 50px;
+}
+.deliveryWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.deliveryAmt {
+  margin-right: 50px;
+}
+
+.orderTotalAmtWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.orderTotalAmtFigure {
+  margin-right: 40px;
+}
+
+.orderDetailsRight {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.orderBillingAddress {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.orderPymtStatusWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.orderPymtStatus {
+  margin-right: 20px;
+}
+
+.orderPymtResponse {
+  opacity: 0.6;
+}
+
+.orderShippingAddress {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.changeFulfillmentStatus {
+  margin-right: 20px;
+}
+
+.deliveryStatusUpdate {
+  background-color: rgb(19, 4, 85);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deliveryPymtStatusWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.deliveryPymtStatus {
+  margin-right: 20px;
+}
+
+.deliveryPymtResponse {
+  opacity: 0.6;
+}
+
+.instructionFromCustomer {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

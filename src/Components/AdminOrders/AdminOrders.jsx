@@ -5,6 +5,7 @@ import { order } from "../../Data";
 import { Link } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import OrderDetails from "./../AdminOrderDetails/OrderDetails";
 
 function AdminOrders() {
   const [orderDetails, setOrderDetails] = useState(false);
@@ -25,7 +26,7 @@ function AdminOrders() {
       width: 220,
     },
     {
-      field: "amount",
+      field: "total",
       headerName: "TOTAL AMOUNT",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
@@ -118,6 +119,7 @@ function AdminOrders() {
               }}
             />
           </div>
+          <OrderDetails />
         </div>
       )}
     </div>

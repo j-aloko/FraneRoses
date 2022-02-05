@@ -51,9 +51,11 @@ function Login() {
                 </div>
                 <span className="bySigningUp">
                   By Logging in you agree to our{" "}
-                  <span className="termsAndConditions">
-                    terms and conditions & privacy policy
-                  </span>
+                  <Link to="/privacy" className="links">
+                    <span className="termsAndConditions">
+                      terms and conditions & privacy policy
+                    </span>
+                  </Link>
                 </span>
               </form>
             </div>

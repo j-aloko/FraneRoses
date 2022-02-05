@@ -25,38 +25,36 @@
 }
 
 .googleLogin {
+  margin-right: 10px;
   display: flex;
   align-items: center;
   padding: 10px 10px;
   border: 0.5px solid white;
   color: white;
-  font-size: 20px;
   background-color: #db4437;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .loginWithGoogle {
-  margin-left: 10px;
-  font-size: 19.5px;
+  font-size: 19px;
+  margin-left: 5px;
 }
 
 .facebookLogin {
-  margin-left: 20px;
   display: flex;
   align-items: center;
   padding: 10px 10px;
   border: 0.5px solid white;
   color: white;
-  font-size: 20px;
   background-color: #3b5998;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .loginWithFacebook {
-  margin-left: 10px;
-  font-size: 19.5px;
+  font-size: 19px;
+  margin-left: 5px;
 }
 
 .or {
