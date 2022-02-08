@@ -10,8 +10,10 @@ import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderDisplayNone } from "./../../Context-Api/Pages/Actions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
+import { authContext } from "./../../Context-Api/Authentication/Context";
+import { logoutNow } from "../../Context-Api/Authentication/Action";
 
 function Navbar() {
   const [inputField, setInputField] = useState(false);
@@ -24,6 +26,10 @@ function Navbar() {
 
   const { dispatch, homePage, products, blog, admin } =
     useContext(PagesContext);
+
+  const { user, dispatch: userDispatch } = useContext(authContext);
+
+  const navigate = useNavigate();
 
   //Render Pages as per Menu Items
   const RenderPages = useCallback(
@@ -45,6 +51,13 @@ function Navbar() {
   };
 
   window.addEventListener("scroll", changeColor);
+
+  //handle Logout
+
+  const handleLogout = () => {
+    userDispatch(logoutNow());
+    navigate("/login");
+  };
 
   return (
     <div
@@ -256,25 +269,31 @@ function Navbar() {
               </Badge>
             </Link>
           </div>
-          <div className="dropdown">
-            <div className="navbarIcon">
-              <MenuOutlinedIcon />
-            </div>
-            <div className="dropdown-content">
-              <div className="dropdown-content-items">
-                <LoginOutlinedIcon />
-                <Link to="/login" className="links">
-                  <span className="Login">Login</span>
-                </Link>
+          {user ? (
+            <span className="logout" onClick={handleLogout}>
+              Logout
+            </span>
+          ) : (
+            <div className="dropdown">
+              <div className="navbarIcon">
+                <MenuOutlinedIcon />
               </div>
-              <div className="dropdown-content-items">
-                <PersonOutlineOutlinedIcon />
-                <Link to="/signup" className="links">
-                  <span className="createAccount">Create Account</span>
-                </Link>
+              <div className="dropdown-content">
+                <div className="dropdown-content-items">
+                  <LoginOutlinedIcon />
+                  <Link to="/login" className="links">
+                    <span className="Login">Login</span>
+                  </Link>
+                </div>
+                <div className="dropdown-content-items">
+                  <PersonOutlineOutlinedIcon />
+                  <Link to="/signup" className="links">
+                    <span className="createAccount">Create Account</span>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

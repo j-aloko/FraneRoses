@@ -1,6 +1,6 @@
 import "./App.css";
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SingleProductPage from "./Pages/SingleProductPage/SingleProductPage";
 import ProductsPage from "./Components/ProductsPage/ProductsPage";
 import HomePage from "./Pages/HomePage/HomePage";
@@ -17,9 +17,13 @@ import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import DeliveriesRefund from "./Pages/Deliveries&Refund/Deliveries&Refund";
 import CircularProgress from "@mui/material/CircularProgress";
 import Navbar from "./Components/Navbar/Navbar";
+import { authContext } from "./Context-Api/Authentication/Context";
+
 const LazyAdmin = React.lazy(() => import("./Pages/AdminPanel/Admin"));
 
 function App() {
+  const { user } = useContext(authContext);
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -46,13 +50,19 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/wishList" element={<WishListPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/" /> : <Login />}
+          />
           <Route path="/reset" element={<ForgotPassword />} />
           <Route
-            path="/5121d2r56bf77479fd64025b777a95956cfe2842ffa0s144cecd7dtea0658c5e"
+            path="/5121d2r55956cfe2842ffa0s144cecd7dtea0658c5e6bf77479fd64025b5956cfe2842ffa0s144cecd7dtea0658c5e777a95956cfe2842ffa0s144cecd7dtea0658c5e5956cfe2842ffa0s144cecd7dtea0658c5e"
             element={<ResetPassword />}
           />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/signup"
+            element={user ? <Navigate to="/" /> : <Signup />}
+          />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/deliveries" element={<DeliveriesRefund />} />

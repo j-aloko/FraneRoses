@@ -75,6 +75,11 @@
   flex-direction: column;
 }
 
+.loginInputs {
+  display: flex;
+  flex-direction: column;
+}
+
 .loginInputItem {
   width: 410px;
   padding: 15px;
@@ -86,6 +91,19 @@
   outline: none;
 }
 
+.loginError {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: red;
+}
+
+.wrongLoginCredentials {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+}
 .loginExtras {
   max-width: 470px;
   margin-top: 10px;

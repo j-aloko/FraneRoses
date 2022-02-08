@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const path = require("path");
 const authRoute = require("./Routes/auth");
+const userRoute = require("./Routes/user");
 
 dotenv.config();
 
@@ -27,3 +28,4 @@ app.use(morgan("common"));
 app.use(helmet());
 app.use(express.json());
 app.use("/api/auth", authRoute);
+app.use("/api/user", userRoute);

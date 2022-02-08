@@ -7,9 +7,11 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
     phone: { type: String, default: "" },
-    address: { type: String, default: "" },
     birth: { type: String, default: "" },
     img: { type: String, default: "" },
+    region: { type: String, default: "" },
+    city: { type: String, default: "" },
+    apartmentSuite: { type: String, default: "" },
   },
   { timestamps: true }
 );

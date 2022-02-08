@@ -313,3 +313,15 @@
 .createAccount {
   margin-left: 20px;
 }
+
+.logout {
+  color: white;
+  margin-left: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+.logout:hover {
+  color: rgb(211, 196, 111);
+}
