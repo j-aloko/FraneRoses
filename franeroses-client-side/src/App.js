@@ -56,7 +56,7 @@ function App() {
           />
           <Route path="/reset" element={<ForgotPassword />} />
           <Route
-            path="/5121d2r55956cfe2842ffa0s144cecd7dtea0658c5e6bf77479fd64025b5956cfe2842ffa0s144cecd7dtea0658c5e777a95956cfe2842ffa0s144cecd7dtea0658c5e5956cfe2842ffa0s144cecd7dtea0658c5e"
+            path="/5121d2r55956cfe2842ffa0s144cecd7dtea0658c5e6bf77479fd64025b5956cfe2842f"
             element={<ResetPassword />}
           />
           <Route

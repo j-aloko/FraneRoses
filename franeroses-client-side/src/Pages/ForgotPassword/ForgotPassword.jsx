@@ -1,4 +1,5 @@
 import "./ForgotPassword.css";
+import React from "react";
 import { Link } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
@@ -6,15 +7,23 @@ import { init } from "emailjs-com";
 import emailjs from "emailjs-com";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
+import { userContext } from "./../../Context-Api/Users/Context";
+import { getUsers } from "./../../ApiCalls/Users";
 
 function ForgotPassword() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [noEmailFound, setNoEmailFound] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { dispatch, users } = useContext(userContext);
 
   init(process.env.REACT_APP_USER_ID);
+
+  useEffect(() => {
+    getUsers(dispatch); //get all users when this component renders
+  }, [dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -24,7 +33,7 @@ function ForgotPassword() {
       to_email: "",
       reply_to: "jaloko@st.ug.edu.gh",
       message:
-        "follow this link to reset your password http://localhost:3000/5121d2r55956cfe2842ffa0s144cecd7dtea0658c5e6bf77479fd64025b5956cfe2842ffa0s144cecd7dtea0658c5e777a95956cfe2842ffa0s144cecd7dtea0658c5e5956cfe2842ffa0s144cecd7dtea0658c5e",
+        "Click the link below to reset your password: http://localhost:3000/5121d2r55956cfe2842ffa0s144cecd7dtea0658c5e6bf77479fd64025b5956cfe2842f",
     },
     validationSchema: Yup.object({
       to_email: Yup.string()
@@ -33,25 +42,37 @@ function ForgotPassword() {
     }),
     onSubmit: (values) => {
       setLoading(true);
-      emailjs
-        .send(
-          process.env.REACT_APP_SERVICE_ID,
-          process.env.REACT_APP_TEMPLATE_ID,
-          values,
-          process.env.REACT_APP_USER_ID
-        )
-        .then(
-          function (response) {
-            console.log("SUCCESS!", response.status, response.text);
-            setSuccess(true);
-            setLoading(false);
-          },
-          function (error) {
-            console.log("FAILED...", error);
-            setError(true);
-            setLoading(false);
-          }
-        );
+      //verify that email exists
+      if (users?.find((user) => user.email === values.to_email)) {
+        emailjs
+          .send(
+            process.env.REACT_APP_SERVICE_ID,
+            process.env.REACT_APP_TEMPLATE_ID,
+            values,
+            process.env.REACT_APP_USER_ID
+          )
+          .then(
+            function (response) {
+              console.log("SUCCESS!", response.status, response.text);
+              setNoEmailFound(false);
+              setError(false);
+              setSuccess(true);
+              setLoading(false);
+            },
+            function (error) {
+              console.log("FAILED...", error);
+              setNoEmailFound(false);
+              setSuccess(false);
+              setError(true);
+              setLoading(false);
+            }
+          );
+      } else {
+        setSuccess(false);
+        setError(false);
+        setNoEmailFound(true);
+        setLoading(false);
+      }
     },
   });
 
@@ -113,6 +134,14 @@ function ForgotPassword() {
                 <span className="emailNotification">Something went wrong</span>
               </div>
             )}
+            {noEmailFound && (
+              <div className="resetFailed">
+                <ErrorOutlineIcon />
+                <span className="emailNotification">
+                  No record found for this email
+                </span>
+              </div>
+            )}
           </form>
         </div>
       </div>
@@ -120,4 +149,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default React.memo(ForgotPassword);
