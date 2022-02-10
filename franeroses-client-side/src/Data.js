@@ -138,7 +138,7 @@ export const products = [
     title: "TQ Premium 90%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "active",
   },
   {
@@ -147,7 +147,7 @@ export const products = [
     title: "TQ Premium 80%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "passive",
   },
   {
@@ -156,7 +156,7 @@ export const products = [
     title: "TQ Premium 70%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "active",
   },
   {
@@ -165,7 +165,7 @@ export const products = [
     title: "TQ Premium 90%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "passive",
   },
   {
@@ -174,7 +174,7 @@ export const products = [
     title: "TQ Premium 80%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "active",
   },
   {
@@ -183,7 +183,7 @@ export const products = [
     title: "TQ Premium 70%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 0,
     status: "active",
   },
   {
@@ -192,7 +192,7 @@ export const products = [
     title: "TQ Premium 90%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "active",
   },
   {
@@ -201,7 +201,7 @@ export const products = [
     title: "TQ Premium 80%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "passive",
   },
   {
@@ -210,7 +210,7 @@ export const products = [
     title: "TQ Premium 70%",
     newPrice: 60.0,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 0,
     status: "active",
   },
   {
@@ -219,7 +219,7 @@ export const products = [
     title: "TQ Premium 90%",
     newPrice: 60.5,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "passive",
   },
   {
@@ -228,7 +228,7 @@ export const products = [
     title: "TQ Premium 80%",
     newPrice: 60.55,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 0,
     status: "active",
   },
   {
@@ -237,7 +237,7 @@ export const products = [
     title: "TQ Premium 70%",
     newPrice: 60.78,
     oldPrice: 90.0,
-    stock: 60,
+    quantity: 60,
     status: "active",
   },
 ];

@@ -10,9 +10,9 @@ productSchema = new mongoose.Schema(
     brand: { type: String, default: "Golden Tree" },
     price: { type: Number, required: true },
     oldPrice: { type: Number, required: true },
+    cost: { type: Number, required: true },
     quantity: { type: Number, required: true },
-    inStock: { type: Boolean, default: true },
-    outOfStock: { type: Boolean, default: true },
+    inStock: { type: String, default: "in stock" },
     status: { type: String, default: "active" },
   },
   { timestamps: true }

@@ -22,8 +22,14 @@ function AdminCreateProduct() {
     <div className="createNewProductWrapper">
       <h1 className="addProducts">Add New Product</h1>
       <form className="addProductsForm">
-        <select className="productTitleSelection">
-          <option className="productTitle">Select Product</option>
+        <label htmlFor="productName" className="CreateProductSelectLabels">
+          Select Product
+        </label>
+        <select
+          className="productTitleSelection"
+          name="productName"
+          id="productName"
+        >
           <option value="Kingsbite" className="productTitle">
             Kingsbite
           </option>
@@ -52,8 +58,15 @@ function AdminCreateProduct() {
             Chocolate Spread
           </option>
         </select>
-        <select className="addProductCategory" multiple>
-          <option>Select Category</option>
+        <label htmlFor="category" className="CreateProductSelectLabels">
+          Select Category/Categories
+        </label>
+        <select
+          className="addProductCategory"
+          name="category"
+          id="category"
+          multiple
+        >
           <option value="Chocolate-Bars" className="categoryItem">
             Chocolate Bars
           </option>
@@ -67,8 +80,10 @@ function AdminCreateProduct() {
             Choco Spread / Butter
           </option>
         </select>
-        <select className="addProductSize" multiple>
-          <option>Select Sizes</option>
+        <label htmlFor="sizes" className="CreateProductSelectLabels">
+          Select Sizes Available
+        </label>
+        <select className="addProductSize" name="sizes" id="sizes" multiple>
           <option value="100g-Carton">100g Carton</option>
           <option value="100g-Chip-Box">100g Chip-Box</option>
           <option value="50g-Carton">50g Carton</option>
@@ -119,17 +134,17 @@ function AdminCreateProduct() {
           </div>
         </div>
         <div className="pricing">
-          <input type="text" placeholder="Price" className="priceInput" />
+          <input type="number" placeholder="Price" className="priceInput" />
           <input
-            type="text"
+            type="number"
             placeholder="Compare at price"
             className="priceInput"
           />
         </div>
         <input
-          type="text"
+          type="number"
           className="costPerItem"
-          placeholder="Cost per Item"
+          placeholder="Average cost per product"
         />
         <input type="number" className="quantity" placeholder="Quantity" />
         <button className="createProductButton">Publish</button>

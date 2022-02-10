@@ -52,26 +52,46 @@ function AdminEditProduct() {
             ></textarea>
             <div className="editProductPrice">
               <input
-                type="text"
+                type="number"
                 className="editPriceItem"
                 placeholder="Update current price...."
               />
               <input
-                type="text"
+                type="number"
                 className="editPriceItem"
                 placeholder="Update old price...."
               />
             </div>
             <input
-              type="text"
+              type="number"
               className="updateCostPerProduct"
-              placeholder="Update cost per item"
+              placeholder="Update average cost per prod..."
             />
             <input
               type="number"
               className="editProductQuantity"
               placeholder="Update quantity"
             />
+            <label htmlFor="sizes" className="CreateProductSelectLabels">
+              Update Sizes Available
+            </label>
+            <select className="addProductSize" name="sizes" id="sizes" multiple>
+              <option value="100g-Carton">100g Carton</option>
+              <option value="100g-Chip-Box">100g Chip-Box</option>
+              <option value="50g-Carton">50g Carton</option>
+              <option value="50g-Chip-Box">50g Chip-Box</option>
+              <option value="20g-Carton">20g Carton</option>
+              <option value="20g-Chip-Box">20g Chip-Box</option>
+              <option value="500g-Carton">500g Carton</option>
+              <option value="500g-Container">500g Container</option>
+              <option value="400g-Carton">400g Carton</option>
+              <option value="400g-Jar">400g Jar</option>
+              <option value="20kg-Bag">20kg Bag</option>
+              <option value="350g-Carton">350g Carton</option>
+              <option value="35og-Sachet">350g Sachet</option>
+              <option value="300g-Carton">300g Carton</option>
+              <option value="300g-Sachet">300g Sachet</option>
+            </select>
             <div className="editProductFormInputs">
               <label htmlFor="instock">In stock</label>
               <select className="editProductSelectItem">

@@ -14,11 +14,18 @@ option {
   flex-direction: column;
 }
 
+.CreateProductSelectLabels {
+  margin-top: 20px;
+  margin-left: 3px;
+  font-size: 18px;
+  font-weight: 500;
+}
 .productTitleSelection {
   padding: 10px;
   border-radius: 5px;
   width: 400px;
   font-size: 16px;
+  margin-top: 5px;
   border: 0.5px solid gray;
   outline: none;
 }
@@ -27,8 +34,9 @@ option {
   padding: 10px;
   border-radius: 5px;
   width: 400px;
+  height: 150px;
   font-size: 16px;
-  margin-top: 15px;
+  margin-top: 5px;
   border: 0.5px solid gray;
   outline: none;
 }
@@ -38,7 +46,7 @@ option {
   border-radius: 5px;
   width: 400px;
   font-size: 16px;
-  margin-top: 15px;
+  margin-top: 5px;
   border: 0.5px solid gray;
   outline: none;
 }

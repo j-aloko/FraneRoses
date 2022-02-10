@@ -28,13 +28,29 @@ function AdminProducts() {
       },
     },
     {
-      field: "stock",
+      field: "quantity",
       headerName: "STOCK",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       headerAlign: "center",
       align: "center",
       width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="productStatusWrapper">
+            <span
+              className={
+                params.row.quantity === 0
+                  ? "productStatusCircle red"
+                  : "productStatusCircle"
+              }
+            ></span>
+            <span className="productStatus">
+              {params.row.quantity === 0 ? "Out of Stock" : params.row.quantity}
+            </span>
+          </div>
+        );
+      },
     },
     {
       field: "status",
@@ -59,7 +75,7 @@ function AdminProducts() {
     },
     {
       field: "newPrice",
-      headerName: "PRICE",
+      headerName: "PRICE (GHS)",
       headerClassName: "super-app-theme--header",
       width: 200,
       headerAlign: "center",
