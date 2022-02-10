@@ -6,12 +6,15 @@ import Footer from "./../../Components/Footer/Footer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { login } from "./../../ApiCalls/Auth";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 import CircularProgress from "@mui/material/CircularProgress";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Login() {
   const { dispatch, error, isFetching } = useContext(authContext);
+  const [PasswordVisibile, setPasswordVisible] = useState(false);
 
   const validationSchema = Yup.object({
     email: Yup.string().email().required("Email required"),
@@ -28,6 +31,12 @@ function Login() {
     },
     validationSchema,
   });
+
+  //handle password visibility
+
+  const handlePasswordVisibilty = () => {
+    setPasswordVisible(!PasswordVisibile);
+  };
 
   return (
     <>
@@ -67,16 +76,28 @@ function Login() {
                   ) : null}
                 </div>
                 <div className="loginInputs">
-                  <input
-                    type="password"
-                    className="loginInputItem"
-                    placeholder="Password"
-                    id="password"
-                    name="password"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
-                  />
+                  <div className="passwordVisibility">
+                    <input
+                      type={PasswordVisibile ? "text" : "password"}
+                      className="loginInputItem"
+                      placeholder="New password"
+                      id="password"
+                      name="password"
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                    />
+                    <div
+                      className="visibilty"
+                      onClick={handlePasswordVisibilty}
+                    >
+                      {PasswordVisibile ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </div>
+                  </div>
                   {formik.touched.password && formik.errors.password ? (
                     <div className="loginError">{formik.errors.password}</div>
                   ) : null}

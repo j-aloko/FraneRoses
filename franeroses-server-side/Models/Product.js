@@ -4,9 +4,9 @@ productSchema = new mongoose.Schema(
   {
     productName: { type: String, required: true },
     desc: { type: String, required: true },
-    img: { type: String, required: true },
+    img: { type: Array, required: true, default: [] },
     category: { type: Array, required: true },
-    size: { type: String, required: true },
+    size: { type: Array, required: true, default: [] },
     brand: { type: String, default: "Golden Tree" },
     price: { type: Number, required: true },
     oldPrice: { type: Number, required: true },

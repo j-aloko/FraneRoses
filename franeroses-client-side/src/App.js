@@ -45,8 +45,8 @@ function App() {
               </React.Suspense>
             }
           />
-          <Route path="/product" element={<SingleProductPage />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/product/:name" element={<SingleProductPage />} />
+          <Route path="/products/:all" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/wishList" element={<WishListPage />} />

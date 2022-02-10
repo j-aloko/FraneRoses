@@ -8,11 +8,16 @@ import { useState, useContext, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { userContext } from "./../../Context-Api/Users/Context";
 import { getUsers, updateUser } from "./../../ApiCalls/Users";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function ResetPassword() {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { dispatch, users, error } = useContext(userContext);
+  const { dispatch, users } = useContext(userContext);
+  const [error, setError] = useState(false);
+  const [confirmPasswordVisibile, setConfirmPasswordVisible] = useState(false);
+  const [PasswordVisibile, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,17 +41,34 @@ function ResetPassword() {
     onSubmit: (values) => {
       setLoading(true);
       const client = users?.find((user) => user.email === values.email);
-      const clientId = client._id;
+      const clientId = client?._id;
       setTimeout(() => {
-        updateUser(clientId, dispatch, values);
-        setLoading(false);
-        setSuccess(true);
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+        if (clientId) {
+          updateUser(clientId, dispatch, values);
+          setLoading(false);
+          setError(false);
+          setSuccess(true);
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+        } else {
+          setError(true);
+          setSuccess(false);
+          setLoading(false);
+        }
       }, 2000);
     },
   });
+
+  //handle password visibility
+
+  const handlePasswordVisibilty = (type) => {
+    if (type === "password") {
+      setPasswordVisible(!PasswordVisibile);
+    } else {
+      setConfirmPasswordVisible(!confirmPasswordVisibile);
+    }
+  };
 
   return (
     <div className="resetPasswordMainContainer">
@@ -68,31 +90,51 @@ function ResetPassword() {
             {formik.touched.email && formik.errors.email ? (
               <div className="error">{formik.errors.email}</div>
             ) : null}
-            <input
-              type="password"
-              className="resetInput"
-              placeholder="New password"
-              id="password"
-              name="password"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
+            <div className="passwordVisibility">
+              <input
+                type={PasswordVisibile ? "text" : "password"}
+                className="resetInput"
+                placeholder="New password"
+                id="password"
+                name="password"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              />
+              <div
+                className="visibilty"
+                onClick={() => handlePasswordVisibilty("password")}
+              >
+                {PasswordVisibile ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </div>
+            </div>
             {formik.touched.password && formik.errors.password ? (
               <div className="error">{formik.errors.password}</div>
             ) : null}
-            <input
-              type="password"
-              className="resetInput"
-              placeholder="Confirm new password"
-              id="confirmPassword"
-              name="confirmPassword"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.Confirmpassword}
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <div className="error">{formik.errors.password}</div>
+            <div className="passwordVisibility">
+              <input
+                type={confirmPasswordVisibile ? "text" : "password"}
+                className="resetInput"
+                placeholder="Confirm new password"
+                id="confirmPassword"
+                name="confirmPassword"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.Confirmpassword}
+              />
+              <div
+                className="visibilty"
+                onClick={() => handlePasswordVisibilty("confirmPassword")}
+              >
+                {confirmPasswordVisibile ? (
+                  <VisibilityIcon />
+                ) : (
+                  <VisibilityOffIcon />
+                )}
+              </div>
+            </div>
+            {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+              <div className="error">{formik.errors.confirmPassword}</div>
             ) : null}
             <button className="submitRequestReset" type="submit">
               {loading ? (
@@ -119,7 +161,9 @@ function ResetPassword() {
             {error && (
               <div className="resetFailed">
                 <ErrorOutlineIcon />
-                <span className="emailNotification">Reset Failed</span>
+                <span className="emailNotification">
+                  No record found for this email. Reset failed!
+                </span>
               </div>
             )}
           </form>

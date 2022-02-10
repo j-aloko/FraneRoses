@@ -8,9 +8,13 @@ import * as Yup from "yup";
 import { Register } from "../../ApiCalls/Auth";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Signup() {
   const [loading, setLoading] = useState(false);
+  const [confirmPasswordVisibile, setConfirmPasswordVisible] = useState(false);
+  const [PasswordVisibile, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   //Form Validation & Sign Up
@@ -38,6 +42,16 @@ function Signup() {
     },
     validationSchema,
   });
+
+  //handle password visibility
+
+  const handlePasswordVisibilty = (type) => {
+    if (type === "password") {
+      setPasswordVisible(!PasswordVisibile);
+    } else {
+      setConfirmPasswordVisible(!confirmPasswordVisibile);
+    }
+  };
 
   return (
     <>
@@ -94,31 +108,55 @@ function Signup() {
                   ) : null}
                 </div>
                 <div className="signUpItemInputs">
-                  <input
-                    type="password"
-                    className="signupInputItem"
-                    placeholder="Password"
-                    id="password"
-                    name="password"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
-                  />
+                  <div className="passwordVisibility">
+                    <input
+                      type={PasswordVisibile ? "text" : "password"}
+                      className="signupInputItem"
+                      placeholder="New password"
+                      id="password"
+                      name="password"
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                    />
+                    <div
+                      className="visibilty"
+                      onClick={() => handlePasswordVisibilty("password")}
+                    >
+                      {PasswordVisibile ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </div>
+                  </div>
                   {formik.touched.password && formik.errors.password ? (
                     <div className="singupError">{formik.errors.password}</div>
                   ) : null}
                 </div>
                 <div className="signUpItemInputs">
-                  <input
-                    type="password"
-                    className="signupInputItem"
-                    placeholder="Confirm password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.confirmPassword}
-                  />
+                  <div className="passwordVisibility">
+                    <input
+                      type={confirmPasswordVisibile ? "text" : "password"}
+                      className="signupInputItem"
+                      placeholder="Confirm new password"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.Confirmpassword}
+                    />
+                    <div
+                      className="visibilty"
+                      onClick={() => handlePasswordVisibilty("confirmPassword")}
+                    >
+                      {confirmPasswordVisibile ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </div>
+                  </div>
                   {formik.touched.confirmPassword &&
                   formik.errors.confirmPassword ? (
                     <div className="singupError">

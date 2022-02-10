@@ -7,6 +7,10 @@ import { PagesContextProvider } from "./Context-Api/Pages/Context";
 import { AdminPagesContextProvider } from "./Context-Api/AdminPages/Context";
 import { AuthContextProvider } from "./Context-Api/Authentication/Context";
 import { UsersContextProvider } from "./Context-Api/Users/Context";
+import { ProductsContextProvider } from "./Context-Api/Products/Context";
+import { CartContextProvider } from "./Context-Api/Cart/Context";
+import { OrdersContextProvider } from "./Context-Api/Order/Context";
+import { WishlistContextProvider } from "./Context-Api/Wishlist/Context";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +18,15 @@ ReactDOM.render(
       <AdminPagesContextProvider>
         <AuthContextProvider>
           <UsersContextProvider>
-            <App />
+            <ProductsContextProvider>
+              <CartContextProvider>
+                <OrdersContextProvider>
+                  <WishlistContextProvider>
+                    <App />
+                  </WishlistContextProvider>
+                </OrdersContextProvider>
+              </CartContextProvider>
+            </ProductsContextProvider>
           </UsersContextProvider>
         </AuthContextProvider>
       </AdminPagesContextProvider>

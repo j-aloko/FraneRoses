@@ -23,14 +23,14 @@ function AdminCreateProduct() {
       <h1 className="addProducts">Add New Product</h1>
       <form className="addProductsForm">
         <select className="productTitleSelection">
-          <option className="productTitle">Choose a Title </option>
+          <option className="productTitle">Select Product</option>
           <option value="Kingsbite" className="productTitle">
             Kingsbite
           </option>
-          <option value="TQ Premium Dark" className="productTitle">
+          <option value="TQ-Premium-Dark" className="productTitle">
             TQ Premium Dark
           </option>
-          <option value="Akuafo Bar" className="productTitle">
+          <option value="Akuafo-Bar" className="productTitle">
             Akuafo Bar
           </option>
           <option value="Oranco" className="productTitle">
@@ -39,33 +39,51 @@ function AdminCreateProduct() {
           <option value="Pebbles" className="productTitle">
             Pebbles
           </option>
-          <option value="Nutty Chocs" className="productTitle">
+          <option value="Nutty-Chocs" className="productTitle">
             Nutty Chocs
           </option>
           <option value="Alltime" className="productTitle">
             Alltime
           </option>
-          <option value="Cocoa Butter" className="productTitle">
+          <option value="Cocoa-Butter" className="productTitle">
             Cocoa Butter
           </option>
-          <option value="Chocolate Spread" className="productTitle">
+          <option value="Choco-Spread" className="productTitle">
             Chocolate Spread
           </option>
         </select>
         <select className="addProductCategory">
-          <option>Choose a Category</option>
-          <option value="CHOCOLATE BARS" className="categoryItem">
+          <option>Select Category</option>
+          <option value="Chocolate-Bars" className="categoryItem">
             Chocolate Bars
           </option>
-          <option value="CHOCOLATE DRAGEE" className="categoryItem">
+          <option value="Chocolate-Dragee" className="categoryItem">
             Chocolate Dragee
           </option>
-          <option value="DRINKING CHOCOLATE" className="categoryItem">
+          <option value="Drinking-Chocolate" className="categoryItem">
             Drinking Chocolate
           </option>
-          <option value="CHOCO SPREAD / BUTTER" className="categoryItem">
+          <option value="Choco-Spread-Butter" className="categoryItem">
             Choco Spread / Butter
           </option>
+        </select>
+        <select className="addProductSize" multiple>
+          <option>Select Sizes</option>
+          <option value="100g-Carton">100g Carton</option>
+          <option value="100g-Chip-Box">100g Chip-Box</option>
+          <option value="50g-Carton">50g Carton</option>
+          <option value="50g-Chip-Box">50g Chip-Box</option>
+          <option value="20g-Carton">20g Carton</option>
+          <option value="20g-Chip-Box">20g Chip-Box</option>
+          <option value="500g-Carton">500g Carton</option>
+          <option value="500g-Container">500g Container</option>
+          <option value="400g-Carton">400g Carton</option>
+          <option value="400g-Jar">400g Jar</option>
+          <option value="20kg-Bag">20kg Bag</option>
+          <option value="350g-Carton">350g Carton</option>
+          <option value="35og-Sachet">350g Sachet</option>
+          <option value="300g-Carton">300g Carton</option>
+          <option value="300g-Sachet">300g Sachet</option>
         </select>
         <textarea
           className="addProductDescription"

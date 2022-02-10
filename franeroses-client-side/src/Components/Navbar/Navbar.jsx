@@ -85,7 +85,7 @@ function Navbar() {
           </div>
           <div className="navbarcenterMenuItems">
             <div className="Chocolate-dropdown">
-              <Link to="/products" className="links">
+              <Link to="/products/all" className="links">
                 <span
                   className={
                     products ? "navbarMenuChoc color" : "navbarMenuChoc"
@@ -102,43 +102,43 @@ function Navbar() {
                     className="dropDownImg"
                   />
                   <div className="dropDown">
-                    <Link to="/products" className="links">
-                      <h5 className="dropDownTitle">CHOCOLATE BARS</h5>
+                    <Link to="/products/Chocolate-Bars " className="links">
+                      <h4 className="dropDownTitle">Chocolate Bars</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product" className="links">
+                      <Link to="/product/Kingsbite" className="links">
                         <li className="dropDownLineItem">Kingsbite</li>
                       </Link>
-                      <Link to="/product" className="links">
+                      <Link to="/product/Q-Premium-Dark" className="links">
                         <li className="dropDownLineItem">TQ Premium Dark</li>
                       </Link>
-                      <Link to="/product" className="links">
+                      <Link to="/product/Akuafo-Bar" className="links">
                         <li className="dropDownLineItem">Akuafo Bar</li>
                       </Link>
-                      <Link to="/product" className="links">
+                      <Link to="/product/Oranco" className="links">
                         <li className="dropDownLineItem">Oranco</li>
                       </Link>
                     </ul>
                   </div>
                   <div className="dropDown">
-                    <Link to="/products" className="links">
-                      <h5 className="dropDownTitle">CHOCOLATE DRAGEE</h5>
+                    <Link to="/products/Chocolate-Dragee" className="links">
+                      <h4 className="dropDownTitle">Chocolate Dragee</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product" className="links">
+                      <Link to="/product/Pebbles" className="links">
                         <li className="dropDownLineItem">Pebbles</li>
                       </Link>
-                      <Link to="/product" className="links">
+                      <Link to="/product/Nutty-Chocs" className="links">
                         <li className="dropDownLineItem">Nutty Chocs</li>
                       </Link>
                     </ul>
                   </div>
                   <div className="dropDown">
-                    <Link to="/products" className="links">
-                      <h5 className="dropDownTitle">DRINKING CHOCOLATE</h5>
+                    <Link to="/products/Drinking-Chocolate" className="links">
+                      <h4 className="dropDownTitle">Drinking Chocolate</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product" className="links">
+                      <Link to="/product/Alltime" className="links">
                         <li className="dropDownLineItem">Alltime</li>
                       </Link>
                       <Link to="/product" className="links">
@@ -147,14 +147,14 @@ function Navbar() {
                     </ul>
                   </div>
                   <div className="dropDown">
-                    <Link to="/products" className="links">
-                      <h5 className="dropDownTitle">CHOCO SPREAD / BUTTER</h5>
+                    <Link to="/products/Choco-Spread-Butter" className="links">
+                      <h4 className="dropDownTitle">Choco Spread / Butter</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product" className="links">
+                      <Link to="/product/Choco-Spread" className="links">
                         <li className="dropDownLineItem">Chocolate Spread</li>
                       </Link>
-                      <Link to="/product" className="links">
+                      <Link to="/product/Cocoa-Butter" className="links">
                         <li className="dropDownLineItem">Cocoa Butter</li>
                       </Link>
                     </ul>
