@@ -52,7 +52,7 @@ function AdminCreateProduct() {
             Chocolate Spread
           </option>
         </select>
-        <select className="addProductCategory">
+        <select className="addProductCategory" multiple>
           <option>Select Category</option>
           <option value="Chocolate-Bars" className="categoryItem">
             Chocolate Bars
