@@ -4,7 +4,7 @@ const { verifyAndAdmin } = require("../verifyToken");
 const router = require("express").Router();
 
 //Create Product
-router.post("/", verifyAndAdmin, async (req, res) => {
+router.post("/", async (req, res) => {
   const newProduct = new Products(req.body);
   try {
     const savedProduct = await newProduct.save();

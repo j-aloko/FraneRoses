@@ -1,9 +1,13 @@
 import "./AdminCreateProduct.css";
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import axiosInstance from "./../../axios";
 
 function AdminCreateProduct() {
-  const [file, setFile] = useState();
+  const [previewFiles, setPreviewFiles] = useState();
+  const [files, setFiles] = useState([]);
+  const [img, setImg] = useState([]);
+  const [product, setProduct] = useState({});
 
   //handle image preview
 
@@ -12,24 +16,92 @@ function AdminCreateProduct() {
 
   const handlePreview = (e) => {
     fileObj.push(e.target.files);
+    setFiles(e.target.files);
     for (let i = 0; i < fileObj[0].length; i++) {
       fileArray.push(URL.createObjectURL(fileObj[0][i]));
     }
-    setFile(fileArray);
+    setPreviewFiles(fileArray);
   };
+
+  //handle upload to cloudinary
+
+  const url = "https://api.cloudinary.com/v1_1/demo/image/upload";
+
+  useEffect(() => {
+    const formData = new FormData();
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        formData.append("file", file);
+        formData.append("upload_preset", "docs_upload_example_us_preset");
+        fetch(url, {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setImg((prev) => [...prev, data?.url]);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
+  }, [files]);
+
+  // Create a new product
+
+  useEffect(() => {
+    setProduct((prev) => ({ ...prev, img: img }));
+  }, [img]);
+
+  const handleInputs = useCallback(
+    (e) => {
+      const value = e.target.value;
+      setProduct({ ...product, [e.target.name]: value });
+    },
+    [product]
+  );
+
+  const handleSelectSizes = useCallback(
+    (e) => {
+      let value = Array.from(
+        e.target.selectedOptions,
+        (option) => option.value
+      );
+      setProduct({ ...product, [e.target.name]: value });
+    },
+    [product]
+  );
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      try {
+        const res = await axiosInstance.post("products", product);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [product]
+  );
 
   return (
     <div className="createNewProductWrapper">
       <h1 className="addProducts">Add New Product</h1>
-      <form className="addProductsForm">
+      <form className="addProductsForm" encType="multipart/form-data">
         <label htmlFor="productName" className="CreateProductSelectLabels">
           Select Product
         </label>
         <select
           className="productTitleSelection"
-          name="productName"
-          id="productName"
+          name="title"
+          id="title"
+          onChange={handleInputs}
         >
+          <option>Product name</option>
           <option value="Kingsbite" className="productTitle">
             Kingsbite
           </option>
@@ -59,14 +131,15 @@ function AdminCreateProduct() {
           </option>
         </select>
         <label htmlFor="category" className="CreateProductSelectLabels">
-          Select Category/Categories
+          Select Category
         </label>
         <select
           className="addProductCategory"
           name="category"
           id="category"
-          multiple
+          onChange={handleInputs}
         >
+          <option>Categories</option>
           <option value="Chocolate-Bars" className="categoryItem">
             Chocolate Bars
           </option>
@@ -83,7 +156,13 @@ function AdminCreateProduct() {
         <label htmlFor="sizes" className="CreateProductSelectLabels">
           Select Sizes Available
         </label>
-        <select className="addProductSize" name="sizes" id="sizes" multiple>
+        <select
+          className="addProductSize"
+          name="size"
+          id="size"
+          multiple
+          onChange={handleSelectSizes}
+        >
           <option value="100g-Carton">100g Carton</option>
           <option value="100g-Chip-Box">100g Chip-Box</option>
           <option value="50g-Carton">50g Carton</option>
@@ -103,6 +182,9 @@ function AdminCreateProduct() {
         <textarea
           className="addProductDescription"
           placeholder="Add a description...."
+          name="desc"
+          id="desc"
+          onChange={handleInputs}
         ></textarea>
         <div className="mediaFilesContainer">
           <div className="media">
@@ -123,7 +205,7 @@ function AdminCreateProduct() {
             />
           </div>
           <div className="myAddProducts">
-            {file?.map((url, index) => (
+            {previewFiles?.map((url, index) => (
               <img
                 key={index}
                 src={url}
@@ -134,23 +216,45 @@ function AdminCreateProduct() {
           </div>
         </div>
         <div className="pricing">
-          <input type="number" placeholder="Price" className="priceInput" />
+          <input
+            type="number"
+            placeholder="Price"
+            name="price"
+            id="price"
+            className="priceInput"
+            onChange={handleInputs}
+          />
           <input
             type="number"
             placeholder="Compare at price"
             className="priceInput"
+            name="oldPrice"
+            id="oldPrice"
+            onChange={handleInputs}
           />
         </div>
         <input
           type="number"
           className="costPerItem"
           placeholder="Average cost per product"
+          name="cost"
+          id="cost"
+          onChange={handleInputs}
         />
-        <input type="number" className="quantity" placeholder="Quantity" />
-        <button className="createProductButton">Publish</button>
+        <input
+          type="number"
+          className="quantity"
+          name="quantity"
+          id="quantity"
+          placeholder="Quantity"
+          onChange={handleInputs}
+        />
+        <button className="createProductButton" onClick={handleSubmit}>
+          Publish
+        </button>
       </form>
     </div>
   );
 }
 
-export default AdminCreateProduct;
+export default React.memo(AdminCreateProduct);

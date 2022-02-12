@@ -19,7 +19,7 @@ function FeaturedProducts() {
       <div className="featuredProductsWrapper">
         {featuredProducts?.map((f) => (
           <div className="featuredProductsImg-SerachIcon" key={f.id}>
-            <Link to="/product" className="links">
+            <Link to="/product/:name" className="links">
               <div className="featuredProductsSearchIcon" onClick={RenderPages}>
                 <SearchOutlinedIcon
                   style={{ fontSize: 40, marginLeft: "6px", marginTop: "6px" }}

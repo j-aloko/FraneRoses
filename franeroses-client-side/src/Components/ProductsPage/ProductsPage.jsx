@@ -37,7 +37,7 @@ function ProductsPage() {
             <div className="productsPageDownContents">
               {products?.map((p) => (
                 <div className="productsInfo" key={p.id}>
-                  <Link to="/product" className="links">
+                  <Link to="/product/:name" className="links">
                     <img src={p?.image} alt="" className="productImg" />
                     <h3 className="productName">{p?.title}</h3>
                     <div className="productPriceWrapper">

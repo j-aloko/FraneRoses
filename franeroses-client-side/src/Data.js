@@ -242,6 +242,87 @@ export const products = [
   },
 ];
 
+export const demoProducts = {
+  title: "Kingsbite",
+  desc: "test test test test",
+  img: ["/assets/100g.jpg", "/assets/50g.jpg", "/assets/20g.jpg"],
+  category: "Chocolate bars",
+  brand: "Golden Tree",
+  sizes: ["100g", "50g", "20g"],
+  volumes: ["carton", "chip-box"],
+  variant: [
+    {
+      name: "100g",
+      size: [
+        {
+          volume: "carton",
+          price: 640,
+          oldPrice: 700,
+          cost: 580,
+          quantity: 30,
+          inStock: "in stock",
+          status: "active",
+        },
+        {
+          volume: "chip-box",
+          price: 64,
+          oldPrice: 70,
+          cost: 58,
+          quantity: 30,
+          inStock: "in stock",
+          status: "active",
+        },
+      ],
+    },
+    {
+      name: "50g",
+      size: [
+        {
+          volume: "carton",
+          price: 600,
+          oldPrice: 650,
+          cost: 580,
+          quantity: 30,
+          inStock: "in stock",
+          status: "active",
+        },
+        {
+          volume: "chip-box",
+          price: 64,
+          oldPrice: 70,
+          cost: 58,
+          quantity: 30,
+          inStock: "in stock",
+          status: "active",
+        },
+      ],
+    },
+    {
+      name: "20g",
+      size: [
+        {
+          volume: "carton",
+          price: 500,
+          oldPrice: 650,
+          cost: 500,
+          quantity: 30,
+          inStock: "in stock",
+          status: "active",
+        },
+        {
+          volume: "chip-box",
+          price: 30,
+          oldPrice: 35,
+          cost: 25,
+          quantity: 30,
+          inStock: "in stock",
+          status: "active",
+        },
+      ],
+    },
+  ],
+};
+
 export const rows = [
   {
     id: 1,

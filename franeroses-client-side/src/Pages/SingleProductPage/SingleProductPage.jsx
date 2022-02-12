@@ -1,5 +1,6 @@
 import "./SingleProductPage.css";
-import { useState, useEffect, useContext } from "react";
+import React from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -7,12 +8,18 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import Footer from "./../../Components/Footer/Footer";
+import { demoProducts } from "./../../Data";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
 
   const [count, setCount] = useState(1);
   const [productImg, setProductImg] = useState("/assets/100g.jpg");
+  const [productVariant, setProductVariant] = useState(
+    demoProducts?.variant[0]
+  );
+  const [sizeInfo, setSizeInfo] = useState();
+
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
@@ -27,7 +34,29 @@ function SingleProductPage() {
     dispatch(renderProductsPage());
   }, [dispatch]);
 
-  const price = 60.89;
+  // on Initial Render, set the product variant to the first index
+
+  useEffect(() => {
+    if (productVariant !== null) {
+      setSizeInfo(productVariant?.size[0]);
+    }
+  }, [productVariant]);
+
+  const handleVariantChanges = useCallback((e) => {
+    const key = e.target.value;
+    const result = demoProducts.variant?.filter((v) => v.name === key);
+    setProductVariant(result[0]);
+    console.log(key);
+  }, []);
+
+  const handleSizeChanges = useCallback(
+    (e) => {
+      const key = e.target.value;
+      const result = productVariant?.size.filter((s) => s.volume === key);
+      setSizeInfo(result[0]);
+    },
+    [productVariant?.size]
+  );
 
   return (
     <>
@@ -35,9 +64,9 @@ function SingleProductPage() {
         <div className="singleProductWrapper">
           <div className="singleProductTop">
             <div className="singleProductTitles">
-              <h1 className="singleProductName">Kingsbite 100g</h1>
+              <h1 className="singleProductName">{demoProducts?.title}</h1>
               <h3 className="singleProductRou">
-                Products / Dark Chocolates / Kingsbite 100g
+                Products / Dark Chocolates / {demoProducts?.title}
               </h3>
             </div>
           </div>
@@ -67,67 +96,74 @@ function SingleProductPage() {
             </div>
             <div className="singleProductDownRight">
               <div className="singleProduct-name-isocert">
-                <h1 className="singleProductRightTitle">Kingsbite 100g</h1>
+                <h1 className="singleProductRightTitle">
+                  {demoProducts?.title}
+                </h1>
                 <img
                   src="/assets/iso.png"
                   alt=""
                   className="isoCertification"
                 />
               </div>
-              <p className="singleProductDescription">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui...
-              </p>
+              <p className="singleProductDescription">{demoProducts?.desc}</p>
               <div className="singleProductLeftInfo">
                 <div className="singleProductPriceWrapper">
-                  <h3 className="singleProductPriceTitle">Price:</h3>
-                  <span className="singleProductPrice">GHS{price}</span>
+                  <h4 className="singleProductPriceTitle">Price:</h4>
+                  <span className="singleProductPrice">
+                    GHS{sizeInfo?.price}
+                  </span>
                 </div>
-                <h3 className="singleProductInStock">HURRY ONLY 4 IN STOCK</h3>
+                <h4 className="singleProductInStock">
+                  HURRY ONLY {sizeInfo?.quantity} IN STOCK
+                </h4>
                 <div className="singleProductSizeWrapper">
-                  <h3 className="singleProductSize">Size</h3>
+                  <h4 className="singleProductSize">Variant</h4>
                   <div className="singleProductSizeOptions">
                     <select
-                      name="kingsbite 100g"
-                      id="kingsbite 100g"
                       className="singleProductSizeSelection"
+                      onChange={handleVariantChanges}
                     >
-                      <option value="100g">100g</option>
-                      <option value="100g">50g</option>
-                      <option value="100g">20g</option>
+                      <option hidden disabled value="">
+                        choose variant
+                      </option>
+                      <>
+                        {demoProducts?.sizes.map((s) => (
+                          <option key={s}>{s}</option>
+                        ))}
+                      </>
                     </select>
                   </div>
                 </div>
-                <div className="singleProductFlavourWrapper">
-                  <h3 className="singleProductFlavour">Flavour</h3>
-                  <div className="singleProductFlavourOptions">
+                <div className="singleProductSizeWrapper">
+                  <h4 className="singleProductSize">Size</h4>
+                  <div className="singleProductSizeOptions">
                     <select
-                      name="kingsbite 100g"
-                      id="kingsbite 100g"
-                      className="singleProductFlavourSelection"
+                      className="singleProductSizeSelection"
+                      onChange={handleSizeChanges}
                     >
-                      <option value="Milk">Milk</option>
-                      <option value="Akuafo">Akuafo</option>
-                      <option value="Oranco">Oranco</option>
+                      <option hidden disabled value="">
+                        choose size
+                      </option>
+                      <>
+                        {demoProducts?.volumes.map((v) => (
+                          <option key={v}>{v}</option>
+                        ))}
+                      </>
                     </select>
                   </div>
                 </div>
                 <div className="singleProductBrand">
-                  <h3 className="singleProductbrandTitle">Brand</h3>
+                  <h4 className="singleProductbrandTitle">Brand</h4>
                   <span className="singleProductbrandName">Golden Tree</span>
                 </div>
                 <div className="singleProductAvailability">
-                  <h3 className="singleProductavailability">Availability</h3>
+                  <h4 className="singleProductavailability">Availability</h4>
                   <span className="singleProductnumberAvailable">
-                    4 in Stock
+                    {sizeInfo?.quantity} in Stock
                   </span>
                 </div>
                 <div className="singleProductQuantityContainer">
-                  <h3 className="singleProductquantityTitle">Quantity</h3>
+                  <h4 className="singleProductquantityTitle">Quantity</h4>
                   <div className="singleProductquantityWrapper">
                     <RemoveIcon
                       onClick={() => {
@@ -139,10 +175,12 @@ function SingleProductPage() {
                   </div>
                 </div>
                 <div className="singleProductSubtotal">
-                  <h3 className="singleProductSubtotalTitle">Subtotal</h3>
+                  <h4 className="singleProductSubtotalTitle">Subtotal</h4>
                   <span className="singleProductSubtotalAmount">
                     GHS
-                    {Math.round((price * count + Number.EPSILON) * 100) / 100}
+                    {Math.round(
+                      (sizeInfo?.price * count + Number.EPSILON) * 100
+                    ) / 100}
                   </span>
                 </div>
                 <div className="singleProduct-AddToCart-WishList">
@@ -168,4 +206,4 @@ function SingleProductPage() {
   );
 }
 
-export default SingleProductPage;
+export default React.memo(SingleProductPage);
