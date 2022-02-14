@@ -18,7 +18,7 @@ function SingleProductPage() {
   const [productVariant, setProductVariant] = useState(
     demoProducts?.variant[0]
   );
-  const [sizeInfo, setSizeInfo] = useState();
+  const [sizeProductInfo, setProductInfo] = useState();
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -38,7 +38,7 @@ function SingleProductPage() {
 
   useEffect(() => {
     if (productVariant !== null) {
-      setSizeInfo(productVariant?.size[0]);
+      setProductInfo(productVariant?.productInfo);
     }
   }, [productVariant]);
 
@@ -46,17 +46,9 @@ function SingleProductPage() {
     const key = e.target.value;
     const result = demoProducts.variant?.filter((v) => v.name === key);
     setProductVariant(result[0]);
-    console.log(key);
   }, []);
 
-  const handleSizeChanges = useCallback(
-    (e) => {
-      const key = e.target.value;
-      const result = productVariant?.size.filter((s) => s.volume === key);
-      setSizeInfo(result[0]);
-    },
-    [productVariant?.size]
-  );
+  const handleSizeChanges = useCallback((e) => {}, []);
 
   return (
     <>
@@ -110,11 +102,11 @@ function SingleProductPage() {
                 <div className="singleProductPriceWrapper">
                   <h4 className="singleProductPriceTitle">Price:</h4>
                   <span className="singleProductPrice">
-                    GHS{sizeInfo?.price}
+                    GHS{sizeProductInfo?.price}
                   </span>
                 </div>
                 <h4 className="singleProductInStock">
-                  HURRY ONLY {sizeInfo?.quantity} IN STOCK
+                  HURRY ONLY {sizeProductInfo?.quantity} IN STOCK
                 </h4>
                 <div className="singleProductSizeWrapper">
                   <h4 className="singleProductSize">Variant</h4>
@@ -159,7 +151,7 @@ function SingleProductPage() {
                 <div className="singleProductAvailability">
                   <h4 className="singleProductavailability">Availability</h4>
                   <span className="singleProductnumberAvailable">
-                    {sizeInfo?.quantity} in Stock
+                    {sizeProductInfo?.quantity} in Stock
                   </span>
                 </div>
                 <div className="singleProductQuantityContainer">
@@ -179,7 +171,7 @@ function SingleProductPage() {
                   <span className="singleProductSubtotalAmount">
                     GHS
                     {Math.round(
-                      (sizeInfo?.price * count + Number.EPSILON) * 100
+                      (sizeProductInfo?.price * count + Number.EPSILON) * 100
                     ) / 100}
                   </span>
                 </div>

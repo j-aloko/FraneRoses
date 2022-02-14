@@ -141,7 +141,7 @@ function Navbar() {
                       <Link to="/product/Alltime" className="links">
                         <li className="dropDownLineItem">Alltime</li>
                       </Link>
-                      <Link to="/product" className="links">
+                      <Link to="/product/Royale" className="links">
                         <li className="dropDownLineItem">Royale</li>
                       </Link>
                     </ul>
