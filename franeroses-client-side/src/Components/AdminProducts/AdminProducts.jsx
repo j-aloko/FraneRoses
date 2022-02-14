@@ -1,5 +1,5 @@
 import "./AdminProducts.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { products } from "../../Data";
@@ -11,6 +11,12 @@ import AdminCreateProduct from "./../AdminCreateProduct/AdminCreateProduct";
 function AdminProducts() {
   const [editProduct, setEditProduct] = useState(false);
   const [createNewProduct, setCreateNewProduct] = useState(false);
+
+  //scroll window to top on initial render
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const columns = [
     {
       field: "title",

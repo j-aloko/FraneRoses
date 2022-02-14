@@ -1,5 +1,5 @@
 import "./Users.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { users } from "./../../Data";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -8,6 +8,11 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import EditExistingUser from "../EditExistingUser/EditExistingUser";
 
 function Users() {
+  //scroll window to top on initial render
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [editUser, setEditUser] = useState(false);
 
   const location = useLocation();

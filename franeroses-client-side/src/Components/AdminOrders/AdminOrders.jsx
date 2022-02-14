@@ -1,5 +1,5 @@
 import "./AdminOrders.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { order } from "../../Data";
 import { Link } from "react-router-dom";
@@ -9,6 +9,11 @@ import OrderDetails from "./../AdminOrderDetails/OrderDetails";
 
 function AdminOrders() {
   const [orderDetails, setOrderDetails] = useState(false);
+
+  //scroll window to top on initial render
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const columns = [
     {

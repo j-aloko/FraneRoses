@@ -2,12 +2,19 @@ import "./AdminCreateProduct.css";
 import React, { useState, useEffect, useCallback } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import axiosInstance from "./../../axios";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function AdminCreateProduct() {
   const [previewFiles, setPreviewFiles] = useState();
   const [files, setFiles] = useState([]);
   const [img, setImg] = useState([]);
   const [product, setProduct] = useState({});
+  const [displayVariant, setDisplayVariant] = useState(false);
+  const [displayVariant2, setDisplayVariant2] = useState(false);
+  const [displayVariant3, setDisplayVariant3] = useState(false);
+  const [displayVariant4, setDisplayVariant4] = useState(false);
+  const [displayVariant5, setDisplayVariant5] = useState(false);
 
   //handle image preview
 
@@ -88,6 +95,57 @@ function AdminCreateProduct() {
     [product]
   );
 
+  //displaying multiple variant option
+
+  const handleVariant = (type) => {
+    if (type === 1) {
+      setDisplayVariant(!displayVariant);
+    } else if (type === 2) {
+      setDisplayVariant2(!displayVariant2);
+    } else if (type === 3) {
+      setDisplayVariant3(!displayVariant3);
+    } else if (type === 4) {
+      setDisplayVariant4(!displayVariant4);
+    } else {
+      setDisplayVariant5(!displayVariant5);
+    }
+  };
+
+  //Scroll window into view when any of the variants are displayed
+  useEffect(() => {
+    if (
+      displayVariant ||
+      displayVariant2 ||
+      displayVariant3 ||
+      displayVariant4 ||
+      displayVariant5
+    ) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  }, [
+    displayVariant,
+    displayVariant2,
+    displayVariant3,
+    displayVariant4,
+    displayVariant5,
+  ]);
+
+  //Removing variants
+
+  const RemoveVariant = (type) => {
+    if (type === 1) {
+      setDisplayVariant(!displayVariant);
+    } else if (type === 2) {
+      setDisplayVariant2(!displayVariant2);
+    } else if (type === 3) {
+      setDisplayVariant3(!displayVariant3);
+    } else if (type === 4) {
+      setDisplayVariant4(!displayVariant4);
+    } else {
+      setDisplayVariant5(!displayVariant5);
+    }
+  };
+
   return (
     <div className="createNewProductWrapper">
       <h1 className="addProducts">Add New Product</h1>
@@ -164,20 +222,25 @@ function AdminCreateProduct() {
           onChange={handleSelectSizes}
         >
           <option value="100g-Carton">100g Carton</option>
-          <option value="100g-Chip-Box">100g Chip-Box</option>
           <option value="50g-Carton">50g Carton</option>
-          <option value="50g-Chip-Box">50g Chip-Box</option>
           <option value="20g-Carton">20g Carton</option>
-          <option value="20g-Chip-Box">20g Chip-Box</option>
           <option value="500g-Carton">500g Carton</option>
-          <option value="500g-Container">500g Container</option>
           <option value="400g-Carton">400g Carton</option>
-          <option value="400g-Jar">400g Jar</option>
           <option value="20kg-Bag">20kg Bag</option>
           <option value="350g-Carton">350g Carton</option>
-          <option value="35og-Sachet">350g Sachet</option>
           <option value="300g-Carton">300g Carton</option>
-          <option value="300g-Sachet">300g Sachet</option>
+        </select>
+        <label htmlFor="volumes" className="CreateProductSelectLabels">
+          Select Volume
+        </label>
+        <select
+          className="addVolumes"
+          name="volumes"
+          id="volumes"
+          multiple
+          onChange={handleSelectSizes}
+        >
+          <option value="Carton">Carton</option>
         </select>
         <textarea
           className="addProductDescription"
@@ -215,40 +278,306 @@ function AdminCreateProduct() {
             ))}
           </div>
         </div>
-        <div className="pricing">
-          <input
-            type="number"
-            placeholder="Price"
-            name="price"
-            id="price"
-            className="priceInput"
-            onChange={handleInputs}
-          />
-          <input
-            type="number"
-            placeholder="Compare at price"
-            className="priceInput"
-            name="oldPrice"
-            id="oldPrice"
-            onChange={handleInputs}
-          />
+        <div className="productVariantsWrapper">
+          <h3 className="productVariantsTitle">Variants</h3>
+          {displayVariant ? (
+            <div className="deleteVariant" onClick={() => RemoveVariant(1)}>
+              <DeleteIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Remove variant</span>
+            </div>
+          ) : (
+            <div className="addVariant" onClick={() => handleVariant(1)}>
+              <AddIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Add a variant</span>
+            </div>
+          )}
+          <div
+            className={
+              displayVariant ? "productVariants show" : "productVariants"
+            }
+          >
+            <select className="variantName">
+              <option>Choose variant</option>
+              <option value="100g-Carton">100g </option>
+              <option value="50g-Carton">50g </option>
+              <option value="20g-Carton">20g </option>
+              <option value="500g-Carton">500g </option>
+              <option value="400g-Carton">400g </option>
+              <option value="20kg-Bag">20kg Bag</option>
+              <option value="350g-Carton">350g </option>
+              <option value="300g-Carton">300g </option>
+            </select>
+            <input
+              type="number"
+              placeholder="Price"
+              name="price"
+              id="price"
+              className="priceInput"
+            />
+            <input
+              type="number"
+              placeholder="Compare at price"
+              className="priceInput"
+              name="oldPrice"
+              id="oldPrice"
+            />
+            <input
+              type="number"
+              className="costPerItem"
+              placeholder="Average cost per product"
+              name="cost"
+              id="cost"
+            />
+            <input
+              type="number"
+              className="quantity"
+              name="quantity"
+              id="quantity"
+              placeholder="Quantity"
+            />
+            <hr className="variantHorizontalLine" />
+          </div>
+          {displayVariant2 ? (
+            <div className="deleteVariant" onClick={() => RemoveVariant(2)}>
+              <DeleteIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Remove variant</span>
+            </div>
+          ) : (
+            <div
+              className={displayVariant ? "addVariant2 show" : "addVariant2"}
+              onClick={() => handleVariant(2)}
+            >
+              <AddIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Add another variant</span>
+            </div>
+          )}
+          <div
+            className={
+              displayVariant2 ? "productVariants2 show" : "productVariants2"
+            }
+          >
+            <select className="variantName">
+              <option>Choose variant</option>
+              <option value="100g-Carton">100g </option>
+              <option value="50g-Carton">50g </option>
+              <option value="20g-Carton">20g </option>
+              <option value="500g-Carton">500g </option>
+              <option value="400g-Carton">400g </option>
+              <option value="20kg-Bag">20kg Bag</option>
+              <option value="350g-Carton">350g </option>
+              <option value="300g-Carton">300g </option>
+            </select>
+            <input
+              type="number"
+              placeholder="Price"
+              name="price"
+              id="price"
+              className="priceInput"
+            />
+            <input
+              type="number"
+              placeholder="Compare at price"
+              className="priceInput"
+              name="oldPrice"
+              id="oldPrice"
+            />
+            <input
+              type="number"
+              className="costPerItem"
+              placeholder="Average cost per product"
+              name="cost"
+              id="cost"
+            />
+            <input
+              type="number"
+              className="quantity"
+              name="quantity"
+              id="quantity"
+              placeholder="Quantity"
+            />
+            <hr className="variantHorizontalLine" />
+          </div>
+          {displayVariant3 ? (
+            <div className="deleteVariant" onClick={() => RemoveVariant(3)}>
+              <DeleteIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Remove variant</span>
+            </div>
+          ) : (
+            <div
+              className={displayVariant2 ? "addVariant3 show" : "addVariant3"}
+              onClick={() => handleVariant(3)}
+            >
+              <AddIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Add another variant</span>
+            </div>
+          )}
+          <div
+            className={
+              displayVariant3 ? "productVariants3 show" : "productVariants3"
+            }
+          >
+            <select className="variantName">
+              <option>Choose variant</option>
+              <option value="100g-Carton">100g </option>
+              <option value="50g-Carton">50g </option>
+              <option value="20g-Carton">20g </option>
+              <option value="500g-Carton">500g </option>
+              <option value="400g-Carton">400g </option>
+              <option value="20kg-Bag">20kg Bag</option>
+              <option value="350g-Carton">350g </option>
+              <option value="300g-Carton">300g </option>
+            </select>
+            <input
+              type="number"
+              placeholder="Price"
+              name="price"
+              id="price"
+              className="priceInput"
+            />
+            <input
+              type="number"
+              placeholder="Compare at price"
+              className="priceInput"
+              name="oldPrice"
+              id="oldPrice"
+            />
+            <input
+              type="number"
+              className="costPerItem"
+              placeholder="Average cost per product"
+              name="cost"
+              id="cost"
+            />
+            <input
+              type="number"
+              className="quantity"
+              name="quantity"
+              id="quantity"
+              placeholder="Quantity"
+            />
+            <hr className="variantHorizontalLine" />
+          </div>
+          {displayVariant4 ? (
+            <div className="deleteVariant" onClick={() => RemoveVariant(4)}>
+              <DeleteIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Remove variant</span>
+            </div>
+          ) : (
+            <div
+              className={displayVariant3 ? "addVariant4 show" : "addVariant4"}
+              onClick={() => handleVariant(4)}
+            >
+              <AddIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Add another variant</span>
+            </div>
+          )}
+          <div
+            className={
+              displayVariant4 ? "productVariants4 show" : "productVariants4"
+            }
+          >
+            <select className="variantName">
+              <option>Choose variant</option>
+              <option value="100g-Carton">100g </option>
+              <option value="50g-Carton">50g </option>
+              <option value="20g-Carton">20g </option>
+              <option value="500g-Carton">500g </option>
+              <option value="400g-Carton">400g </option>
+              <option value="20kg-Bag">20kg Bag</option>
+              <option value="350g-Carton">350g </option>
+              <option value="300g-Carton">300g </option>
+            </select>
+            <input
+              type="number"
+              placeholder="Price"
+              name="price"
+              id="price"
+              className="priceInput"
+            />
+            <input
+              type="number"
+              placeholder="Compare at price"
+              className="priceInput"
+              name="oldPrice"
+              id="oldPrice"
+            />
+            <input
+              type="number"
+              className="costPerItem"
+              placeholder="Average cost per product"
+              name="cost"
+              id="cost"
+            />
+            <input
+              type="number"
+              className="quantity"
+              name="quantity"
+              id="quantity"
+              placeholder="Quantity"
+            />
+            <hr className="variantHorizontalLine" />
+          </div>
+          {displayVariant5 ? (
+            <div className="deleteVariant" onClick={() => RemoveVariant(5)}>
+              <DeleteIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Remove variant</span>
+            </div>
+          ) : (
+            <div
+              className={displayVariant4 ? "addVariant5 show" : "addVariant5"}
+              onClick={() => handleVariant(5)}
+            >
+              <AddIcon style={{ marginRight: "20px" }} />
+              <span className="addVariantDesc">Add another variant</span>
+            </div>
+          )}
+          <div
+            className={
+              displayVariant5 ? "productVariants5 show" : "productVariants5"
+            }
+          >
+            <select className="variantName">
+              <option>Choose variant</option>
+              <option value="100g-Carton">100g </option>
+              <option value="50g-Carton">50g </option>
+              <option value="20g-Carton">20g </option>
+              <option value="500g-Carton">500g </option>
+              <option value="400g-Carton">400g </option>
+              <option value="20kg-Bag">20kg Bag</option>
+              <option value="350g-Carton">350g </option>
+              <option value="300g-Carton">300g </option>
+            </select>
+            <input
+              type="number"
+              placeholder="Price"
+              name="price"
+              id="price"
+              className="priceInput"
+            />
+            <input
+              type="number"
+              placeholder="Compare at price"
+              className="priceInput"
+              name="oldPrice"
+              id="oldPrice"
+            />
+            <input
+              type="number"
+              className="costPerItem"
+              placeholder="Average cost per product"
+              name="cost"
+              id="cost"
+            />
+            <input
+              type="number"
+              className="quantity"
+              name="quantity"
+              id="quantity"
+              placeholder="Quantity"
+            />
+            <hr className="variantHorizontalLine" />
+          </div>
         </div>
-        <input
-          type="number"
-          className="costPerItem"
-          placeholder="Average cost per product"
-          name="cost"
-          id="cost"
-          onChange={handleInputs}
-        />
-        <input
-          type="number"
-          className="quantity"
-          name="quantity"
-          id="quantity"
-          placeholder="Quantity"
-          onChange={handleInputs}
-        />
         <button className="createProductButton" onClick={handleSubmit}>
           Publish
         </button>

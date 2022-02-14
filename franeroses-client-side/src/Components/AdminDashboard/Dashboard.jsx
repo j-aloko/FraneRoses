@@ -1,5 +1,5 @@
 import "./Dashboard.css";
-import React from "react";
+import React, { useEffect } from "react";
 import ArrowDownwardTwoToneIcon from "@mui/icons-material/ArrowDownwardTwoTone";
 import ArrowUpwardTwoToneIcon from "@mui/icons-material/ArrowUpwardTwoTone";
 import {
@@ -15,6 +15,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { latestTransaction } from "./../../Data";
 
 function Dashboard() {
+  //scroll window to top on initial render
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   //Data Grid
   const columns = [
     {
