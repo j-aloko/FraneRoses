@@ -13,7 +13,6 @@ productSchema = new mongoose.Schema(
       {
         name: { type: String, required: true, default: "" },
         productInfo: {
-          volume: { type: String, required: true, default: "" },
           price: { type: Number, required: true },
           oldPrice: { type: Number, required: true },
           cost: { type: Number, required: true },
