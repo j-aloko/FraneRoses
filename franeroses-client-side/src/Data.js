@@ -252,8 +252,8 @@ export const demoProducts = {
   volumes: ["carton"],
   variant: [
     {
-      name: "100g",
       productInfo: {
+        name: "100g",
         volume: "carton",
         price: 640,
         oldPrice: 700,
@@ -264,8 +264,8 @@ export const demoProducts = {
       },
     },
     {
-      name: "50g",
       productInfo: {
+        name: "50g",
         volume: "carton",
         price: 600,
         oldPrice: 650,
@@ -276,8 +276,8 @@ export const demoProducts = {
       },
     },
     {
-      name: "20g",
       productInfo: {
+        name: "20g",
         volume: "carton",
         price: 500,
         oldPrice: 650,

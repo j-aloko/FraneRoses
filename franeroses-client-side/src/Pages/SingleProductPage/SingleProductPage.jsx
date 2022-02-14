@@ -44,7 +44,9 @@ function SingleProductPage() {
 
   const handleVariantChanges = useCallback((e) => {
     const key = e.target.value;
-    const result = demoProducts.variant?.filter((v) => v.name === key);
+    const result = demoProducts.variant?.filter(
+      (v) => v.productInfo.name === key
+    );
     setProductVariant(result[0]);
   }, []);
 

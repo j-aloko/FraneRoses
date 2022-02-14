@@ -11,8 +11,8 @@ productSchema = new mongoose.Schema(
     volumes: { type: Array, required: true, default: [] },
     variant: [
       {
-        name: { type: String, required: true, default: "" },
         productInfo: {
+          name: { type: String, required: true, default: "" },
           price: { type: Number, required: true },
           oldPrice: { type: Number, required: true },
           cost: { type: Number, required: true },

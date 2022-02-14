@@ -15,6 +15,8 @@ function AdminCreateProduct() {
   const [displayVariant3, setDisplayVariant3] = useState(false);
   const [displayVariant4, setDisplayVariant4] = useState(false);
   const [displayVariant5, setDisplayVariant5] = useState(false);
+  const [variant, setVariant] = useState([]);
+  const [productInfo, setProductInfo] = useState({});
 
   //handle image preview
 
@@ -82,18 +84,24 @@ function AdminCreateProduct() {
     },
     [product]
   );
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      try {
+
+  const handleProductInfo = (e) => {
+    const value = e.target.value;
+    setProductInfo((prev) => ({ ...prev, [e.target.name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setVariant((prev) => [...prev, productInfo]);
+    setProduct((prev) => ({ ...prev, variant: variant }));
+
+    /*try {
         const res = await axiosInstance.post("products", product);
         console.log(res.data);
       } catch (error) {
         console.log(error);
-      }
-    },
-    [product]
-  );
+      }*/
+  };
 
   //displaying multiple variant option
 
@@ -102,14 +110,21 @@ function AdminCreateProduct() {
       setDisplayVariant(!displayVariant);
     } else if (type === 2) {
       setDisplayVariant2(!displayVariant2);
+      setVariant((prev) => [...prev, productInfo]);
     } else if (type === 3) {
       setDisplayVariant3(!displayVariant3);
+      setVariant((prev) => [...prev, productInfo]);
     } else if (type === 4) {
       setDisplayVariant4(!displayVariant4);
+      setVariant((prev) => [...prev, productInfo]);
     } else {
       setDisplayVariant5(!displayVariant5);
+      setVariant((prev) => [...prev, productInfo]);
     }
   };
+
+  console.log(variant);
+  console.log(product);
 
   //Scroll window into view when any of the variants are displayed
   useEffect(() => {
@@ -296,7 +311,12 @@ function AdminCreateProduct() {
               displayVariant ? "productVariants show" : "productVariants"
             }
           >
-            <select className="variantName">
+            <select
+              className="variantName"
+              name="name"
+              id="name"
+              onChange={handleProductInfo}
+            >
               <option>Choose variant</option>
               <option value="100g-Carton">100g </option>
               <option value="50g-Carton">50g </option>
@@ -313,6 +333,7 @@ function AdminCreateProduct() {
               name="price"
               id="price"
               className="priceInput"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -320,6 +341,7 @@ function AdminCreateProduct() {
               className="priceInput"
               name="oldPrice"
               id="oldPrice"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -327,6 +349,7 @@ function AdminCreateProduct() {
               placeholder="Average cost per product"
               name="cost"
               id="cost"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -334,6 +357,7 @@ function AdminCreateProduct() {
               name="quantity"
               id="quantity"
               placeholder="Quantity"
+              onChange={handleProductInfo}
             />
             <hr className="variantHorizontalLine" />
           </div>
@@ -356,7 +380,12 @@ function AdminCreateProduct() {
               displayVariant2 ? "productVariants2 show" : "productVariants2"
             }
           >
-            <select className="variantName">
+            <select
+              className="variantName"
+              name="name"
+              id="name"
+              onChange={handleProductInfo}
+            >
               <option>Choose variant</option>
               <option value="100g-Carton">100g </option>
               <option value="50g-Carton">50g </option>
@@ -373,6 +402,7 @@ function AdminCreateProduct() {
               name="price"
               id="price"
               className="priceInput"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -380,6 +410,7 @@ function AdminCreateProduct() {
               className="priceInput"
               name="oldPrice"
               id="oldPrice"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -387,6 +418,7 @@ function AdminCreateProduct() {
               placeholder="Average cost per product"
               name="cost"
               id="cost"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -394,6 +426,7 @@ function AdminCreateProduct() {
               name="quantity"
               id="quantity"
               placeholder="Quantity"
+              onChange={handleProductInfo}
             />
             <hr className="variantHorizontalLine" />
           </div>
@@ -416,7 +449,12 @@ function AdminCreateProduct() {
               displayVariant3 ? "productVariants3 show" : "productVariants3"
             }
           >
-            <select className="variantName">
+            <select
+              className="variantName"
+              name="name"
+              id="name"
+              onChange={handleProductInfo}
+            >
               <option>Choose variant</option>
               <option value="100g-Carton">100g </option>
               <option value="50g-Carton">50g </option>
@@ -433,6 +471,7 @@ function AdminCreateProduct() {
               name="price"
               id="price"
               className="priceInput"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -440,6 +479,7 @@ function AdminCreateProduct() {
               className="priceInput"
               name="oldPrice"
               id="oldPrice"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -447,6 +487,7 @@ function AdminCreateProduct() {
               placeholder="Average cost per product"
               name="cost"
               id="cost"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -454,6 +495,7 @@ function AdminCreateProduct() {
               name="quantity"
               id="quantity"
               placeholder="Quantity"
+              onChange={handleProductInfo}
             />
             <hr className="variantHorizontalLine" />
           </div>
@@ -476,7 +518,12 @@ function AdminCreateProduct() {
               displayVariant4 ? "productVariants4 show" : "productVariants4"
             }
           >
-            <select className="variantName">
+            <select
+              className="variantName"
+              name="name"
+              id="name"
+              onChange={handleProductInfo}
+            >
               <option>Choose variant</option>
               <option value="100g-Carton">100g </option>
               <option value="50g-Carton">50g </option>
@@ -493,6 +540,7 @@ function AdminCreateProduct() {
               name="price"
               id="price"
               className="priceInput"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -500,6 +548,7 @@ function AdminCreateProduct() {
               className="priceInput"
               name="oldPrice"
               id="oldPrice"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -507,6 +556,7 @@ function AdminCreateProduct() {
               placeholder="Average cost per product"
               name="cost"
               id="cost"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -514,6 +564,7 @@ function AdminCreateProduct() {
               name="quantity"
               id="quantity"
               placeholder="Quantity"
+              onChange={handleProductInfo}
             />
             <hr className="variantHorizontalLine" />
           </div>
@@ -536,7 +587,12 @@ function AdminCreateProduct() {
               displayVariant5 ? "productVariants5 show" : "productVariants5"
             }
           >
-            <select className="variantName">
+            <select
+              className="variantName"
+              name="name"
+              id="name"
+              onChange={handleProductInfo}
+            >
               <option>Choose variant</option>
               <option value="100g-Carton">100g </option>
               <option value="50g-Carton">50g </option>
@@ -553,6 +609,7 @@ function AdminCreateProduct() {
               name="price"
               id="price"
               className="priceInput"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -560,6 +617,7 @@ function AdminCreateProduct() {
               className="priceInput"
               name="oldPrice"
               id="oldPrice"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -567,6 +625,7 @@ function AdminCreateProduct() {
               placeholder="Average cost per product"
               name="cost"
               id="cost"
+              onChange={handleProductInfo}
             />
             <input
               type="number"
@@ -574,6 +633,7 @@ function AdminCreateProduct() {
               name="quantity"
               id="quantity"
               placeholder="Quantity"
+              onChange={handleProductInfo}
             />
             <hr className="variantHorizontalLine" />
           </div>
