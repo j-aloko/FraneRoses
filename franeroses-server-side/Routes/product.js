@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 
 //Update Product
 
-router.put("/:id", verifyAndAdmin, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedProduct = await Products.findByIdAndUpdate(
       req.params.id,
@@ -33,7 +33,7 @@ router.put("/:id", verifyAndAdmin, async (req, res) => {
 
 //Delete Product
 
-router.delete("/:id", verifyAndAdmin, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     await Products.findByIdAndDelete(req.params.id);
     res.status(200).json("Product Successfully deleted");
@@ -56,6 +56,7 @@ router.get("/find/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const qnew = req.query.new;
   const cat = req.query.new;
+  const subCat = req.query.new;
   try {
     let products;
     if (qnew) {
@@ -64,6 +65,12 @@ router.get("/", async (req, res) => {
       products = await Products.find().sort({
         category: {
           $in: [cat],
+        },
+      });
+    } else if (subCat) {
+      products = await Products.find().sort({
+        subCategory: {
+          $in: [subCat],
         },
       });
     } else {
