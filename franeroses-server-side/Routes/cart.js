@@ -52,7 +52,7 @@ router.get("/find:/userId", async (req, res) => {
   }
 });
 
-//Get all Product
+//Get all cart
 
 router.get("/", async (req, res) => {
   try {

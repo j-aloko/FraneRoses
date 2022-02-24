@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", verifyAndAdmin, async (req, res) => {
   try {
-    const updatedProduct = await Products.findOneAndUpdate(
+    const updatedProduct = await Products.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
