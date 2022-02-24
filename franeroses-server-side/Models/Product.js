@@ -6,22 +6,16 @@ productSchema = new mongoose.Schema(
     desc: { type: String, required: true },
     img: { type: Array, required: true, default: [] },
     category: { type: String, required: true, default: "" },
+    subCategory: { type: String, required: true, default: "" },
     brand: { type: String, default: "Golden Tree" },
-    sizes: { type: Array, required: true, default: [] },
-    volumes: { type: Array, required: true, default: [] },
-    variant: [
-      {
-        productInfo: {
-          name: { type: String, required: true, default: "" },
-          price: { type: Number, required: true },
-          oldPrice: { type: Number, required: true },
-          cost: { type: Number, required: true },
-          quantity: { type: Number, required: true },
-          inStock: { type: String, default: "in stock" },
-          status: { type: String, default: "active" },
-        },
-      },
-    ],
+    size: { type: String, default: "carton" },
+    price: { type: Number, required: true },
+    oldPrice: { type: Number, required: true },
+    cost: { type: Number, required: true },
+    sales: { type: Number, default: 0 },
+    qty: { type: Number, required: true },
+    inStock: { type: String, default: "in stock" },
+    status: { type: String, default: "active" },
   },
   { timestamps: true }
 );

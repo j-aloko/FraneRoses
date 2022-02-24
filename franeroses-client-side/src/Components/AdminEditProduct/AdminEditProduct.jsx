@@ -1,9 +1,11 @@
 import "./AdminEditProduct.css";
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 function AdminEditProduct() {
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState();
+  const [img, setImg] = useState([]);
+  const [product, setProduct] = useState();
   const [preview, setPreview] = useState("/assets/100g.jpg");
 
   //handle image preview
@@ -16,8 +18,48 @@ function AdminEditProduct() {
     for (let i = 0; i < fileObj[0].length; i++) {
       fileArray.push(URL.createObjectURL(fileObj[0][i]));
     }
-    setFile(fileArray);
+    setFiles(fileArray);
   };
+
+  //handle upload to cloudinary
+
+  const url = "https://api.cloudinary.com/v1_1/demo/image/upload";
+
+  useEffect(() => {
+    const formData = new FormData();
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        formData.append("file", file);
+        formData.append("upload_preset", "docs_upload_example_us_preset");
+        fetch(url, {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setImg((prev) => [...prev, data?.url]);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
+  }, [files]);
+
+  useEffect(() => {
+    setProduct((prev) => ({ ...prev, img: img }));
+  }, [img]);
+
+  const handleInputs = useCallback(
+    (e) => {
+      const value = e.target.value;
+      setProduct({ ...product, [e.target.name]: value });
+    },
+    [product]
+  );
 
   return (
     <div className="editProductWrapper">
@@ -47,61 +89,67 @@ function AdminEditProduct() {
             <textarea
               type="text"
               className="editProductInput"
-              name="description"
+              name="desc"
+              id="desc"
+              onChange={handleInputs}
               placeholder="Update product description...."
             ></textarea>
             <div className="editProductPrice">
               <input
                 type="number"
                 className="editPriceItem"
+                name="price"
+                id="price"
+                onChange={handleInputs}
                 placeholder="Update current price...."
               />
               <input
                 type="number"
                 className="editPriceItem"
+                name="oldPrice"
+                id="oldPrice"
+                onChange={handleInputs}
                 placeholder="Update old price...."
               />
             </div>
             <input
               type="number"
               className="updateCostPerProduct"
+              name="cost"
+              id="cost"
+              onChange={handleInputs}
               placeholder="Update average cost per prod..."
             />
             <input
               type="number"
               className="editProductQuantity"
+              name="qty"
+              id="qty"
+              onChange={handleInputs}
               placeholder="Update quantity"
             />
-            <label htmlFor="sizes" className="CreateProductSelectLabels">
-              Update Sizes Available
-            </label>
-            <select className="addProductSize" name="sizes" id="sizes" multiple>
-              <option value="100g-Carton">100g Carton</option>
-              <option value="100g-Chip-Box">100g Chip-Box</option>
-              <option value="50g-Carton">50g Carton</option>
-              <option value="50g-Chip-Box">50g Chip-Box</option>
-              <option value="20g-Carton">20g Carton</option>
-              <option value="20g-Chip-Box">20g Chip-Box</option>
-              <option value="500g-Carton">500g Carton</option>
-              <option value="500g-Container">500g Container</option>
-              <option value="400g-Carton">400g Carton</option>
-              <option value="400g-Jar">400g Jar</option>
-              <option value="20kg-Bag">20kg Bag</option>
-              <option value="350g-Carton">350g Carton</option>
-              <option value="35og-Sachet">350g Sachet</option>
-              <option value="300g-Carton">300g Carton</option>
-              <option value="300g-Sachet">300g Sachet</option>
-            </select>
             <div className="editProductFormInputs">
               <label htmlFor="instock">In stock</label>
-              <select className="editProductSelectItem">
+              <select
+                className="editProductSelectItem"
+                onChange={handleInputs}
+                name="inStock"
+                id="inStock"
+              >
+                <option>Update stock status</option>
                 <option value="in stock">Yes</option>
                 <option value="out of stock">No</option>
               </select>
             </div>
             <div className="editProductFormInputs">
               <label htmlFor="active">Active</label>
-              <select className="editProductSelectItem">
+              <select
+                className="editProductSelectItem"
+                onChange={handleInputs}
+                name="status"
+                id="status"
+              >
+                <option>Update active status</option>
                 <option value="active">Yes</option>
                 <option value="passive">No</option>
               </select>
@@ -117,7 +165,7 @@ function AdminEditProduct() {
               </label>
               <input
                 type="file"
-                id="file"
+                id="files"
                 name="files"
                 accept=".jpg, .jpeg, .png"
                 multiple
@@ -127,7 +175,7 @@ function AdminEditProduct() {
             </div>
           </div>
           <div className="updateImgsPreview">
-            {file?.map((url, index) => (
+            {files?.map((url, index) => (
               <img
                 key={index}
                 src={url}
@@ -144,4 +192,4 @@ function AdminEditProduct() {
   );
 }
 
-export default AdminEditProduct;
+export default React.memo(AdminEditProduct);

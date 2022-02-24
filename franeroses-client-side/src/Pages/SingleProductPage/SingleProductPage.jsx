@@ -8,17 +8,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import Footer from "./../../Components/Footer/Footer";
-import { demoProducts } from "./../../Data";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
 
   const [count, setCount] = useState(1);
   const [productImg, setProductImg] = useState("/assets/100g.jpg");
-  const [productVariant, setProductVariant] = useState(
-    demoProducts?.variant[0]
-  );
-  const [sizeProductInfo, setProductInfo] = useState();
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -34,33 +29,15 @@ function SingleProductPage() {
     dispatch(renderProductsPage());
   }, [dispatch]);
 
-  // on Initial Render, set the product variant to the first index
-
-  useEffect(() => {
-    if (productVariant !== null) {
-      setProductInfo(productVariant?.productInfo);
-    }
-  }, [productVariant]);
-
-  const handleVariantChanges = useCallback((e) => {
-    const key = e.target.value;
-    const result = demoProducts.variant?.filter(
-      (v) => v.productInfo.name === key
-    );
-    setProductVariant(result[0]);
-  }, []);
-
-  const handleSizeChanges = useCallback((e) => {}, []);
-
   return (
     <>
       <div className="singleProductContainer">
         <div className="singleProductWrapper">
           <div className="singleProductTop">
             <div className="singleProductTitles">
-              <h1 className="singleProductName">{demoProducts?.title}</h1>
+              <h1 className="singleProductName">Kingsbite 100g</h1>
               <h3 className="singleProductRou">
-                Products / Dark Chocolates / {demoProducts?.title}
+                Products / Dark Chocolates / Kingsbite 100g
               </h3>
             </div>
           </div>
@@ -90,59 +67,27 @@ function SingleProductPage() {
             </div>
             <div className="singleProductDownRight">
               <div className="singleProduct-name-isocert">
-                <h1 className="singleProductRightTitle">
-                  {demoProducts?.title}
-                </h1>
+                <h1 className="singleProductRightTitle">test</h1>
                 <img
                   src="/assets/iso.png"
                   alt=""
                   className="isoCertification"
                 />
               </div>
-              <p className="singleProductDescription">{demoProducts?.desc}</p>
+              <p className="singleProductDescription">test</p>
               <div className="singleProductLeftInfo">
                 <div className="singleProductPriceWrapper">
                   <h4 className="singleProductPriceTitle">Price:</h4>
-                  <span className="singleProductPrice">
-                    GHS{sizeProductInfo?.price}
-                  </span>
+                  <span className="singleProductPrice">GHS600.57</span>
                 </div>
-                <h4 className="singleProductInStock">
-                  HURRY ONLY {sizeProductInfo?.quantity} IN STOCK
-                </h4>
-                <div className="singleProductSizeWrapper">
-                  <h4 className="singleProductSize">Variant</h4>
-                  <div className="singleProductSizeOptions">
-                    <select
-                      className="singleProductSizeSelection"
-                      onChange={handleVariantChanges}
-                    >
-                      <option hidden disabled value="">
-                        choose variant
-                      </option>
-                      <>
-                        {demoProducts?.sizes.map((s) => (
-                          <option key={s}>{s}</option>
-                        ))}
-                      </>
-                    </select>
-                  </div>
-                </div>
+                <h4 className="singleProductInStock">HURRY ONLY 30 IN STOCK</h4>
                 <div className="singleProductSizeWrapper">
                   <h4 className="singleProductSize">Size</h4>
                   <div className="singleProductSizeOptions">
-                    <select
-                      className="singleProductSizeSelection"
-                      onChange={handleSizeChanges}
-                    >
-                      <option hidden disabled value="">
-                        choose size
-                      </option>
-                      <>
-                        {demoProducts?.volumes.map((v) => (
-                          <option key={v}>{v}</option>
-                        ))}
-                      </>
+                    <select className="singleProductSizeSelection">
+                      <option>choose size</option>
+                      <option value="carton">carton</option>
+                      <option value="chip-box">chip-box</option>
                     </select>
                   </div>
                 </div>
@@ -153,7 +98,7 @@ function SingleProductPage() {
                 <div className="singleProductAvailability">
                   <h4 className="singleProductavailability">Availability</h4>
                   <span className="singleProductnumberAvailable">
-                    {sizeProductInfo?.quantity} in Stock
+                    30 in Stock
                   </span>
                 </div>
                 <div className="singleProductQuantityContainer">
@@ -172,9 +117,7 @@ function SingleProductPage() {
                   <h4 className="singleProductSubtotalTitle">Subtotal</h4>
                   <span className="singleProductSubtotalAmount">
                     GHS
-                    {Math.round(
-                      (sizeProductInfo?.price * count + Number.EPSILON) * 100
-                    ) / 100}
+                    {Math.round((600 * count + Number.EPSILON) * 100) / 100}
                   </span>
                 </div>
                 <div className="singleProduct-AddToCart-WishList">
