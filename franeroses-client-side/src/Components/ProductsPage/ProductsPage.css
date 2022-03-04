@@ -50,6 +50,7 @@
   height: 300px;
   object-fit: cover;
   vertical-align: middle;
+  border-radius: 10px;
 }
 
 .productName {

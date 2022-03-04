@@ -15,11 +15,8 @@ import Signup from "./Pages/SignUpPage/Signup";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import DeliveriesRefund from "./Pages/Deliveries&Refund/Deliveries&Refund";
-import CircularProgress from "@mui/material/CircularProgress";
 import Navbar from "./Components/Navbar/Navbar";
 import { authContext } from "./Context-Api/Authentication/Context";
-
-const LazyAdmin = React.lazy(() => import("./Pages/AdminPanel/Admin"));
 
 function App() {
   const { user } = useContext(authContext);
@@ -31,21 +28,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route
-            path="/admin/:id"
-            element={
-              <React.Suspense
-                fallback={
-                  <div className="fallback">
-                    <CircularProgress color="secondary" />
-                  </div>
-                }
-              >
-                <LazyAdmin />
-              </React.Suspense>
-            }
-          />
-          <Route path="/product/:name" element={<SingleProductPage />} />
+          <Route path="/product/:id" element={<SingleProductPage />} />
           <Route path="/products/:all" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />

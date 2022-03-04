@@ -1,6 +1,6 @@
 import "./SingleProductPage.css";
 import React from "react";
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -8,12 +8,19 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import Footer from "./../../Components/Footer/Footer";
+import { useLocation } from "react-router-dom";
+import { productsContext } from "./../../Context-Api/Products/Context";
+import { getAllProducts } from "../../ApiCalls/Products";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
-
+  const [product, setProduct] = useState({});
   const [count, setCount] = useState(1);
-  const [productImg, setProductImg] = useState("/assets/100g.jpg");
+  const [productImg, setProductImg] = useState("");
+  const { products, dispatch: productDispatch } = useContext(productsContext);
+
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -29,15 +36,31 @@ function SingleProductPage() {
     dispatch(renderProductsPage());
   }, [dispatch]);
 
+  //fetch all products when this component mounts
+
+  useEffect(() => {
+    getAllProducts(productDispatch);
+  }, [productDispatch]);
+
+  useEffect(() => {
+    setProduct(products?.find((p) => p._id === path));
+  }, [products, path]);
+
+  useEffect(() => {
+    if (product?.img) {
+      setProductImg(product?.img[0]);
+    }
+  }, [product?.img]);
+
   return (
     <>
       <div className="singleProductContainer">
         <div className="singleProductWrapper">
           <div className="singleProductTop">
             <div className="singleProductTitles">
-              <h1 className="singleProductName">Kingsbite 100g</h1>
+              <h1 className="singleProductName">{product?.title}</h1>
               <h3 className="singleProductRou">
-                Products / Dark Chocolates / Kingsbite 100g
+                Products / {product?.category} / {product?.title}
               </h3>
             </div>
           </div>
@@ -45,60 +68,53 @@ function SingleProductPage() {
             <div className="singleProductDownLeft">
               <img src={productImg} alt="" className="singleProductLeftImg" />
               <div className="singleProductLeftImgsArray">
-                <img
-                  src="/assets/100g.jpg"
-                  alt=""
-                  className="arrayImg"
-                  onClick={() => setProductImg("/assets/100g.jpg")}
-                />
-                <img
-                  src="/assets/50g.jpg"
-                  alt=""
-                  className="arrayImg"
-                  onClick={() => setProductImg("/assets/50g.jpg")}
-                />
-                <img
-                  src="/assets/20g.jpg"
-                  alt=""
-                  className="arrayImg"
-                  onClick={() => setProductImg("/assets/20g.jpg")}
-                />
+                {product?.img?.map((i, index) => (
+                  <img
+                    src={i}
+                    alt=""
+                    className="arrayImg"
+                    key={index}
+                    onClick={() => setProductImg(i)}
+                  />
+                ))}
               </div>
             </div>
             <div className="singleProductDownRight">
               <div className="singleProduct-name-isocert">
-                <h1 className="singleProductRightTitle">test</h1>
+                <h1 className="singleProductRightTitle">{product?.title}</h1>
                 <img
                   src="/assets/iso.png"
                   alt=""
                   className="isoCertification"
                 />
               </div>
-              <p className="singleProductDescription">test</p>
+              <p className="singleProductDescription">{product?.desc}</p>
               <div className="singleProductLeftInfo">
                 <div className="singleProductPriceWrapper">
                   <h4 className="singleProductPriceTitle">Price:</h4>
-                  <span className="singleProductPrice">GHS600.57</span>
+                  <span className="singleProductPrice">{product?.price}</span>
                 </div>
-                <h4 className="singleProductInStock">HURRY ONLY 30 IN STOCK</h4>
+                <h4 className="singleProductInStock">
+                  HURRY ONLY {product?.qty} IN STOCK
+                </h4>
                 <div className="singleProductSizeWrapper">
                   <h4 className="singleProductSize">Size</h4>
                   <div className="singleProductSizeOptions">
-                    <select className="singleProductSizeSelection">
-                      <option>choose size</option>
-                      <option value="carton">carton</option>
-                      <option value="chip-box">chip-box</option>
-                    </select>
+                    <span>{product?.size}</span>
                   </div>
                 </div>
                 <div className="singleProductBrand">
                   <h4 className="singleProductbrandTitle">Brand</h4>
-                  <span className="singleProductbrandName">Golden Tree</span>
+                  <span className="singleProductbrandName">
+                    {product?.brand}
+                  </span>
                 </div>
                 <div className="singleProductAvailability">
                   <h4 className="singleProductavailability">Availability</h4>
                   <span className="singleProductnumberAvailable">
-                    30 in Stock
+                    {product?.qty >= 1
+                      ? `${product?.qty} In stock`
+                      : "Out of stock"}
                   </span>
                 </div>
                 <div className="singleProductQuantityContainer">
@@ -117,7 +133,9 @@ function SingleProductPage() {
                   <h4 className="singleProductSubtotalTitle">Subtotal</h4>
                   <span className="singleProductSubtotalAmount">
                     GHS
-                    {Math.round((600 * count + Number.EPSILON) * 100) / 100}
+                    {Math.round(
+                      (product?.price * count + Number.EPSILON) * 100
+                    ) / 100}
                   </span>
                 </div>
                 <div className="singleProduct-AddToCart-WishList">

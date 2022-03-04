@@ -1,0 +1,179 @@
+.createNewProductWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+option {
+  padding: 10px;
+}
+
+.addProductsForm {
+  margin-top: -10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productTitleSelection {
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.addProductCategory {
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.selectLabels {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.addProductDescription {
+  margin-top: 15px;
+  height: 170px;
+  padding: 10px;
+  width: 400px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.mediaFilesContainer {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.media {
+  margin-right: 30px;
+  border: 1px solid rgb(94, 92, 92);
+  border-style: dotted;
+  border-radius: 5px;
+  width: 425px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mediaFilesWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mediaTitle {
+  margin-right: 10px;
+}
+
+.mediaFiles {
+  display: none;
+}
+
+.myAddProducts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.productImgsPreview {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.priceInputWrapper {
+  display: flex;
+  align-items: center;
+}
+.priceInput {
+  width: 400px;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+  font-size: 16px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.costPerItem {
+  width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 15px;
+  border: 0.5px solid gray;
+  outline: none;
+}
+
+.quantity {
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: 0.5px solid gray;
+  outline: none;
+  margin-top: 15px;
+}
+
+.create {
+  position: fixed;
+  top: 150px;
+  right: 50px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createProductButton {
+  margin-top: 20px;
+  border: none;
+  width: 180px;
+  background-color: rgb(19, 4, 71);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.upload-success {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: rgb(11, 90, 22);
+  font-weight: 500;
+}
+
+.view-product {
+  color: rgb(143, 63, 6);
+  cursor: pointer;
+}
+
+.upload-error {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: rgb(231, 6, 25);
+  font-weight: 500;
+}

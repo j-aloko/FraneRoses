@@ -1,0 +1,6 @@
+.homepageContainer {
+  position: relative;
+  left: 260px;
+  margin-top: 40px;
+  flex: 0.8;
+}

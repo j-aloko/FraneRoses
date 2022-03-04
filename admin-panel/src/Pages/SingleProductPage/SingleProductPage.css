@@ -1,0 +1,171 @@
+.singleProductPage {
+  flex: 0.9;
+  padding: 20px;
+}
+
+.productAndButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.createProduct {
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  background-color: rgb(59, 99, 74);
+  color: white;
+  cursor: pointer;
+}
+
+.ChartAndProductInfo {
+  display: flex;
+  margin-top: 30px;
+}
+
+.chartContainer {
+  flex: 4;
+}
+
+.productInfo {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.productProfile {
+  display: flex;
+  align-items: center;
+}
+
+.productImage {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.productDetailss {
+  margin-top: 20px;
+}
+
+.productId {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.productAmount {
+  margin-left: 100px;
+  opacity: 0.6;
+}
+
+.poductSales {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.salesAmount {
+  margin-left: 75px;
+  opacity: 0.6;
+}
+
+.activeProduct {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.statuss {
+  margin-left: 75px;
+  opacity: 0.6;
+}
+
+.productStock {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.statusss {
+  margin-left: 70px;
+  opacity: 0.6;
+}
+
+.updateWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.productItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.productItem > label {
+  opacity: 0.6;
+}
+
+.productItem > input {
+  margin: 10px 0px;
+  border: none;
+  border-bottom: 2px solid rgb(190, 190, 190);
+}
+
+.productItem > select {
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+.imageAndButtonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+.imageAndIcon {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.publishIcon {
+  position: absolute;
+  bottom: 40px;
+  right: 45px;
+  cursor: pointer;
+}
+
+.updateButton {
+  margin-top: 30px;
+  margin-right: 60px;
+  padding: 5px 25px;
+  width: 125px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(48, 32, 107);
+  cursor: pointer;
+  color: white;
+}
+
+.updateImage {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 80px;
+}

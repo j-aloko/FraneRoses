@@ -53,23 +53,20 @@ router.get("/find/:id", async (req, res) => {
 
 //Get All Products
 router.get("/", async (req, res) => {
-  const qnew = req.query.new;
-  const cat = req.query.new;
-  const subCat = req.query.new;
+  const qCategory = req.query.cat;
+  const qsubCategory = req.query.subCat;
   try {
     let products;
-    if (qnew) {
-      products = await Products.find().sort({ createdAt: -1 }).limit(5);
-    } else if (cat) {
-      products = await Products.find().sort({
+    if (qCategory) {
+      products = await Products.find({
         category: {
-          $in: [cat],
+          $in: [qCategory],
         },
       });
-    } else if (subCat) {
-      products = await Products.find().sort({
+    } else if (qsubCategory) {
+      products = await Products.find({
         subCategory: {
-          $in: [subCat],
+          $in: [qsubCategory],
         },
       });
     } else {

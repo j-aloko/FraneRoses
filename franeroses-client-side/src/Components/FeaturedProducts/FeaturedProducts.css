@@ -56,4 +56,5 @@
   object-fit: cover;
   vertical-align: middle;
   cursor: pointer;
+  border-radius: 10px;
 }

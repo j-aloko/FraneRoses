@@ -14,6 +14,8 @@ import { Link, useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 import { logoutNow } from "../../Context-Api/Authentication/Action";
+import { cartContext } from "./../../Context-Api/Cart/Context";
+import { wishlistContext } from "./../../Context-Api/Wishlist/Context";
 
 function Navbar() {
   const [inputField, setInputField] = useState(false);
@@ -22,12 +24,13 @@ function Navbar() {
 
   const [color, setColor] = useState(false);
 
-  const userIsAdmin = true;
-
-  const { dispatch, homePage, products, blog, admin } =
-    useContext(PagesContext);
+  const { dispatch, homePage, products, blog } = useContext(PagesContext);
 
   const { user, dispatch: userDispatch } = useContext(authContext);
+
+  const { cart } = useContext(cartContext);
+
+  const { wishlist } = useContext(wishlistContext);
 
   const navigate = useNavigate();
 
@@ -106,16 +109,16 @@ function Navbar() {
                       <h4 className="dropDownTitle">Chocolate Bars</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product/Kingsbite" className="links">
+                      <Link to="/products/Kingsbite" className="links">
                         <li className="dropDownLineItem">Kingsbite</li>
                       </Link>
-                      <Link to="/product/Q-Premium-Dark" className="links">
+                      <Link to="/products/TQ Premium Dark" className="links">
                         <li className="dropDownLineItem">TQ Premium Dark</li>
                       </Link>
-                      <Link to="/product/Akuafo-Bar" className="links">
+                      <Link to="/products/Akuafo" className="links">
                         <li className="dropDownLineItem">Akuafo Bar</li>
                       </Link>
-                      <Link to="/product/Oranco" className="links">
+                      <Link to="/products/Oranco" className="links">
                         <li className="dropDownLineItem">Oranco</li>
                       </Link>
                     </ul>
@@ -125,10 +128,10 @@ function Navbar() {
                       <h4 className="dropDownTitle">Chocolate Dragee</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product/Pebbles" className="links">
+                      <Link to="/products/Pebbles" className="links">
                         <li className="dropDownLineItem">Pebbles</li>
                       </Link>
-                      <Link to="/product/Nutty-Chocs" className="links">
+                      <Link to="/products/Nutty Chocs" className="links">
                         <li className="dropDownLineItem">Nutty Chocs</li>
                       </Link>
                     </ul>
@@ -138,10 +141,10 @@ function Navbar() {
                       <h4 className="dropDownTitle">Drinking Chocolate</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product/Alltime" className="links">
+                      <Link to="/products/Alltime" className="links">
                         <li className="dropDownLineItem">Alltime</li>
                       </Link>
-                      <Link to="/product/Royale" className="links">
+                      <Link to="/products/Royale" className="links">
                         <li className="dropDownLineItem">Royale</li>
                       </Link>
                     </ul>
@@ -151,10 +154,10 @@ function Navbar() {
                       <h4 className="dropDownTitle">Choco Spread / Butter</h4>
                     </Link>
                     <ul className="dropDownItems">
-                      <Link to="/product/Choco-Spread" className="links">
+                      <Link to="/products/Chocolate Spread" className="links">
                         <li className="dropDownLineItem">Chocolate Spread</li>
                       </Link>
-                      <Link to="/product/Cocoa-Butter" className="links">
+                      <Link to="/products/Butter" className="links">
                         <li className="dropDownLineItem">Cocoa Butter</li>
                       </Link>
                     </ul>
@@ -177,17 +180,6 @@ function Navbar() {
               </span>
             </Link>
           </div>
-          {userIsAdmin && (
-            <div className="navbarcenterMenuItems">
-              <Link to="/admin/:id" className="links">
-                <span
-                  className={admin ? "navbarMenuAdmin color" : "navbarMenuBlog"}
-                >
-                  Admin
-                </span>
-              </Link>
-            </div>
-          )}
         </div>
         <div className="navbarRight" onClick={() => RenderPages("default")}>
           <div className="navbarSearchIcon">
@@ -257,14 +249,14 @@ function Navbar() {
           </div>
           <div className="navbarIcon">
             <Link to="/wishList" className="links">
-              <Badge badgeContent={4} color="primary">
+              <Badge badgeContent={wishlist?.length} color="primary">
                 <FavoriteBorderOutlinedIcon />
               </Badge>
             </Link>
           </div>
           <div className="navbarIcon">
             <Link to="/cart" className="links">
-              <Badge badgeContent={4} color="primary">
+              <Badge badgeContent={cart?.length} color="primary">
                 <ShoppingCartOutlinedIcon />
               </Badge>
             </Link>
