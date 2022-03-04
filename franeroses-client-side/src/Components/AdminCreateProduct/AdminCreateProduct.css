@@ -34,15 +34,11 @@ option {
   outline: none;
 }
 
-.addProductSize {
-  padding: 10px;
-  border-radius: 5px;
-  width: 400px;
-  height: 140px;
-  font-size: 16px;
-  margin-top: 5px;
-  border: 0.5px solid gray;
-  outline: none;
+.selectLabels {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .addProductDescription {
@@ -158,4 +154,34 @@ option {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.upload-success-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-success {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: rgb(11, 90, 22);
+  font-weight: 500;
+  position: relative;
+  right: 60px;
+}
+
+.view-product {
+  color: rgb(143, 63, 6);
+  cursor: pointer;
+}
+
+.upload-error {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: rgb(231, 6, 25);
+  font-weight: 500;
+  position: relative;
+  right: 60px;
 }

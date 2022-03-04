@@ -5,6 +5,7 @@ const InitialState = {
   products: [],
   isFetching: false,
   error: false,
+  success: false,
 };
 
 export const productsContext = createContext(InitialState);
@@ -17,6 +18,7 @@ export const ProductsContextProvider = ({ children }) => {
         products: state.products,
         isFetching: state.isFetching,
         error: state.error,
+        success: state.success,
         dispatch,
       }}
     >

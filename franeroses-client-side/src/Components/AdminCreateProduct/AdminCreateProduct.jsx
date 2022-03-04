@@ -1,12 +1,17 @@
 import "./AdminCreateProduct.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { productsContext } from "./../../Context-Api/Products/Context";
+import { postProducts } from "./../../ApiCalls/Products";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Link } from "react-router-dom";
 
 function AdminCreateProduct() {
   const [previewFiles, setPreviewFiles] = useState();
   const [files, setFiles] = useState([]);
   const [img, setImg] = useState([]);
   const [product, setProduct] = useState();
+  const { dispatch, isFetching, error, success } = useContext(productsContext);
 
   //handle image preview
 
@@ -64,7 +69,7 @@ function AdminCreateProduct() {
     [product]
   );
 
-  /*const handleSelectSizes = useCallback(
+  const handleSelectSizes = useCallback(
     (e) => {
       let value = Array.from(
         e.target.selectedOptions,
@@ -73,12 +78,18 @@ function AdminCreateProduct() {
       setProduct({ ...product, [e.target.name]: value });
     },
     [product]
-  );*/
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(product);
+    postProducts(dispatch, product);
+    if (success) {
+      setImg([]);
+      setProduct();
+    }
   };
+
+  console.log(success);
 
   return (
     <div className="createNewProductWrapper">
@@ -159,14 +170,17 @@ function AdminCreateProduct() {
             Chocolate Spread Sugar Free
           </option>
         </select>
+        <label htmlFor="category" className="selectLabels">
+          Select categories for this product
+        </label>
         <select
           className="addProductCategory"
           name="category"
           id="category"
           required
-          onChange={handleInputs}
+          multiple
+          onChange={handleSelectSizes}
         >
-          <option>Categories</option>
           <option value="Chocolate-Bars" className="categoryItem">
             Chocolate Bars
           </option>
@@ -180,14 +194,17 @@ function AdminCreateProduct() {
             Choco Spread / Butter
           </option>
         </select>
+        <label htmlFor="category" className="selectLabels">
+          Select sub-categories for this product
+        </label>
         <select
           className="addProductCategory"
           name="subCategory"
           id="subCategory"
           required
-          onChange={handleInputs}
+          multiple
+          onChange={handleSelectSizes}
         >
-          <option>Select a sub-category</option>
           <option value="Kingsbite" className="categoryItem">
             Kingsbite
           </option>
@@ -278,7 +295,7 @@ function AdminCreateProduct() {
           />
         </div>
         <input
-          type="text"
+          type="number"
           className="costPerItem"
           placeholder="Cost of per Item"
           name="cost"
@@ -297,8 +314,30 @@ function AdminCreateProduct() {
         />
         <div className="create">
           <button className="createProductButton" type="submit">
-            Publish
+            {isFetching ? (
+              <CircularProgress
+                color="success"
+                style={{ backgroundColor: "transparent" }}
+              />
+            ) : (
+              "Publish"
+            )}
           </button>
+          {success && (
+            <span className="upload-success">
+              Product uploaded successfully ✔️{" "}
+              <Link to="/products/:all" className="links">
+                <span className="view-product">
+                  <b>View Product</b>
+                </span>
+              </Link>{" "}
+            </span>
+          )}
+          {error && (
+            <span className="upload-error">
+              Error while uploading product ❌
+            </span>
+          )}
         </div>
       </form>
     </div>

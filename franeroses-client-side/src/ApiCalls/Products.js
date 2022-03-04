@@ -26,23 +26,24 @@ export const postProducts = async (dispatch, values) => {
   }
 };
 
-//get all Products
+//get all products
 
-export const getProducts = async (dispatch, type, name) => {
+export const getAllProducts = async (dispatch) => {
   dispatch(getProductsStart());
   try {
-    const res = await axiosInstance.get(`products?${type}=${name}`);
+    const res = await axiosInstance.get("products");
     dispatch(getProductsSuccess(res.data));
   } catch (error) {
     dispatch(getProductsFailure());
   }
 };
 
-//get single product
-export const getProduct = async (dispatch, id) => {
+//get all Products by category and subcategory
+
+export const getProducts = async (dispatch, type, name) => {
   dispatch(getProductsStart());
   try {
-    const res = await axiosInstance.get("products/" + id);
+    const res = await axiosInstance.get(`products?${type}=${name}`);
     dispatch(getProductsSuccess(res.data));
   } catch (error) {
     dispatch(getProductsFailure());
@@ -66,8 +67,8 @@ export const updateProducts = async (dispatch, id, values) => {
 export const deleteProduct = async (dispatch, id) => {
   dispatch(deleteProductStart());
   try {
-    const res = await axiosInstance.delete("products/" + id);
-    dispatch(deleteProductSuccess(res.data));
+    await axiosInstance.delete("products/" + id);
+    dispatch(deleteProductSuccess(id));
   } catch (error) {
     dispatch(deleteProductFailure());
   }

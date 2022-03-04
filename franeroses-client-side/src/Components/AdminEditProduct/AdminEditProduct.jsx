@@ -1,12 +1,19 @@
 import "./AdminEditProduct.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { useLocation } from "react-router-dom";
+import axiosInstance from "./../../axios";
+import { productsContext } from "./../../Context-Api/Products/Context";
+import { updateProducts } from "../../ApiCalls/Products";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminEditProduct() {
   const [files, setFiles] = useState();
+  const [item, setItem] = useState({});
   const [img, setImg] = useState([]);
-  const [product, setProduct] = useState();
-  const [preview, setPreview] = useState("/assets/100g.jpg");
+  const [update, setUpdate] = useState();
+  const [preview, setPreview] = useState();
+  const { dispatch, isFetching, error } = useContext(productsContext);
 
   //handle image preview
 
@@ -49,24 +56,52 @@ function AdminEditProduct() {
     }
   }, [files]);
 
-  useEffect(() => {
-    setProduct((prev) => ({ ...prev, img: img }));
-  }, [img]);
+  /*useEffect(() => {
+      setUpdate((prev) => ({ ...prev, img: img }));
+  }, [img]);*/
 
   const handleInputs = useCallback(
     (e) => {
       const value = e.target.value;
-      setProduct({ ...product, [e.target.name]: value });
+      setUpdate({ ...update, [e.target.name]: value });
     },
-    [product]
+    [update]
   );
+
+  //get single product when this component mounts
+
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+
+  useEffect(() => {
+    //get single product
+    const getProduct = async () => {
+      try {
+        const res = await axiosInstance.get("products/find/" + path);
+        setItem(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProduct();
+  }, [path]);
+
+  const updateProduct = (e) => {
+    e.preventDefault();
+    console.log(update);
+    updateProducts(dispatch, path, update);
+  };
 
   return (
     <div className="editProductWrapper">
       <div className="editProductTop">
         <div className="editProductProfile">
-          <img src="/assets/100g.jpg" alt="" className="editProductImg" />
-          <div className="editProductName">Kingsbite</div>
+          <img
+            src={item?.img && item?.img[0]}
+            alt="product"
+            className="editProductImg"
+          />
+          <div className="editProductName">{item?.title}</div>
         </div>
         <div className="editProductInfo">
           <div className="editProductInfoItem">
@@ -75,11 +110,15 @@ function AdminEditProduct() {
           </div>
           <div className="editProductInfoItem">
             <span className="editProductLineItem">Active:</span>
-            <span className="editProductLineItem2">Yes</span>
+            <span className="editProductLineItem2">
+              {item?.status === "active" ? "Yes" : "No"}
+            </span>
           </div>
           <div className="editProductInfoItem">
             <span className="editProductLineItem">In stock:</span>
-            <span className="editProductLineItem2">Yes</span>
+            <span className="editProductLineItem2">
+              {item?.qty > 0 ? "Yes" : "No"}
+            </span>
           </div>
         </div>
       </div>
@@ -158,9 +197,13 @@ function AdminEditProduct() {
         </div>
         <div className="editProductDownRight">
           <div className="editProductRightUpload">
-            <img src={preview} alt="" className="editProductRightImg" />
+            <img
+              src={(preview && preview) || (item?.img && item?.img[0])}
+              alt="product"
+              className="editProductRightImg"
+            />
             <div className="uploadUpdateImgs">
-              <label htmlFor="file">
+              <label htmlFor="files">
                 <CloudUploadIcon style={{ color: "blue", cursor: "pointer" }} />
               </label>
               <input
@@ -185,7 +228,21 @@ function AdminEditProduct() {
               />
             ))}
           </div>
-          <button className="updateProductButton">Update</button>
+          <button className="updateProductButton" onClick={updateProduct}>
+            {isFetching ? (
+              <CircularProgress
+                color="success"
+                style={{ backgroundColor: "transparent" }}
+              />
+            ) : (
+              "Update"
+            )}
+          </button>
+          {error && (
+            <span className="upload-error">
+              Error while updating product ❌
+            </span>
+          )}
         </div>
       </div>
     </div>
