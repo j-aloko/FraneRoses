@@ -171,6 +171,30 @@
   color: rgb(211, 196, 111);
 }
 
+.wishListIconWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.wishlistEmptyMessage {
+  position: fixed;
+  top: 65px;
+  right: 50px;
+  width: 320px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.noItemsMessage {
+  position: relative;
+  top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
 .searchBar {
   z-index: 2;
   position: fixed;

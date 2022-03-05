@@ -5,7 +5,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Footer from "./../../Components/Footer/Footer";
 import { wishlistContext } from "../../Context-Api/Wishlist/Context";
-import { deleteWishList, getWishList } from "../../ApiCalls/Wishlist";
+import { deleteWishList } from "../../ApiCalls/Wishlist";
 import moment from "moment";
 import { cartContext } from "../../Context-Api/Cart/Context";
 import { createCart } from "../../ApiCalls/Cart";
@@ -15,8 +15,6 @@ function WishListPage() {
 
   const { dispatch: cartDispatch } = useContext(cartContext);
 
-  const userId = JSON.parse(localStorage.getItem("user"))?._id;
-
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
@@ -25,11 +23,6 @@ function WishListPage() {
       behavior: "smooth",
     });
   }, []);
-
-  //get all WishList
-  useEffect(() => {
-    getWishList(dispatch, userId);
-  }, [dispatch, userId]);
 
   const columns = [
     {

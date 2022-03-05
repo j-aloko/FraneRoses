@@ -20,6 +20,8 @@ import { wishlistContext } from "./../../Context-Api/Wishlist/Context";
 function Navbar() {
   const [inputField, setInputField] = useState(false);
 
+  const [wishListEmpty, setWishListEmpty] = useState(false);
+
   const [displayResult, setDisplayResult] = useState(false);
 
   const [color, setColor] = useState(false);
@@ -54,6 +56,24 @@ function Navbar() {
   };
 
   window.addEventListener("scroll", changeColor);
+
+  const naviagteToWishList = () => {
+    if (wishlist?.length > 0) {
+      navigate("/wishList");
+    }
+  };
+
+  const handleWishListMessage = () => {
+    if (wishlist?.length <= 0) {
+      setWishListEmpty(!wishListEmpty);
+    }
+  };
+
+  const closeWishListMessage = () => {
+    if (wishlist?.length <= 0) {
+      setWishListEmpty(!wishListEmpty);
+    }
+  };
 
   //handle Logout
 
@@ -248,12 +268,24 @@ function Navbar() {
             </div>
           </div>
           {user && (
-            <div className="navbarIcon">
-              <Link to="/wishList" className="links">
+            <div className="wishListIconWrapper">
+              <div
+                className="navbarIcon"
+                onClick={naviagteToWishList}
+                onMouseEnter={handleWishListMessage}
+                onMouseLeave={closeWishListMessage}
+              >
                 <Badge badgeContent={wishlist?.length} color="primary">
                   <FavoriteBorderOutlinedIcon />
                 </Badge>
-              </Link>
+              </div>
+              {wishListEmpty && (
+                <div className="wishlistEmptyMessage">
+                  <span className="noItemsMessage">
+                    You have no items in your wishlist
+                  </span>
+                </div>
+              )}
             </div>
           )}
           <div className="navbarIcon">

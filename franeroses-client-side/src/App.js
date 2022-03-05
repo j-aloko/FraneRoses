@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SingleProductPage from "./Pages/SingleProductPage/SingleProductPage";
 import ProductsPage from "./Components/ProductsPage/ProductsPage";
@@ -17,9 +17,18 @@ import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import DeliveriesRefund from "./Pages/Deliveries&Refund/Deliveries&Refund";
 import Navbar from "./Components/Navbar/Navbar";
 import { authContext } from "./Context-Api/Authentication/Context";
+import { wishlistContext } from "./Context-Api/Wishlist/Context";
+import { getWishList } from "./ApiCalls/Wishlist";
 
 function App() {
   const { user } = useContext(authContext);
+  const { dispatch } = useContext(wishlistContext);
+
+  //fetch user's wishList when this appliaction mounts
+
+  useEffect(() => {
+    getWishList(dispatch, user?._id);
+  }, [dispatch, user?._id]);
 
   return (
     <BrowserRouter>
