@@ -11,6 +11,8 @@ import Footer from "./../../Components/Footer/Footer";
 import { useLocation } from "react-router-dom";
 import { productsContext } from "./../../Context-Api/Products/Context";
 import { getAllProducts } from "../../ApiCalls/Products";
+import { createCart } from "../../ApiCalls/Cart";
+import { cartContext } from "../../Context-Api/Cart/Context";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
@@ -18,6 +20,7 @@ function SingleProductPage() {
   const [count, setCount] = useState(1);
   const [productImg, setProductImg] = useState("");
   const { products, dispatch: productDispatch } = useContext(productsContext);
+  const { dispatch: cartDispatch, cart } = useContext(cartContext);
 
   const location = useLocation();
   const path = location.pathname.split("/")[2];
@@ -51,6 +54,20 @@ function SingleProductPage() {
       setProductImg(product?.img[0]);
     }
   }, [product?.img]);
+
+  //Add Items to cart
+
+  const addItemsToCart = async () => {
+    const values = {
+      productId: product?._id,
+      productName: product?.title,
+      quantity: count,
+      size: product?.size,
+      img: product?.img,
+      amount: Math.round((product?.price * count + Number.EPSILON) * 100) / 100,
+    };
+    await createCart(cartDispatch, values);
+  };
 
   return (
     <>
@@ -139,7 +156,10 @@ function SingleProductPage() {
                   </span>
                 </div>
                 <div className="singleProduct-AddToCart-WishList">
-                  <div className="singleProductAddToCart">
+                  <div
+                    className="singleProductAddToCart"
+                    onClick={addItemsToCart}
+                  >
                     <AddShoppingCartIcon />
                     <span className="AddToCart">ADD TO CART </span>
                   </div>

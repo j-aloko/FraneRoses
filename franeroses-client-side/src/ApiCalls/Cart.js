@@ -19,8 +19,7 @@ import {
 export const createCart = async (dispatch, values) => {
   dispatch(createCartStart());
   try {
-    const res = await axiosInstance.post("cart", values);
-    dispatch(createCartSuccess(res.data));
+    dispatch(createCartSuccess(values));
   } catch (error) {
     dispatch(createCartFailure());
   }
