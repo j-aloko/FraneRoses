@@ -254,3 +254,7 @@
   color: white;
   cursor: pointer;
 }
+
+.buySingleProduct.noUser {
+  margin-top: -5px;
+}

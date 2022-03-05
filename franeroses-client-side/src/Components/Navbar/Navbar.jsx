@@ -247,13 +247,15 @@ function Navbar() {
               <SearchOutlinedIcon />
             </div>
           </div>
-          <div className="navbarIcon">
-            <Link to="/wishList" className="links">
-              <Badge badgeContent={wishlist?.length} color="primary">
-                <FavoriteBorderOutlinedIcon />
-              </Badge>
-            </Link>
-          </div>
+          {user && (
+            <div className="navbarIcon">
+              <Link to="/wishList" className="links">
+                <Badge badgeContent={wishlist?.length} color="primary">
+                  <FavoriteBorderOutlinedIcon />
+                </Badge>
+              </Link>
+            </div>
+          )}
           <div className="navbarIcon">
             <Link to="/cart" className="links">
               <Badge badgeContent={cart?.length} color="primary">

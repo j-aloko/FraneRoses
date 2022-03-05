@@ -17,6 +17,7 @@ import { wishlistContext } from "../../Context-Api/Wishlist/Context";
 import { createWishList } from "../../ApiCalls/Wishlist";
 import { createCheckout } from "./../../ApiCalls/Checkout";
 import { checkoutContext } from "./../../Context-Api/Checkout/Context";
+import { authContext } from "./../../Context-Api/Authentication/Context";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
@@ -27,6 +28,7 @@ function SingleProductPage() {
   const { dispatch: cartDispatch } = useContext(cartContext);
   const { dispatch: wishlistDispatch } = useContext(wishlistContext);
   const { dispatch: checkoutDispatch } = useContext(checkoutContext);
+  const { user } = useContext(authContext);
 
   const location = useLocation();
   const path = location.pathname.split("/")[2];
@@ -80,7 +82,7 @@ function SingleProductPage() {
 
   const addItemsToWishlist = async () => {
     const values = {
-      userId: JSON.parse(localStorage.getItem("user"))?._id,
+      userId: user?._id,
       productId: product?._id,
       productName: product?.title,
       quantity: count,
@@ -203,17 +205,31 @@ function SingleProductPage() {
                     <AddShoppingCartIcon />
                     <span className="AddToCart">ADD TO CART </span>
                   </div>
-                  <div
-                    className="singleProductAddToWishList"
-                    onClick={addItemsToWishlist}
-                  >
-                    <FavoriteBorderIcon />
-                    <span className="addToWishList">ADD TO WISH LIST</span>
+                  {user ? (
+                    <div
+                      className="singleProductAddToWishList"
+                      onClick={addItemsToWishlist}
+                    >
+                      <FavoriteBorderIcon />
+                      <span className="addToWishList">ADD TO WISH LIST</span>
+                    </div>
+                  ) : (
+                    <div className="buySingleProductNow" onClick={buyNow}>
+                      <button
+                        className={
+                          !user ? "buySingleProduct noUser" : "buySingleProduct"
+                        }
+                      >
+                        BUY NOW
+                      </button>
+                    </div>
+                  )}
+                </div>
+                {user && (
+                  <div className="buySingleProductNow" onClick={buyNow}>
+                    <button className="buySingleProduct">BUY NOW</button>
                   </div>
-                </div>
-                <div className="buySingleProductNow" onClick={buyNow}>
-                  <button className="buySingleProduct">BUY NOW</button>
-                </div>
+                )}
               </div>
             </div>
           </div>
