@@ -7,6 +7,9 @@ import { cartContext } from "../../Context-Api/Cart/Context";
 import Cart from "../../Components/Cart/Cart";
 
 function CartPage() {
+  const [quantity, setQuantity] = useState();
+  const [total, setTotal] = useState();
+  const [price, setPrice] = useState();
   const [region, setRegion] = useState("Northern Region");
   const [rate, setRate] = useState();
   const [fetching, setFetching] = useState(false);
@@ -63,15 +66,23 @@ function CartPage() {
               </div>
               <div className="cartProductItems">
                 {cart?.map((c, index) => (
-                  <Cart key={index} c={c} />
+                  <Cart
+                    key={index}
+                    c={c}
+                    quantity={quantity}
+                    setQuantity={setQuantity}
+                    total={total}
+                    setTotal={setTotal}
+                    price={price}
+                    setPrice={setPrice}
+                  />
                 ))}
                 <div className="continue-Update">
-                  <Link to="/products" className="links">
+                  <Link to="/products/all" className="links">
                     <button className="contShop-UpadteCart">
                       CONTINUE SHOPPING
                     </button>
                   </Link>
-                  <button className="contShop-UpadteCart">UPDATE CART</button>
                 </div>
               </div>
             </div>

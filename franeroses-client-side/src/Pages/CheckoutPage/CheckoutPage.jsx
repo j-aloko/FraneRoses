@@ -1,10 +1,15 @@
 import "./CheckoutPage.css";
 import Badge from "@mui/material/Badge";
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./../../Components/Footer/Footer";
+import { checkoutContext } from "./../../Context-Api/Checkout/Context";
 
 function CheckoutPage() {
+  const { checkout } = useContext(checkoutContext);
+  const [deliveryFee, setDeliveryFee] = useState();
+  const [region, setRegion] = useState();
+
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
@@ -13,6 +18,39 @@ function CheckoutPage() {
       behavior: "smooth",
     });
   }, []);
+
+  //Get subTotal
+
+  let initialValue = 0;
+  const subtotal = checkout?.reduce(
+    (previousValue, currentValue) => previousValue + currentValue?.amount,
+    initialValue
+  );
+
+  console.log(checkout);
+
+  //Get Delivery Fee
+
+  useEffect(() => {
+    if (
+      region === "Northern Region" ||
+      region === "Upper West Region" ||
+      region === "Upper East Region"
+    ) {
+      setDeliveryFee(120);
+    } else if (
+      region === "Ashanti Region" ||
+      region === "Western Region" ||
+      region === "Volta Region" ||
+      region === "Central Region"
+    ) {
+      setDeliveryFee(100);
+    } else if (region === "Greater Accra Region") {
+      setDeliveryFee(35);
+    } else if (region === "Eastern Region") {
+      setDeliveryFee(65);
+    }
+  }, [region]);
 
   return (
     <>
@@ -39,10 +77,12 @@ function CheckoutPage() {
                 </label>
               </div>
               <span className="deliveryInformation">Delivery address</span>
-              <select className="selectionItems" placeholder="region">
-                <option value="Northern Region" className="checkoutregions">
-                  Select Region
-                </option>
+              <select
+                className="selectionItems"
+                placeholder="region"
+                onChange={(e) => setRegion(e.target.value)}
+              >
+                <option className="checkoutregions">Select Region</option>
                 <option value="Northern Region" className="checkoutregions">
                   Northern Region
                 </option>
@@ -99,7 +139,7 @@ function CheckoutPage() {
                   name="saveInfo"
                   value="saveInfo"
                 />
-                <label for="newsLetter" className="newsLetter">
+                <label htmlFor="newsLetter" className="newsLetter">
                   Save this information for next time
                 </label>
               </div>
@@ -109,84 +149,49 @@ function CheckoutPage() {
             </Link>
           </div>
           <div className="checkoutRight">
-            <div className="checkoutRightProductInfoWrapper">
-              <div className="checkoutProductInfo">
-                <div className="checkoutImgAndIcon">
-                  <div className="badgeIcon">
-                    <Badge badgeContent={4} color="primary"></Badge>
+            {checkout?.map((c, index) => (
+              <div className="checkoutRightProductInfoWrapper" key={index}>
+                <div className="checkoutProductInfo">
+                  <div className="checkoutImgAndIcon">
+                    <div className="badgeIcon">
+                      <Badge badgeContent={c?.quantity} color="primary"></Badge>
+                    </div>
+                    <img
+                      src={c?.img && c?.img[0]}
+                      alt=""
+                      className="checkoutProductImg"
+                    />
                   </div>
-                  <img
-                    src="/assets/100g.jpg"
-                    alt=""
-                    className="checkoutProductImg"
-                  />
-                </div>
-                <div className="checkoutProductDetails">
-                  <span className="checkoutProductName">Kingsbite</span>
-                  <span className="checkoutProductSizeFlavour">
-                    100g / oranco
-                  </span>
-                </div>
-              </div>
-              <span className="checkoutProductAmt">GHS200.00</span>
-            </div>
-            <div className="checkoutRightProductInfoWrapper">
-              <div className="checkoutProductInfo">
-                <div className="checkoutImgAndIcon">
-                  <div className="badgeIcon">
-                    <Badge badgeContent={4} color="primary"></Badge>
+                  <div className="checkoutProductDetails">
+                    <span className="checkoutProductName">
+                      {c?.productName}
+                    </span>
                   </div>
-                  <img
-                    src="/assets/100g.jpg"
-                    alt=""
-                    className="checkoutProductImg"
-                  />
                 </div>
-                <div className="checkoutProductDetails">
-                  <span className="checkoutProductName">Kingsbite</span>
-                  <span className="checkoutProductSizeFlavour">
-                    100g / oranco
-                  </span>
-                </div>
+                <span className="checkoutProductAmt">GHS{c?.amount}</span>
               </div>
-              <span className="checkoutProductAmt">GHS200.00</span>
-            </div>
-            <div className="checkoutRightProductInfoWrapper">
-              <div className="checkoutProductInfo">
-                <div className="checkoutImgAndIcon">
-                  <div className="badgeIcon">
-                    <Badge badgeContent={4} color="primary"></Badge>
-                  </div>
-                  <img
-                    src="/assets/100g.jpg"
-                    alt=""
-                    className="checkoutProductImg"
-                  />
-                </div>
-                <div className="checkoutProductDetails">
-                  <span className="checkoutProductName">Kingsbite</span>
-                  <span className="checkoutProductSizeFlavour">
-                    100g / oranco
-                  </span>
-                </div>
-              </div>
-              <span className="checkoutProductAmt">GHS200.00</span>
-            </div>
+            ))}
             <hr className="horizontalLine" />
             <div className="checkoutProductsSubtotal">
               <span className="checkoutProductsSubtotalTitle">Subtotal</span>
-              <span className="checkoutProductSubtotalAmt">GHS200.00</span>
+              <span className="checkoutProductSubtotalAmt">
+                GHS{subtotal && subtotal}
+              </span>
             </div>
             <div className="checkoutProductsDeliveryFee">
               <span className="checkoutProductsDeliveryFeeTitle">
                 Delivery fee
               </span>
-              <span className="checkoutProductDeliveryFeeAmt">GHS200.00</span>
+              <span className="checkoutProductDeliveryFeeAmt">
+                {(deliveryFee && `GHS${deliveryFee}`) || "pending..."}
+              </span>
             </div>
             <hr className="horizontalLine" />
             <div className="amountToBePaid">
               <span className="ToatalAmountTitle">TOTAL</span>
-              <span className="TotalAmount">GHS400.00</span>
+              <span className="TotalAmount">
+                GHS{subtotal + (deliveryFee && deliveryFee) || subtotal}
+              </span>
             </div>
             <div className="payButton">
               <button className="payNow">PURCHASE</button>

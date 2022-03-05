@@ -1,14 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import "./WishListPage.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { rows } from "./../../Data";
-import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Footer from "./../../Components/Footer/Footer";
+import { wishlistContext } from "../../Context-Api/Wishlist/Context";
+import { deleteWishList, getWishList } from "../../ApiCalls/Wishlist";
+import moment from "moment";
+import { cartContext } from "../../Context-Api/Cart/Context";
+import { createCart } from "../../ApiCalls/Cart";
 
 function WishListPage() {
+  const { wishlist, dispatch } = useContext(wishlistContext);
+
+  const { dispatch: cartDispatch } = useContext(cartContext);
+
+  const userId = JSON.parse(localStorage.getItem("user"))?._id;
+
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
@@ -18,25 +26,23 @@ function WishListPage() {
     });
   }, []);
 
+  //get all WishList
+  useEffect(() => {
+    getWishList(dispatch, userId);
+  }, [dispatch, userId]);
+
   const columns = [
     {
-      field: "id",
-      headerName: "ID",
-      width: 150,
-      headerClassName: "super-app-theme--header",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "product",
+      field: "productName",
       headerName: "PRODUCT NAME",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
-      width: 150,
+      width: 240,
       renderCell: (params) => {
         return (
           <div className="productRow">
-            <img src={params.row.img} alt="" className="productRowImg" />
-            <span className="productRowName">{params.row.product}</span>
+            <img src={params.row?.img[0]} alt="" className="productRowImg" />
+            <span className="productRowName">{params.row?.productName}</span>
           </div>
         );
       },
@@ -69,34 +75,22 @@ function WishListPage() {
       align: "center",
     },
     {
-      field: "date",
-      headerName: "DATE ADDED",
-      width: 150,
+      field: "amount",
+      headerName: "TOTAL",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
+      width: 160,
+      headerAlign: "center",
+      align: "center",
     },
     {
-      field: "status",
-      headerName: "STATUS",
+      field: "createdAt",
+      headerName: "DATE ADDED",
+      width: 200,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
-      width: 150,
       renderCell: (params) => {
-        return (
-          <div className="productStatus">
-            {params.row.status === "in stock" ? (
-              <>
-                <CheckIcon style={{ color: "green" }} />
-                <span className="stockStatus">{params.row.status}</span>
-              </>
-            ) : (
-              <>
-                <CloseIcon style={{ color: "red" }} />
-                <span className="stockStatus">{params.row.status}</span>
-              </>
-            )}
-          </div>
-        );
+        return <div>{moment(params.row?.createdAt).fromNow()}</div>;
       },
     },
     {
@@ -107,7 +101,29 @@ function WishListPage() {
       width: 120,
       renderCell: (params) => {
         return (
-          <div className="productAddToCart">
+          <div
+            className="productAddToCart"
+            onClick={async () => {
+              const values = {
+                productId: params.row?._id,
+                productName: params.row?.productName,
+                quantity: params.row?.quantity,
+                size: params.row?.size,
+                img: params.row?.img,
+                price: params.row?.price,
+                amount:
+                  Math.round(
+                    (params.row?.price * params.row?.quantity +
+                      Number.EPSILON) *
+                      100
+                  ) / 100,
+              };
+
+              await createCart(cartDispatch, values);
+
+              await deleteWishList(dispatch, params.row?._id);
+            }}
+          >
             <AddShoppingCartIcon
               style={{
                 color: "#703f07",
@@ -127,7 +143,12 @@ function WishListPage() {
       width: 170,
       renderCell: (params) => {
         return (
-          <div className="productAddToCart">
+          <div
+            className="productAddToCart"
+            onClick={async () => {
+              await deleteWishList(dispatch, params.row?._id);
+            }}
+          >
             <DeleteForeverIcon
               style={{
                 color: "red",
@@ -154,11 +175,12 @@ function WishListPage() {
           <div className="wishListDown">
             <div style={{ height: 700, width: "100%" }}>
               <DataGrid
-                rows={rows}
+                rows={wishlist}
                 columns={columns}
                 pageSize={10}
                 rowsPerPageOptions={[10]}
                 disableSelectionOnClick
+                getRowId={(r) => r._id}
                 sx={{
                   "& .super-app-theme--header": {
                     backgroundColor: "#8585d6",

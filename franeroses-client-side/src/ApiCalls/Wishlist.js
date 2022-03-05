@@ -24,10 +24,10 @@ export const createWishList = async (dispatch, values) => {
 };
 
 //get a single users Wishlist
-export const getWishList = async (dispatch, id) => {
+export const getWishList = async (dispatch, userId) => {
   dispatch(getWishlistsStart());
   try {
-    const res = await axiosInstance.get("wishlist/find/" + id);
+    const res = await axiosInstance.get("wishlist/find/" + userId);
     dispatch(getWishlistsSuccess(res.data));
   } catch (error) {
     dispatch(getWishlistsFailure());
@@ -39,8 +39,8 @@ export const getWishList = async (dispatch, id) => {
 export const deleteWishList = async (dispatch, id) => {
   dispatch(deleteWishlistStart());
   try {
-    const res = await axiosInstance.delete("wishlist/" + id);
-    dispatch(deleteWishlistSuccess(res.data));
+    await axiosInstance.delete("wishlist/" + id);
+    dispatch(deleteWishlistSuccess(id));
   } catch (error) {
     dispatch(deleteWishlistFailure());
   }

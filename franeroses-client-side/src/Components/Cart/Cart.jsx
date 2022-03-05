@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Cart.css";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -6,11 +6,20 @@ import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { cartContext } from "../../Context-Api/Cart/Context";
 import { deleteCart } from "../../ApiCalls/Cart";
 
-function Cart({ c }) {
-  const [quantity, setQuantity] = useState(c?.quantity);
-  const [total, setTotal] = useState(c?.amount);
-  const price = c?.price;
+function Cart({ c, quantity, setQuantity, total, setTotal, price, setPrice }) {
   const { dispatch } = useContext(cartContext);
+
+  useEffect(() => {
+    setQuantity(c?.quantity);
+  }, [setQuantity, c?.quantity]);
+
+  useEffect(() => {
+    setTotal(c?.amount);
+  }, [setTotal, c?.amount]);
+
+  useEffect(() => {
+    setPrice(c?.price);
+  }, [setPrice, c?.price]);
 
   //delete Cart Item
 
@@ -31,15 +40,17 @@ function Cart({ c }) {
         <div className="cartProductCounter">
           <AddIcon
             onClick={() => {
-              setTotal(total + price * 1);
-              setQuantity(quantity + 1);
+              setTotal(total && total + (price && price * 1));
+              setQuantity(quantity && quantity + 1);
             }}
           />
           <span className="cartProductCount">{quantity}</span>
           <RemoveIcon
             onClick={() => {
-              total > price && setTotal(total - price * 1);
-              quantity > 1 && setQuantity(quantity - 1);
+              total &&
+                total > (price && price) &&
+                setTotal(total && total - (price && price) * 1);
+              quantity && quantity > 1 && setQuantity(quantity && quantity - 1);
             }}
           />
         </div>

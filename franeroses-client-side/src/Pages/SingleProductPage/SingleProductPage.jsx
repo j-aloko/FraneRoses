@@ -8,11 +8,15 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import Footer from "./../../Components/Footer/Footer";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { productsContext } from "./../../Context-Api/Products/Context";
 import { getAllProducts } from "../../ApiCalls/Products";
 import { createCart } from "../../ApiCalls/Cart";
 import { cartContext } from "../../Context-Api/Cart/Context";
+import { wishlistContext } from "../../Context-Api/Wishlist/Context";
+import { createWishList } from "../../ApiCalls/Wishlist";
+import { createCheckout } from "./../../ApiCalls/Checkout";
+import { checkoutContext } from "./../../Context-Api/Checkout/Context";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
@@ -21,9 +25,13 @@ function SingleProductPage() {
   const [productImg, setProductImg] = useState("");
   const { products, dispatch: productDispatch } = useContext(productsContext);
   const { dispatch: cartDispatch } = useContext(cartContext);
+  const { dispatch: wishlistDispatch } = useContext(wishlistContext);
+  const { dispatch: checkoutDispatch } = useContext(checkoutContext);
 
   const location = useLocation();
   const path = location.pathname.split("/")[2];
+
+  const navigate = useNavigate();
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -68,6 +76,37 @@ function SingleProductPage() {
       amount: Math.round((product?.price * count + Number.EPSILON) * 100) / 100,
     };
     await createCart(cartDispatch, values);
+  };
+
+  const addItemsToWishlist = async () => {
+    const values = {
+      userId: JSON.parse(localStorage.getItem("user"))?._id,
+      productId: product?._id,
+      productName: product?.title,
+      quantity: count,
+      size: product?.size,
+      img: product?.img,
+      price: product?.price,
+      amount: Math.round((product?.price * count + Number.EPSILON) * 100) / 100,
+    };
+
+    await createWishList(wishlistDispatch, values);
+  };
+
+  //buy now functionality
+
+  const buyNow = async () => {
+    const values = {
+      productId: product?._id,
+      productName: product?.title,
+      quantity: count,
+      size: product?.size,
+      img: product?.img,
+      price: product?.price,
+      amount: Math.round((product?.price * count + Number.EPSILON) * 100) / 100,
+    };
+    await createCheckout(checkoutDispatch, values);
+    navigate("/checkout");
   };
 
   return (
@@ -164,12 +203,15 @@ function SingleProductPage() {
                     <AddShoppingCartIcon />
                     <span className="AddToCart">ADD TO CART </span>
                   </div>
-                  <div className="singleProductAddToWishList">
+                  <div
+                    className="singleProductAddToWishList"
+                    onClick={addItemsToWishlist}
+                  >
                     <FavoriteBorderIcon />
                     <span className="addToWishList">ADD TO WISH LIST</span>
                   </div>
                 </div>
-                <div className="buySingleProductNow">
+                <div className="buySingleProductNow" onClick={buyNow}>
                   <button className="buySingleProduct">BUY NOW</button>
                 </div>
               </div>

@@ -26,10 +26,10 @@ router.delete("/:id", async (req, res) => {
 
 //Get one Users Wishlist
 
-router.get("/find:/userId", async (req, res) => {
+router.get("/find/:userId", async (req, res) => {
   try {
-    const Wishlist = await Wishlist.findOne({ userId: req.params.userId });
-    res.status(200).json(Wishlist);
+    const myWishlist = await Wishlist.find({ userId: req.params.userId });
+    res.status(200).json(myWishlist);
   } catch (err) {
     res.status(500).json(err);
   }
