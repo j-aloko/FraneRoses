@@ -1,0 +1,63 @@
+.cartProducts {
+  width: 450px;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.cartProductImg {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.removeCartProduct {
+  position: absolute;
+  top: -12px;
+  left: -15px;
+  cursor: pointer;
+}
+
+.cartImage {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.cartProductInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 30px;
+}
+
+.cartProductName {
+  font-size: 18px;
+}
+
+.cartProductSizeFlavour {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.cartProductCounter {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.cartProductTotal {
+  margin-top: 15px;
+}
+
+.cartProductCounter {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cartProductTotalAmt {
+  color: #703f07;
+  font-weight: bold;
+}

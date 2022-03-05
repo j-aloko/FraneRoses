@@ -1,23 +1,5 @@
 export const cartReducer = (state, action) => {
   switch (action.type) {
-    case "GET_CART_START":
-      return {
-        cart: [],
-        isFetching: true,
-        error: false,
-      };
-    case "GET_CART_SUCCESS":
-      return {
-        cart: action.payload,
-        isFetching: false,
-        error: false,
-      };
-    case "GET_CART_FAILURE":
-      return {
-        cart: [],
-        isFetching: false,
-        error: true,
-      };
     case "DELETE_CART_START":
       return {
         ...state,
@@ -27,7 +9,7 @@ export const cartReducer = (state, action) => {
 
     case "DELETE_CART_SUCCESS":
       return {
-        cart: state.cart.filter((c) => c._id !== action.payload),
+        cart: state.cart.filter((c) => c.productId !== action.payload),
         isFetching: false,
         error: false,
       };
@@ -50,27 +32,6 @@ export const cartReducer = (state, action) => {
         error: false,
       };
     case "CREATE_CART_FAILURE":
-      return {
-        ...state,
-        isFetching: false,
-        error: true,
-      };
-
-    case "UPDATE_CART_START":
-      return {
-        ...state,
-        isFetching: true,
-        error: false,
-      };
-    case "UPDATE_CART_SUCCESS":
-      return {
-        cart: state.cart.map(
-          (c) => clearInterval._id === action.payload._id && action.payload
-        ),
-        isFetching: false,
-        error: false,
-      };
-    case "UPDATE_CART_FAILURE":
       return {
         ...state,
         isFetching: false,

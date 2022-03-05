@@ -20,7 +20,7 @@ function SingleProductPage() {
   const [count, setCount] = useState(1);
   const [productImg, setProductImg] = useState("");
   const { products, dispatch: productDispatch } = useContext(productsContext);
-  const { dispatch: cartDispatch, cart } = useContext(cartContext);
+  const { dispatch: cartDispatch } = useContext(cartContext);
 
   const location = useLocation();
   const path = location.pathname.split("/")[2];
@@ -64,6 +64,7 @@ function SingleProductPage() {
       quantity: count,
       size: product?.size,
       img: product?.img,
+      price: product?.price,
       amount: Math.round((product?.price * count + Number.EPSILON) * 100) / 100,
     };
     await createCart(cartDispatch, values);
