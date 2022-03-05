@@ -13,7 +13,7 @@ function Featured() {
         <div className="featuredCallToAction">
           <span className="featuredDescription">Happiness</span>
           <span className="featuredDescription">Full of Delight</span>
-          <Link to="/products" className="links">
+          <Link to="/products/all" className="links">
             <button className="featuredShopNow">Shop Now</button>
           </Link>
         </div>
