@@ -1,6 +1,4 @@
 import "./Login.css";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
 import { Link } from "react-router-dom";
 import Footer from "./../../Components/Footer/Footer";
 import { useFormik } from "formik";
@@ -27,7 +25,7 @@ function Login() {
       password: "",
     },
     onSubmit: async (values) => {
-      login(values, dispatch);
+      await login(values, dispatch);
     },
     validationSchema,
   });
@@ -43,17 +41,7 @@ function Login() {
       <div className="loginContainer">
         <div className="loginWrapper">
           <div className="loginLeft">
-            <div className="socialLoginButtons">
-              <div className="googleLogin">
-                <GoogleIcon style={{ color: "#4285F4" }} />
-                <span className="loginWithGoogle">Login with google</span>
-              </div>
-              <div className="facebookLogin">
-                <FacebookIcon />
-                <span className="loginWithFacebook">Login with facebook</span>
-              </div>
-            </div>
-            <span className="or">OR</span>
+            <h1 className="loginTitle">Login to Enjoy a Discount</h1>
             <div className="loginForm">
               <form
                 action=""

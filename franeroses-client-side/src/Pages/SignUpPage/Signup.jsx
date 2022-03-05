@@ -1,7 +1,5 @@
 import "./Signup.css";
 import { Link, useNavigate } from "react-router-dom";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
 import Footer from "./../../Components/Footer/Footer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -36,7 +34,7 @@ function Signup() {
     },
     onSubmit: async (values) => {
       setLoading(true);
-      Register(values);
+      await Register(values);
       setLoading(false);
       navigate("/login");
     },
@@ -58,19 +56,7 @@ function Signup() {
       <div className="signupContainer">
         <div className="signupWrapper">
           <div className="signupLeft">
-            <div className="socialSignupButtons">
-              <div className="googleSignup">
-                <GoogleIcon style={{ color: "#4285F4" }} />
-                <span className="signupWithGoogle">Sign up with google</span>
-              </div>
-              <div className="facebookSignup">
-                <FacebookIcon />
-                <span className="signupWithFacebook">
-                  Sign up with facebook
-                </span>
-              </div>
-            </div>
-            <span className="signupOr">OR</span>
+            <h1 className="signUpTitle">Signup to Get Started</h1>
             <div className="signupForm">
               <form
                 action=""

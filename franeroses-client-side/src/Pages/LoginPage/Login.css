@@ -18,54 +18,6 @@
   flex-direction: column;
 }
 
-.socialLoginButtons {
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-}
-
-.googleLogin {
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  padding: 10px 10px;
-  border: 0.5px solid white;
-  color: white;
-  background-color: #db4437;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.loginWithGoogle {
-  font-size: 19px;
-  margin-left: 5px;
-}
-
-.facebookLogin {
-  display: flex;
-  align-items: center;
-  padding: 10px 10px;
-  border: 0.5px solid white;
-  color: white;
-  background-color: #3b5998;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.loginWithFacebook {
-  font-size: 19px;
-  margin-left: 5px;
-}
-
-.or {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-  left: 200px;
-}
-
 .loginForm {
   display: flex;
 }
