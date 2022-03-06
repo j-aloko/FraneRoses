@@ -1,14 +1,25 @@
 import "./CheckoutPage.css";
 import Badge from "@mui/material/Badge";
-import { useEffect, useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useContext, useState, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Footer from "./../../Components/Footer/Footer";
 import { cartContext } from "./../../Context-Api/Cart/Context";
+import { ordersContext } from "./../../Context-Api/Order/Context";
+import { PaystackConsumer } from "react-paystack";
+import { authContext } from "./../../Context-Api/Authentication/Context";
+import { createOrder } from "./../../ApiCalls/Order";
 
 function CheckoutPage() {
   const { cart } = useContext(cartContext);
   const [deliveryFee, setDeliveryFee] = useState();
-  const [region, setRegion] = useState();
+  const [userInfo, setUserInfo] = useState([]);
+  const { orders, dispatch } = useContext(ordersContext);
+  const { user } = useContext(authContext);
+  const location = useLocation();
+
+  const region = useRef();
+  const email = useRef();
+  const instruction = location?.state;
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -31,38 +42,93 @@ function CheckoutPage() {
 
   useEffect(() => {
     if (
-      region === "Northern Region" ||
-      region === "Upper West Region" ||
-      region === "Upper East Region"
+      region.current?.value === "Northern Region" ||
+      region.current?.value === "Upper West Region" ||
+      region.current?.value === "Upper East Region"
     ) {
       setDeliveryFee(120);
     } else if (
-      region === "Ashanti Region" ||
-      region === "Western Region" ||
-      region === "Volta Region" ||
-      region === "Central Region"
+      region.current?.value === "Ashanti Region" ||
+      region.current?.value === "Western Region" ||
+      region.current?.value === "Volta Region" ||
+      region.current?.value === "Central Region"
     ) {
       setDeliveryFee(100);
-    } else if (region === "Greater Accra Region") {
+    } else if (region.current?.value === "Greater Accra Region") {
       setDeliveryFee(35);
-    } else if (region === "Eastern Region") {
+    } else if (region.current?.value === "Eastern Region") {
       setDeliveryFee(65);
     }
-  }, [region]);
+  }, [region.current?.value]);
+
+  const handleInputs = (e) => {
+    const value = e.target.value;
+    setUserInfo((prev) => ({ ...prev, [e.target.name]: value }));
+  };
+
+  //paystack configuration
+
+  const config = {
+    reference: "" + Math.floor(Math.random() * 1000000000 + 1),
+    email: email.current?.value,
+    amount: (subtotal + deliveryFee) * 100,
+    currency: "GHS",
+    publicKey: process.env.REACT_APP_PAYSTACK_KEY,
+  };
+
+  // if payment is successful
+  const handleSuccess = async (reference) => {
+    const values = {
+      userId: user?._id,
+      cart,
+      userInfo,
+      deliveryFee,
+      instruction,
+    };
+    await createOrder(dispatch, values);
+    console.log(reference);
+  };
+
+  // if payment tab is closed
+  const handleClose = () => {
+    console.log("closed");
+  };
+
+  const componentProps = {
+    ...config,
+    text: "Paystack Button Implementation",
+    onSuccess: (reference) => handleSuccess(reference),
+    onClose: handleClose,
+  };
+
+  console.log(orders);
 
   return (
     <>
       <div className="checkoutContainer">
-        <div className="checkoutWrapper">
+        <form className="checkoutWrapper">
           <div className="checkoutLeft">
-            <form action="" className="checkoutLeftContactInfo">
+            <div action="" className="checkoutLeftContactInfo">
               <span className="contactinformation">Contact information</span>
               <input
                 type="text"
                 className="inputItem"
                 placeholder="Phone Number"
+                name="phone"
+                id="phone"
+                required
+                onChange={handleInputs}
               />
-              <input type="email" className="inputItem" placeholder="Email" />
+              <input
+                type="email"
+                className="inputItem"
+                placeholder="Email"
+                name="email"
+                id="email"
+                required
+                ref={email}
+                onChange={handleInputs}
+              />
               <div className="checkBox">
                 <input
                   type="checkbox"
@@ -78,7 +144,11 @@ function CheckoutPage() {
               <select
                 className="selectionItems"
                 placeholder="region"
-                onChange={(e) => setRegion(e.target.value)}
+                required
+                name="region"
+                id="region"
+                onChange={handleInputs}
+                ref={region}
               >
                 <option className="checkoutregions">Select Region</option>
                 <option value="Northern Region" className="checkoutregions">
@@ -117,19 +187,39 @@ function CheckoutPage() {
                   type="text"
                   className="namefields"
                   placeholder="First Name"
+                  name="firstName"
+                  id="firstName"
+                  onChange={handleInputs}
+                  required
                 />
                 <input
                   type="text"
                   className="namefields"
                   placeholder="Last Name"
+                  name="lastName"
+                  id="lastName"
+                  onChange={handleInputs}
+                  required
                 />
               </div>
               <input
                 type="text"
                 className="inputItem"
-                placeholder="Apartment, suite etc.(optional)"
+                placeholder="Apartment, suite etc"
+                name="apartment"
+                id="apartment"
+                onChange={handleInputs}
+                required
               />
-              <input type="text" className="inputItem" placeholder="City" />
+              <input
+                type="text"
+                className="inputItem"
+                placeholder="City"
+                name="city"
+                id="city"
+                required
+                onChange={handleInputs}
+              />
               <div className="checkBox">
                 <input
                   type="checkbox"
@@ -141,7 +231,7 @@ function CheckoutPage() {
                   Save this information for next time
                 </label>
               </div>
-            </form>
+            </div>
             <Link to="/cart" className="links">
               <button className="returnToCart">RETURN TO CART</button>
             </Link>
@@ -192,10 +282,23 @@ function CheckoutPage() {
               </span>
             </div>
             <div className="payButton">
-              <button className="payNow">PURCHASE</button>
+              <PaystackConsumer {...componentProps}>
+                {({ initializePayment }) => (
+                  <button
+                    type="submit"
+                    className="payNow"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      initializePayment(handleSuccess, handleClose);
+                    }}
+                  >
+                    PURCHASE
+                  </button>
+                )}
+              </PaystackConsumer>
             </div>
           </div>
-        </div>
+        </form>
       </div>
       <Footer />
     </>

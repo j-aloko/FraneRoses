@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Order = require("../Models/Cart");
+const Order = require("../Models/Order");
 
 //createOrder
 router.post("/", async (req, res) => {
