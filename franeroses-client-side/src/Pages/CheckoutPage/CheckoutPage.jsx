@@ -3,10 +3,10 @@ import Badge from "@mui/material/Badge";
 import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./../../Components/Footer/Footer";
-import { checkoutContext } from "./../../Context-Api/Checkout/Context";
+import { cartContext } from "./../../Context-Api/Cart/Context";
 
 function CheckoutPage() {
-  const { checkout } = useContext(checkoutContext);
+  const { cart } = useContext(cartContext);
   const [deliveryFee, setDeliveryFee] = useState();
   const [region, setRegion] = useState();
 
@@ -22,12 +22,10 @@ function CheckoutPage() {
   //Get subTotal
 
   let initialValue = 0;
-  const subtotal = checkout?.reduce(
+  const subtotal = cart?.reduce(
     (previousValue, currentValue) => previousValue + currentValue?.amount,
     initialValue
   );
-
-  console.log(checkout);
 
   //Get Delivery Fee
 
@@ -149,7 +147,7 @@ function CheckoutPage() {
             </Link>
           </div>
           <div className="checkoutRight">
-            {checkout?.map((c, index) => (
+            {cart?.map((c, index) => (
               <div className="checkoutRightProductInfoWrapper" key={index}>
                 <div className="checkoutProductInfo">
                   <div className="checkoutImgAndIcon">

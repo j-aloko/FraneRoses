@@ -5,24 +5,32 @@ import { Link } from "react-router-dom";
 import Footer from "./../../Components/Footer/Footer";
 import { cartContext } from "../../Context-Api/Cart/Context";
 import Cart from "../../Components/Cart/Cart";
+import { useNavigate } from "react-router-dom";
 
 function CartPage() {
-  const [quantity, setQuantity] = useState();
-  const [total, setTotal] = useState();
-  const [price, setPrice] = useState();
   const [region, setRegion] = useState("Northern Region");
   const [rate, setRate] = useState();
   const [fetching, setFetching] = useState(false);
   const { cart } = useContext(cartContext);
+  const [instruction, setInstruction] = useState("");
+
+  const navigate = useNavigate();
 
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
-      top: 50,
+      top: 100,
       left: 0,
       behavior: "smooth",
     });
   }, []);
+
+  //proceed to checkout
+
+  const proceedToCheckout = (e) => {
+    e.preventDefault();
+    navigate("/checkout", { state: instruction });
+  };
 
   //Calculate Delivery Rate
   const calculateDeliveryRate = (e) => {
@@ -66,16 +74,7 @@ function CartPage() {
               </div>
               <div className="cartProductItems">
                 {cart?.map((c, index) => (
-                  <Cart
-                    key={index}
-                    c={c}
-                    quantity={quantity}
-                    setQuantity={setQuantity}
-                    total={total}
-                    setTotal={setTotal}
-                    price={price}
-                    setPrice={setPrice}
-                  />
+                  <Cart key={index} c={c} />
                 ))}
                 <div className="continue-Update">
                   <Link to="/products/all" className="links">
@@ -96,15 +95,14 @@ function CartPage() {
               <textarea
                 className="checkoutInstructions"
                 autoFocus={true}
+                onChange={(e) => setInstruction(e.target.value)}
               ></textarea>
               <p className="noteTobuyer">
                 Delivery fee and discount will be calculated at Checkout
               </p>
-              <Link to="/checkout" className="links">
-                <button className="proceedToCheckout">
-                  PROCEED TO CHECKOUT
-                </button>
-              </Link>
+              <button className="proceedToCheckout" onClick={proceedToCheckout}>
+                PROCEED TO CHECKOUT
+              </button>
               <div className="cartRightShippingEstimate">
                 <div className="cartShippingEstimateTitle">
                   <h3 className="cartShippingEstimate">

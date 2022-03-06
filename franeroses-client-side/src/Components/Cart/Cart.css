@@ -41,23 +41,37 @@
 }
 
 .cartProductCounter {
-  margin-top: 15px;
-  font-size: 18px;
-}
-
-.cartProductTotal {
-  margin-top: 15px;
-}
-
-.cartProductCounter {
   width: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.cartProductPrice {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.cartProductPriceAmt {
+  margin-left: 10px;
+}
+
+.cartProductTotal {
+  margin-top: 15px;
+  font-size: 20px;
 }
 
 .cartProductTotalAmt {
   color: #703f07;
   font-weight: bold;
+  margin-left: 10px;
+  font-size: 20px;
 }

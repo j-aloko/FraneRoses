@@ -15,8 +15,6 @@ import { createCart } from "../../ApiCalls/Cart";
 import { cartContext } from "../../Context-Api/Cart/Context";
 import { wishlistContext } from "../../Context-Api/Wishlist/Context";
 import { createWishList } from "../../ApiCalls/Wishlist";
-import { createCheckout } from "./../../ApiCalls/Checkout";
-import { checkoutContext } from "./../../Context-Api/Checkout/Context";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 
 function SingleProductPage() {
@@ -27,7 +25,6 @@ function SingleProductPage() {
   const { products, dispatch: productDispatch } = useContext(productsContext);
   const { dispatch: cartDispatch } = useContext(cartContext);
   const { dispatch: wishlistDispatch } = useContext(wishlistContext);
-  const { dispatch: checkoutDispatch } = useContext(checkoutContext);
   const { user } = useContext(authContext);
 
   const location = useLocation();
@@ -38,7 +35,7 @@ function SingleProductPage() {
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
-      top: 50,
+      top: 100,
       left: 0,
       behavior: "smooth",
     });
@@ -107,7 +104,7 @@ function SingleProductPage() {
       price: product?.price,
       amount: Math.round((product?.price * count + Number.EPSILON) * 100) / 100,
     };
-    await createCheckout(checkoutDispatch, values);
+    await createCart(cartDispatch, values);
     navigate("/checkout");
   };
 
@@ -151,7 +148,9 @@ function SingleProductPage() {
               <div className="singleProductLeftInfo">
                 <div className="singleProductPriceWrapper">
                   <h4 className="singleProductPriceTitle">Price:</h4>
-                  <span className="singleProductPrice">{product?.price}</span>
+                  <span className="singleProductPrice">
+                    GHS{product?.price}
+                  </span>
                 </div>
                 <h4 className="singleProductInStock">
                   HURRY ONLY {product?.qty} IN STOCK

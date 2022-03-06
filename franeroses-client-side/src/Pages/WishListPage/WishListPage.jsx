@@ -18,7 +18,7 @@ function WishListPage() {
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
-      top: 50,
+      top: 100,
       left: 0,
       behavior: "smooth",
     });

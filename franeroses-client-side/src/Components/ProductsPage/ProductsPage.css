@@ -51,6 +51,16 @@
   object-fit: cover;
   vertical-align: middle;
   border-radius: 10px;
+  animation: myImg 1s infinite;
+}
+
+@keyframes myImg {
+  from {
+    background-color: rgb(218, 216, 214);
+  }
+  to {
+    background-color: rgb(105, 105, 105);
+  }
 }
 
 .productName {

@@ -16,7 +16,7 @@ function ProductsPage() {
   //autoScroll window to top when this component renders
   useEffect(() => {
     window.scrollTo({
-      top: 50,
+      top: 100,
       left: 0,
       behavior: "smooth",
     });
@@ -63,7 +63,11 @@ function ProductsPage() {
               {products?.map((p) => (
                 <div className="productsInfo" key={p._id}>
                   <Link to={`/product/${p._id}`} className="links">
-                    <img src={p?.img[0]} alt="" className="productImg" />
+                    <img
+                      src={p?.img && p?.img[0]}
+                      alt=""
+                      className="productImg"
+                    />
                     <h3 className="productName">{p?.title}</h3>
                     <div className="productPriceWrapper">
                       <span className="productCurrentPrice">GHS{p?.price}</span>

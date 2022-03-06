@@ -11,7 +11,6 @@ import { ProductsContextProvider } from "./Context-Api/Products/Context";
 import { CartContextProvider } from "./Context-Api/Cart/Context";
 import { OrdersContextProvider } from "./Context-Api/Order/Context";
 import { WishlistContextProvider } from "./Context-Api/Wishlist/Context";
-import { CheckoutContextProvider } from "./Context-Api/Checkout/Context";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,9 +22,7 @@ ReactDOM.render(
               <CartContextProvider>
                 <OrdersContextProvider>
                   <WishlistContextProvider>
-                    <CheckoutContextProvider>
-                      <App />
-                    </CheckoutContextProvider>
+                    <App />
                   </WishlistContextProvider>
                 </OrdersContextProvider>
               </CartContextProvider>
