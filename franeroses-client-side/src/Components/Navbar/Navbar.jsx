@@ -22,6 +22,8 @@ function Navbar() {
 
   const [wishListEmpty, setWishListEmpty] = useState(false);
 
+  const [cartEmpty, setCartEmpty] = useState(false);
+
   const [displayResult, setDisplayResult] = useState(false);
 
   const [color, setColor] = useState(false);
@@ -72,6 +74,24 @@ function Navbar() {
   const closeWishListMessage = () => {
     if (wishlist?.length <= 0) {
       setWishListEmpty(!wishListEmpty);
+    }
+  };
+
+  const naviagteToCart = () => {
+    if (cart?.length > 0) {
+      navigate("/cart");
+    }
+  };
+
+  const handleCartMessage = () => {
+    if (cart?.length <= 0) {
+      setCartEmpty(!cartEmpty);
+    }
+  };
+
+  const closeCartMessage = () => {
+    if (cart?.length <= 0) {
+      setCartEmpty(!cartEmpty);
     }
   };
 
@@ -288,12 +308,24 @@ function Navbar() {
               )}
             </div>
           )}
-          <div className="navbarIcon">
-            <Link to="/cart" className="links">
+          <div className="cartIconWrapper">
+            <div
+              className="navbarIcon"
+              onClick={naviagteToCart}
+              onMouseEnter={handleCartMessage}
+              onMouseLeave={closeCartMessage}
+            >
               <Badge badgeContent={cart?.length} color="primary">
                 <ShoppingCartOutlinedIcon />
               </Badge>
-            </Link>
+            </div>
+            {cartEmpty && (
+              <div className="cartEmptyMessage">
+                <span className="noItemsMessage">
+                  You have no items in your cart
+                </span>
+              </div>
+            )}
           </div>
           {user ? (
             <span className="logout" onClick={handleLogout}>
