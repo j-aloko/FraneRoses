@@ -10,7 +10,6 @@ import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import Footer from "./../../Components/Footer/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { productsContext } from "./../../Context-Api/Products/Context";
-import { getAllProducts } from "../../ApiCalls/Products";
 import { createCart } from "../../ApiCalls/Cart";
 import { cartContext } from "../../Context-Api/Cart/Context";
 import { wishlistContext } from "../../Context-Api/Wishlist/Context";
@@ -22,7 +21,7 @@ function SingleProductPage() {
   const [product, setProduct] = useState({});
   const [count, setCount] = useState(1);
   const [productImg, setProductImg] = useState("");
-  const { products, dispatch: productDispatch } = useContext(productsContext);
+  const { products } = useContext(productsContext);
   const { dispatch: cartDispatch } = useContext(cartContext);
   const { dispatch: wishlistDispatch } = useContext(wishlistContext);
   const { user } = useContext(authContext);
@@ -46,11 +45,7 @@ function SingleProductPage() {
     dispatch(renderProductsPage());
   }, [dispatch]);
 
-  //fetch all products when this component mounts
-
-  useEffect(() => {
-    getAllProducts(productDispatch);
-  }, [productDispatch]);
+  //get specific product per its Id
 
   useEffect(() => {
     setProduct(products?.find((p) => p._id === path));

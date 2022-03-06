@@ -19,10 +19,12 @@ import Navbar from "./Components/Navbar/Navbar";
 import { authContext } from "./Context-Api/Authentication/Context";
 import { wishlistContext } from "./Context-Api/Wishlist/Context";
 import { getWishList } from "./ApiCalls/Wishlist";
+import { cartContext } from "./Context-Api/Cart/Context";
 
 function App() {
   const { user } = useContext(authContext);
-  const { dispatch } = useContext(wishlistContext);
+  const { dispatch, wishlist } = useContext(wishlistContext);
+  const { cart } = useContext(cartContext);
 
   //fetch user's wishList when this appliaction mounts
 
@@ -39,9 +41,23 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/product/:id" element={<SingleProductPage />} />
           <Route path="/products/:all" element={<ProductsPage />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route
+            path="/cart"
+            element={
+              cart.length < 1 ? <Navigate to="/products/all" /> : <CartPage />
+            }
+          />
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/wishList" element={<WishListPage />} />
+          <Route
+            path="/wishList"
+            element={
+              wishlist.length < 1 ? (
+                <Navigate to="/products/all" />
+              ) : (
+                <WishListPage />
+              )
+            }
+          />
           <Route
             path="/login"
             element={user ? <Navigate to="/" /> : <Login />}

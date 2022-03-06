@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
-    userId: { type: String, unique: true },
+    userId: { type: String },
     cart: { type: Array, default: [] },
     userInfo: { type: Array, default: [] },
     deliveryFee: { type: Number, required: true },
