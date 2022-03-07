@@ -296,7 +296,13 @@ function Navbar() {
                           revealed the following:
                         </span>
                         <Link to="/products/all" className="links">
-                          <div className="seeProductsOption">
+                          <div
+                            className="seeProductsOption"
+                            onClick={() => {
+                              setInputField(false);
+                              setDisplayResult(false);
+                            }}
+                          >
                             <span className="seeProducts">
                               See all products
                             </span>

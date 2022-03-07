@@ -130,7 +130,11 @@ function SuccessPage() {
       <div className="downloadOrderReceipt">
         <h3 className="downloadDesc">Download a copy of this receipt</h3>
         <button className="downloadReceipt" onClick={downloadReceipt}>
-          {loading ? <CircularProgress color="secondary" /> : "Download"}
+          {loading ? (
+            <CircularProgress color="secondary" size={15} />
+          ) : (
+            "Download"
+          )}
         </button>
       </div>
     </>

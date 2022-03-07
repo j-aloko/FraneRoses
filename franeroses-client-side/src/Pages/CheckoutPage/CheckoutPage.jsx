@@ -9,6 +9,7 @@ import { PaystackConsumer } from "react-paystack";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 import { createOrder } from "./../../ApiCalls/Order";
 import { deleteAllCart } from "./../../ApiCalls/Cart";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function CheckoutPage() {
   const { cart, dispatch: cartDispatch } = useContext(cartContext);
@@ -16,11 +17,17 @@ function CheckoutPage() {
   const [userInfo, setUserInfo] = useState({});
   const { dispatch } = useContext(ordersContext);
   const { user } = useContext(authContext);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const region = useRef();
   const email = useRef();
+  const phone = useRef();
+  const region = useRef();
+  const firstName = useRef();
+  const lastName = useRef();
+  const apartment = useRef();
+  const city = useRef();
   const instruction = location?.state;
 
   //autoScroll window to top when this component renders
@@ -111,9 +118,9 @@ function CheckoutPage() {
   return (
     <>
       <div className="checkoutContainer">
-        <form className="checkoutWrapper">
+        <div className="checkoutWrapper">
           <div className="checkoutLeft">
-            <div action="" className="checkoutLeftContactInfo">
+            <form action="" className="checkoutLeftContactInfo">
               <span className="contactinformation">Contact information</span>
               <input
                 type="text"
@@ -121,8 +128,8 @@ function CheckoutPage() {
                 placeholder="Phone Number"
                 name="phone"
                 id="phone"
-                required
                 onChange={handleInputs}
+                ref={phone}
               />
               <input
                 type="email"
@@ -130,7 +137,6 @@ function CheckoutPage() {
                 placeholder="Email"
                 name="email"
                 id="email"
-                required
                 ref={email}
                 onChange={handleInputs}
               />
@@ -145,11 +151,10 @@ function CheckoutPage() {
                   Email me with news and offers
                 </label>
               </div>
-              <span className="deliveryInformation">Delivery address</span>
+              <span className="deliveryInformation">Delivery information</span>
               <select
                 className="selectionItems"
                 placeholder="region"
-                required
                 name="region"
                 id="region"
                 onChange={handleInputs}
@@ -195,7 +200,7 @@ function CheckoutPage() {
                   name="firstName"
                   id="firstName"
                   onChange={handleInputs}
-                  required
+                  ref={firstName}
                 />
                 <input
                   type="text"
@@ -204,17 +209,17 @@ function CheckoutPage() {
                   name="lastName"
                   id="lastName"
                   onChange={handleInputs}
-                  required
+                  ref={lastName}
                 />
               </div>
               <input
                 type="text"
                 className="inputItem"
-                placeholder="Apartment, suite etc"
+                placeholder="Neighborhood or Street"
                 name="apartment"
                 id="apartment"
                 onChange={handleInputs}
-                required
+                ref={apartment}
               />
               <input
                 type="text"
@@ -222,8 +227,8 @@ function CheckoutPage() {
                 placeholder="City"
                 name="city"
                 id="city"
-                required
                 onChange={handleInputs}
+                ref={city}
               />
               <div className="checkBox">
                 <input
@@ -236,7 +241,7 @@ function CheckoutPage() {
                   Save this information for next time
                 </label>
               </div>
-            </div>
+            </form>
             <Link to="/cart" className="links">
               <button className="returnToCart">RETURN TO CART</button>
             </Link>
@@ -290,20 +295,45 @@ function CheckoutPage() {
               <PaystackConsumer {...componentProps}>
                 {({ initializePayment }) => (
                   <button
-                    type="submit"
                     className="payNow"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       e.preventDefault();
-                      initializePayment(handleSuccess, handleClose);
+                      const mailformat =
+                        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+                      if (!email.current?.value) {
+                        alert("Email field is required");
+                      } else if (!email.current?.value.match(mailformat)) {
+                        alert("Invalid email address");
+                      } else if (!phone.current?.value) {
+                        alert("Phone field is required");
+                      } else if (!region.current?.value) {
+                        alert("Region field is required");
+                      } else if (!firstName.current?.value) {
+                        alert("First Name field is required");
+                      } else if (!lastName.current?.value) {
+                        alert("Last Name field is required");
+                      } else if (!apartment.current?.value) {
+                        alert("Neighborhood field is required");
+                      } else if (!city.current?.value) {
+                        alert("City field is required");
+                      } else {
+                        setLoading(true);
+                        await initializePayment(handleSuccess, handleClose);
+                        setLoading(false);
+                      }
                     }}
                   >
-                    PURCHASE
+                    {loading ? (
+                      <CircularProgress color="success" size={20} />
+                    ) : (
+                      "PURCHASE"
+                    )}
                   </button>
                 )}
               </PaystackConsumer>
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <Footer />
     </>
