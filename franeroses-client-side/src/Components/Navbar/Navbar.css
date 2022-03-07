@@ -28,8 +28,7 @@
   opacity: 1;
 }
 
-.navbarLogo {
-  font-family: "Parisienne", cursive;
+.navbarLogoTitle {
   cursor: pointer;
 }
 
@@ -315,6 +314,11 @@
 
 .productResultName {
   margin-left: 20px;
+  transition: 0.5s ease-in-out;
+}
+
+.productResultName:hover {
+  color: orangered;
 }
 
 .dropdown {

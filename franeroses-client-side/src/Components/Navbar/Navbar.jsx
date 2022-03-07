@@ -1,11 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext, useState, useEffect } from "react";
 import "./Navbar.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Badge from "@mui/material/Badge";
-import { useContext, useState } from "react";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
@@ -16,6 +15,7 @@ import { authContext } from "./../../Context-Api/Authentication/Context";
 import { logoutNow } from "../../Context-Api/Authentication/Action";
 import { cartContext } from "./../../Context-Api/Cart/Context";
 import { wishlistContext } from "./../../Context-Api/Wishlist/Context";
+import axiosInstance from "./../../axios";
 
 function Navbar() {
   const [inputField, setInputField] = useState(false);
@@ -25,6 +25,10 @@ function Navbar() {
   const [cartEmpty, setCartEmpty] = useState(false);
 
   const [displayResult, setDisplayResult] = useState(false);
+
+  const [query, setQuery] = useState("");
+
+  const [items, setItems] = useState([]);
 
   const [color, setColor] = useState(false);
 
@@ -102,6 +106,36 @@ function Navbar() {
     navigate("/login");
   };
 
+  // handle search query
+
+  //fetch all products when this component mounts
+
+  useEffect(() => {
+    const getAllProducts = async () => {
+      try {
+        const res = await axiosInstance.get("products");
+        setItems(
+          res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllProducts();
+  }, []);
+
+  const handleSearchQuery = (e) => {
+    setQuery(e.target.value);
+  };
+
+  useEffect(() => {
+    if (query?.length > 0) {
+      setDisplayResult(true);
+    } else {
+      setDisplayResult(false);
+    }
+  }, [query?.length]);
+
   return (
     <div
       className={
@@ -113,7 +147,7 @@ function Navbar() {
       <div className="navbarWrapper">
         <div className="navbarLeft">
           <Link to="/" className="links">
-            <h2 className="navbarLogo">FraneRoses</h2>
+            <h1 className="navbarLogoTitle">FraneRoses</h1>
           </Link>
         </div>
         <div className="navbarCenter">
@@ -243,7 +277,7 @@ function Navbar() {
                       type="text"
                       className="searchInputField"
                       placeholder="Search"
-                      onChange={() => setDisplayResult(true)}
+                      onChange={handleSearchQuery}
                     />
                     <div className="searchIconBackground">
                       <SearchOutlinedIcon
@@ -258,23 +292,49 @@ function Navbar() {
                       <div className="seeAllProducts">
                         <span className="yourSearchFor">
                           Your search for{" "}
-                          <span className="searchKeyWord">Chocolate</span>{" "}
+                          <span className="searchKeyWord">{query}</span>{" "}
                           revealed the following:
                         </span>
-                        <div className="seeProductsOption">
-                          <span className="seeProducts">See all products</span>
-                          <hr className="underline" />
-                          <br />
-                        </div>
+                        <Link to="/products/all" className="links">
+                          <div className="seeProductsOption">
+                            <span className="seeProducts">
+                              See all products
+                            </span>
+                            <hr className="underline" />
+                            <br />
+                          </div>
+                        </Link>
                       </div>
-                      <div className="productResults">
-                        <img
-                          src="/assets/50g.jpg"
-                          alt=""
-                          className="productResultImg"
-                        />
-                        <span className="productResultName">Kingsbite</span>
-                      </div>
+                      {items
+                        ?.filter((item) =>
+                          item?.title
+                            .toLowerCase()
+                            .includes(query.toLowerCase())
+                        )
+                        .map((item) => (
+                          <Link
+                            to={`/product/${item?._id}`}
+                            className="links"
+                            key={item?._id}
+                          >
+                            <div
+                              className="productResults"
+                              onClick={() => {
+                                setInputField(false);
+                                setDisplayResult(false);
+                              }}
+                            >
+                              <img
+                                src={item?.img && item?.img[0]}
+                                alt=""
+                                className="productResultImg"
+                              />
+                              <span className="productResultName">
+                                {item?.title}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
                     </div>
                   </div>
                 )}
