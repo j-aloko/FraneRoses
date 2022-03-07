@@ -4,8 +4,11 @@ const orderSchema = new mongoose.Schema(
   {
     userId: { type: String },
     cart: { type: Array, default: [] },
-    userInfo: { type: Array, default: [] },
-    deliveryFee: { type: Number, required: true },
+    userInfo: { type: Object, default: {} },
+    email: { type: String, default: "" },
+    subtotal: { type: Number },
+    deliveryFee: { type: Number },
+    total: { type: Number },
     status: { type: String, default: "Pending" },
     instruction: { type: String, default: "" },
   },

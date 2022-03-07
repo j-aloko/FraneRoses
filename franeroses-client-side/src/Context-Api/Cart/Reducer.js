@@ -37,6 +37,10 @@ export const cartReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+    case "DELETE_ALLCART_START":
+      return {
+        cart: [],
+      };
     default:
       return { ...state };
   }

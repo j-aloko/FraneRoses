@@ -8,14 +8,16 @@ import { ordersContext } from "./../../Context-Api/Order/Context";
 import { PaystackConsumer } from "react-paystack";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 import { createOrder } from "./../../ApiCalls/Order";
+import { deleteAllCart } from "./../../ApiCalls/Cart";
 
 function CheckoutPage() {
-  const { cart } = useContext(cartContext);
+  const { cart, dispatch: cartDispatch } = useContext(cartContext);
   const [deliveryFee, setDeliveryFee] = useState();
-  const [userInfo, setUserInfo] = useState([]);
-  const { orders, dispatch } = useContext(ordersContext);
+  const [userInfo, setUserInfo] = useState({});
+  const { dispatch } = useContext(ordersContext);
   const { user } = useContext(authContext);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const region = useRef();
   const email = useRef();
@@ -82,11 +84,16 @@ function CheckoutPage() {
       userId: user?._id,
       cart,
       userInfo,
+      email: email.current?.value,
+      subtotal,
+      total: subtotal + deliveryFee,
       deliveryFee,
+      status: "Paid",
       instruction,
     };
     await createOrder(dispatch, values);
-    console.log(reference);
+    await deleteAllCart(cartDispatch);
+    navigate("/order-success", { state: email.current?.value });
   };
 
   // if payment tab is closed
@@ -100,8 +107,6 @@ function CheckoutPage() {
     onSuccess: (reference) => handleSuccess(reference),
     onClose: handleClose,
   };
-
-  console.log(orders);
 
   return (
     <>

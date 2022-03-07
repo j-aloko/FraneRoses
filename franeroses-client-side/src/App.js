@@ -20,6 +20,7 @@ import { authContext } from "./Context-Api/Authentication/Context";
 import { wishlistContext } from "./Context-Api/Wishlist/Context";
 import { getWishList } from "./ApiCalls/Wishlist";
 import { cartContext } from "./Context-Api/Cart/Context";
+import SuccessPage from "./Pages/SuccessPage/SuccessPage";
 
 function App() {
   const { user } = useContext(authContext);
@@ -74,6 +75,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/deliveries" element={<DeliveriesRefund />} />
+          <Route path="/order-success" element={<SuccessPage />} />
         </Routes>
       </div>
     </BrowserRouter>

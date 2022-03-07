@@ -5,6 +5,7 @@ import {
   createCartStart,
   createCartSuccess,
   createCartFailure,
+  deleteAllCartStart,
 } from "./../Context-Api/Cart/Action";
 
 //Create a new cart
@@ -27,4 +28,9 @@ export const deleteCart = async (dispatch, productId) => {
   } catch (error) {
     dispatch(deleteCartFailure());
   }
+};
+
+//delete all cart
+export const deleteAllCart = async (dispatch) => {
+  dispatch(deleteAllCartStart());
 };
