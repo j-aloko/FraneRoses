@@ -4,7 +4,7 @@ import Footer from "./../../Components/Footer/Footer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { login } from "./../../ApiCalls/Auth";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 import CircularProgress from "@mui/material/CircularProgress";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -13,6 +13,15 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 function Login() {
   const { dispatch, error, isFetching } = useContext(authContext);
   const [PasswordVisibile, setPasswordVisible] = useState(false);
+
+  //autoScroll window to top when this component renders
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const validationSchema = Yup.object({
     email: Yup.string().email().required("Email required"),

@@ -39,8 +39,9 @@ function SuccessPage() {
     <>
       <div className="orderDetailsWrapper" ref={htmlContent}>
         <div className="orderDetailsLeft">
-          <h1>Franeroses Ventures</h1>
-          <h2 className="orderId">OrderId: #{customerOrder?._id}</h2>
+          <h1>Franeroses Ventures </h1>
+          <h2>Order Receipt</h2>
+          <h4 className="orderId">ID: #{customerOrder?._id}</h4>
           <span className="orderDate">
             Placed on{" "}
             {customerOrder?.createdAt &&

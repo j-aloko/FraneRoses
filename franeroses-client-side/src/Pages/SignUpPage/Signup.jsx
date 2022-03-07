@@ -4,7 +4,7 @@ import Footer from "./../../Components/Footer/Footer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Register } from "../../ApiCalls/Auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -14,6 +14,15 @@ function Signup() {
   const [confirmPasswordVisibile, setConfirmPasswordVisible] = useState(false);
   const [PasswordVisibile, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+
+  //autoScroll window to top when this component renders
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   //Form Validation & Sign Up
 
