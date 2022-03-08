@@ -74,6 +74,10 @@
     margin-bottom: 20px;
   }
 
+  .featuredProductsImg-SerachIcon {
+    width: 360px;
+  }
+
   .featuredProductsImg-SerachIcon:hover {
     opacity: 1;
   }
@@ -84,6 +88,5 @@
 
   .featuredProductsImg {
     width: 100%;
-    height: auto;
   }
 }
