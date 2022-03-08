@@ -299,7 +299,7 @@ function CheckoutPage() {
                     onClick={async (e) => {
                       e.preventDefault();
                       const mailformat =
-                        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+                        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                       if (!email.current?.value) {
                         alert("Email field is required");
                       } else if (!email.current?.value.match(mailformat)) {
