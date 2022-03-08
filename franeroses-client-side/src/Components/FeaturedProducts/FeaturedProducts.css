@@ -33,7 +33,7 @@
 .featuredProductsSearchIcon {
   position: absolute;
   top: 120px;
-  left: 125px;
+  left: 150px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -53,6 +53,7 @@
 .featuredProductsImg {
   width: 300px;
   height: 300px;
+  margin-left: 20px;
   object-fit: cover;
   vertical-align: middle;
   cursor: pointer;
@@ -66,6 +67,12 @@
   }
   to {
     background-color: rgb(105, 105, 105);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .featuredProductsImg {
+    width: 350px;
   }
 }
 
@@ -88,5 +95,6 @@
 
   .featuredProductsImg {
     width: 100%;
+    margin-left: 0;
   }
 }

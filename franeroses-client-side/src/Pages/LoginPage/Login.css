@@ -131,6 +131,19 @@
   height: 500px;
 }
 
+@media only screen and (max-width: 900px) {
+  .loginWrapper {
+    margin-top: 80px;
+  }
+  .loginLeft {
+    flex: 1;
+  }
+
+  .loginRight {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .loginContainer {
     width: 100vw;

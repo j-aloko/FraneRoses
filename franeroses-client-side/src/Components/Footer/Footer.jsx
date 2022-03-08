@@ -17,10 +17,10 @@ function Footer() {
   const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
 
   return (
-    <div className="footerContainer">
+    <footer className="footerContainer">
       <div className="footerWrapper">
         <div className="footerLeft">
-          <div className="footerLeftItem">
+          <nav className="footerLeftItem">
             {ismaxWidth500 ? (
               <RoomIcon style={{ fontSize: 20 }} />
             ) : (
@@ -29,63 +29,63 @@ function Footer() {
             <span className="footerLeftbusinessItem">
               Tema Community 25, Ghana
             </span>
-          </div>
-          <div className="footerLeftItem">
+          </nav>
+          <nav className="footerLeftItem">
             {ismaxWidth500 ? (
               <LocalPhoneIcon style={{ fontSize: 20 }} />
             ) : (
               <LocalPhoneIcon />
             )}
             <span className="footerLeftbusinessItem">(000)00-000-0000</span>
-          </div>
-          <div className="footerLeftItem">
+          </nav>
+          <nav className="footerLeftItem">
             {ismaxWidth500 ? (
               <EmailIcon style={{ fontSize: 20 }} />
             ) : (
               <EmailIcon />
             )}
             <span className="footerLeftbusinessItem">example@gmail.com</span>
-          </div>
+          </nav>
         </div>
         <div className="footerRight">
           <div className="socialMediaHandles">
-            <div className="socialIcon">
+            <nav className="socialIcon">
               {ismaxWidth500 ? (
                 <FacebookIcon style={{ color: "#3b5998", fontSize: 20 }} />
               ) : (
                 <FacebookIcon style={{ color: "#3b5998" }} />
               )}
-            </div>
-            <div className="socialIcon">
+            </nav>
+            <nav className="socialIcon">
               {ismaxWidth500 ? (
                 <InstagramIcon style={{ fontSize: 20, color: "#c32aa3" }} />
               ) : (
                 <InstagramIcon style={{ color: "#c32aa3" }} />
               )}
-            </div>
-            <div className="socialIcon">
+            </nav>
+            <nav className="socialIcon">
               {ismaxWidth500 ? (
                 <TwitterIcon style={{ fontSize: 20, color: "#1da1f2" }} />
               ) : (
                 <TwitterIcon style={{ color: "#1da1f2" }} />
               )}
-            </div>
+            </nav>
           </div>
           <div className="footerItems">
             <Link to="/deliveries" className="links">
-              <span className={delivery ? "footerItem active" : "footerItem"}>
+              <nav className={delivery ? "footerItem active" : "footerItem"}>
                 {ismaxWidth500 ? "Refund" : "Deliveries & Refund"}
-              </span>
+              </nav>
             </Link>
             <Link to="/privacy" className="links">
-              <span className={privacy ? "footerItem active" : "footerItem"}>
+              <nav className={privacy ? "footerItem active" : "footerItem"}>
                 {ismaxWidth500 ? "Privacy" : "Privacy policy"}
-              </span>
+              </nav>
             </Link>
             <Link to="/terms" className="links">
-              <span className={terms ? "footerItem active" : "footerItem"}>
+              <nav className={terms ? "footerItem active" : "footerItem"}>
                 {ismaxWidth500 ? "service" : "Terms of service"}
-              </span>
+              </nav>
             </Link>
           </div>
           <div className="footerPaymentGateways">
@@ -105,7 +105,7 @@ function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 

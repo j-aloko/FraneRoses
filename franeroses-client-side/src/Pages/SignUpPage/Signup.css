@@ -91,6 +91,20 @@
   height: 500px;
 }
 
+@media only screen and (max-width: 900px) {
+  .signupWrapper {
+    margin-top: 80px;
+  }
+
+  .signupLeft {
+    flex: 1;
+  }
+
+  .signupRight {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .signupContainer {
     width: 100vw;

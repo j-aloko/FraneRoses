@@ -26,13 +26,13 @@ function HomePage() {
 
   return (
     <>
-      <div className="homePageContainer">
+      <main className="homePageContainer">
         <div className="homePageWrapper">
           <Featured />
           <About />
           <FeaturedProducts />
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   );

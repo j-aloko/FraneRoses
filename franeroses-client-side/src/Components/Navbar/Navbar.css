@@ -369,6 +369,12 @@
   color: rgb(211, 196, 111);
 }
 
+@media only screen and (max-width: 900px) {
+  .Chocolate-dropdown:hover .Chocolate-dropdown-content {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .navbarContainer {
     width: 100vw;

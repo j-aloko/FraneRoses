@@ -142,7 +142,7 @@ function Navbar() {
   }, [query?.length]);
 
   return (
-    <div
+    <header
       className={
         homePage
           ? `${color ? "navbarContainer color" : "navbarContainer change"}`
@@ -156,7 +156,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="navbarCenter">
-          <div className="navbarcenterMenuItems">
+          <nav className="navbarcenterMenuItems">
             <Link to="/" className="links">
               <span
                 className={homePage ? "navbarMenuHome color" : "navbarMenuHome"}
@@ -164,8 +164,8 @@ function Navbar() {
                 Home
               </span>
             </Link>
-          </div>
-          <div className="navbarcenterMenuItems">
+          </nav>
+          <nav className="navbarcenterMenuItems">
             <div className="Chocolate-dropdown">
               <Link to="/products/all" className="links">
                 <span
@@ -249,7 +249,7 @@ function Navbar() {
                 </div>
               </div>
             </div>
-          </div>
+          </nav>
           {/*<div className="navbarcenterMenuItems">
             <Link to="/blog" className="links">
               <span
@@ -351,7 +351,7 @@ function Navbar() {
                 )}
               </div>
             )}
-            <div
+            <nav
               className="searchOutlinedIcon"
               onClick={() => setInputField(true)}
             >
@@ -362,11 +362,11 @@ function Navbar() {
               ) : (
                 <SearchOutlinedIcon />
               )}
-            </div>
+            </nav>
           </div>
           {user && (
             <div className="wishListIconWrapper">
-              <div
+              <nav
                 className="navbarIcon"
                 onClick={naviagteToWishList}
                 onMouseEnter={handleWishListMessage}
@@ -379,7 +379,7 @@ function Navbar() {
                     <FavoriteBorderOutlinedIcon />
                   )}
                 </Badge>
-              </div>
+              </nav>
               {wishListEmpty && (
                 <div className="wishlistEmptyMessage">
                   <span className="noItemsMessage">
@@ -390,7 +390,7 @@ function Navbar() {
             </div>
           )}
           <div className="cartIconWrapper">
-            <div
+            <nav
               className="navbarIcon"
               onClick={naviagteToCart}
               onMouseEnter={handleCartMessage}
@@ -403,7 +403,7 @@ function Navbar() {
                   <ShoppingCartOutlinedIcon />
                 )}
               </Badge>
-            </div>
+            </nav>
             {cartEmpty && (
               <div className="cartEmptyMessage">
                 <span className="noItemsMessage">
@@ -418,7 +418,7 @@ function Navbar() {
             </span>
           ) : (
             <div className={ismaxWidth500 ? "dropdown minScreen" : "dropdown"}>
-              <div
+              <nav
                 className="navbarIcon"
                 onClick={() => setStopDropDownHover(!stopDropDownHover)}
               >
@@ -429,7 +429,7 @@ function Navbar() {
                 ) : (
                   <MenuOutlinedIcon />
                 )}
-              </div>
+              </nav>
               <div
                 className={
                   stopDropDownHover
@@ -463,7 +463,7 @@ function Navbar() {
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

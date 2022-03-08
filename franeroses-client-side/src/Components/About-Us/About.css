@@ -31,6 +31,17 @@
   border: none;
 }
 
+@media only screen and (max-width: 900px) {
+  .aboutWrapper {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .aboutRight {
+    margin-left: 0;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .aboutWrapper {
     flex-direction: column;

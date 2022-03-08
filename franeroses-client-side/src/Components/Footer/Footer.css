@@ -2,6 +2,7 @@
   height: 205px;
   width: 100%;
   background-color: #703f07;
+  transition: 1s ease-in;
 }
 
 .footerWrapper {
@@ -80,7 +81,7 @@
 .gatewayItem {
   height: 25px;
   width: 50px;
-  object-fit: cover;
+  object-fit: contain;
   margin-left: 15px;
 }
 
@@ -128,7 +129,6 @@
   .gatewayItem {
     height: 20px;
     width: 30px;
-    object-fit: contain;
     margin-left: 10px;
   }
 

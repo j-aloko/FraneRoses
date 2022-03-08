@@ -14,10 +14,6 @@
   background: #555;
 }
 
-* {
-  margin: 0;
-}
-
 .links {
   text-decoration: none;
   color: inherit;
@@ -25,11 +21,4 @@
 
 .links:hover {
   color: inherit;
-}
-
-.fallback {
-  margin-top: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

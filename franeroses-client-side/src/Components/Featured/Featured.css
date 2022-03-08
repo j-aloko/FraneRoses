@@ -42,6 +42,13 @@
   background-color: transparent;
 }
 
+@media only screen and (max-width: 900px) {
+  .featuredCallToAction {
+    left: 300px;
+    top: 250px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .featuredContainer {
     height: 50vh;

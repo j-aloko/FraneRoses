@@ -259,6 +259,12 @@
   margin-top: -5px;
 }
 
+@media only screen and (max-width: 900px) {
+  .singleProductDown {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .singleProductDown {
     flex-direction: column;
