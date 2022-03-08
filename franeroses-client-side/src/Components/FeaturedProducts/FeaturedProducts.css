@@ -1,12 +1,12 @@
 .featuredProductsContainer {
   display: flex;
   flex-direction: column;
+  margin: 20px;
 }
 
 .featuredProductsTitle {
   margin-top: 50px;
   margin-bottom: 50px;
-  margin-left: 30px;
 }
 
 .featuredProductsWrapper {
@@ -18,7 +18,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-left: 30px;
   margin-bottom: 30px;
   transition: 1s ease-in-out;
 }
@@ -58,4 +57,33 @@
   vertical-align: middle;
   cursor: pointer;
   border-radius: 10px;
+  animation: myImg 0.5s infinite;
+}
+
+@keyframes myImg {
+  from {
+    background-color: rgb(218, 216, 214);
+  }
+  to {
+    background-color: rgb(105, 105, 105);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .featuredProductsTitle {
+    margin-bottom: 20px;
+  }
+
+  .featuredProductsImg-SerachIcon:hover {
+    opacity: 1;
+  }
+
+  .featuredProductsImg-SerachIcon:hover .featuredProductsSearchIcon {
+    visibility: hidden;
+  }
+
+  .featuredProductsImg {
+    width: 100%;
+    height: auto;
+  }
 }

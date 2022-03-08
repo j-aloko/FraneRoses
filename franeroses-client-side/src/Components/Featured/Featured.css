@@ -41,3 +41,30 @@
   border: 1px solid white;
   background-color: transparent;
 }
+
+@media only screen and (max-width: 500px) {
+  .featuredContainer {
+    height: 50vh;
+    width: 100vw;
+  }
+
+  .featuredBackgroundImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .featuredCallToAction {
+    top: 180px;
+    left: 100px;
+  }
+
+  .featuredDescription {
+    font-size: 25px;
+  }
+
+  .featuredShopNow {
+    width: 180px;
+    padding: 10px;
+    font-size: 20px;
+  }
+}

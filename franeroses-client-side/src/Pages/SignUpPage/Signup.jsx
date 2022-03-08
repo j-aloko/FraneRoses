@@ -119,9 +119,9 @@ function Signup() {
                       onClick={() => handlePasswordVisibilty("password")}
                     >
                       {PasswordVisibile ? (
-                        <VisibilityIcon />
+                        <VisibilityIcon style={{ fontSize: 20 }} />
                       ) : (
-                        <VisibilityOffIcon />
+                        <VisibilityOffIcon style={{ fontSize: 20 }} />
                       )}
                     </div>
                   </div>
@@ -146,9 +146,9 @@ function Signup() {
                       onClick={() => handlePasswordVisibilty("confirmPassword")}
                     >
                       {confirmPasswordVisibile ? (
-                        <VisibilityIcon />
+                        <VisibilityIcon style={{ fontSize: 20 }} />
                       ) : (
-                        <VisibilityOffIcon />
+                        <VisibilityOffIcon style={{ fontSize: 20 }} />
                       )}
                     </div>
                   </div>
@@ -163,6 +163,7 @@ function Signup() {
                   <button className="signupNow" type="submit">
                     {loading ? (
                       <CircularProgress
+                        size={15}
                         color="success"
                         style={{ backgroundColor: "transparent" }}
                       />

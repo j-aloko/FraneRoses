@@ -7,11 +7,13 @@ import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import { productsContext } from "./../../Context-Api/Products/Context";
 import { getAllProducts } from "../../ApiCalls/Products";
+import { useMediaQuery } from "react-responsive";
 
 function FeaturedProducts() {
   const { dispatch } = useContext(PagesContext);
   const { products, dispatch: productDispatch } = useContext(productsContext);
   const [items, setItems] = useState([]);
+  const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
 
   const RenderPages = useCallback(() => {
     dispatch(renderProductsPage());
@@ -40,7 +42,17 @@ function FeaturedProducts() {
                 />
               </div>
             </Link>
-            <img src={item?.img[0]} alt="" className="featuredProductsImg" />
+            {ismaxWidth500 ? (
+              <Link to={`/product/${item?._id}`} className="links">
+                <img
+                  src={item?.img[0]}
+                  alt=""
+                  className="featuredProductsImg"
+                />
+              </Link>
+            ) : (
+              <img src={item?.img[0]} alt="" className="featuredProductsImg" />
+            )}
           </div>
         ))}
       </div>

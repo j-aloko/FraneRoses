@@ -166,8 +166,10 @@ function WishListPage() {
             </div>
           </div>
           <div className="wishListDown">
-            <div style={{ height: 700, width: "100%" }}>
+            <div style={{ width: "100%" }}>
               <DataGrid
+                autoHeight
+                {...wishlist}
                 rows={wishlist}
                 columns={columns}
                 pageSize={10}

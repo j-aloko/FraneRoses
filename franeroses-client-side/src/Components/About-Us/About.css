@@ -27,5 +27,34 @@
 .aboutRightImage {
   height: 500px;
   width: 100%;
+  object-fit: cover;
   border: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .aboutWrapper {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .aboutLeft {
+    max-width: 100%;
+  }
+
+  .aboutLeftTitle {
+    margin-bottom: 10px;
+  }
+
+  .aboutLeftDescription {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .aboutRight {
+    margin-left: 0;
+  }
+  .aboutRightImage {
+    height: auto;
+    width: 100%;
+  }
 }

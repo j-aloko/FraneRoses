@@ -159,3 +159,74 @@
   font-size: 18px;
   font-weight: 500;
 }
+
+@media only screen and (max-width: 500px) {
+  .cartContainer {
+    width: 100vw;
+  }
+
+  .cartInfoTitle {
+    font-size: 25px;
+    margin-top: 10px;
+  }
+
+  .cartDown {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .cartDownLeft {
+    margin-left: 0;
+  }
+
+  .cartLeftTitle {
+    font-size: 14px;
+  }
+
+  .contShop-UpadteCart {
+    font-size: 12px;
+  }
+
+  .cartDownRight {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .orderSummary {
+    font-size: 14px;
+  }
+
+  .specialInstructions {
+    font-size: 12px;
+  }
+
+  .checkoutInstructions {
+    font-size: 12px;
+  }
+
+  .noteTobuyer {
+    font-size: 12px;
+  }
+
+  .proceedToCheckout {
+    font-size: 12px;
+  }
+
+  .cartShippingEstimate {
+    font-size: 14px;
+  }
+
+  .regionSelection {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .calculateShipping {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .deliveryResult {
+    font-size: 12px;
+  }
+}

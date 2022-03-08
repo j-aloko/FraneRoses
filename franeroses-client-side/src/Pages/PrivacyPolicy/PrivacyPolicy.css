@@ -30,3 +30,28 @@
   line-height: 25px;
   font-size: 18px;
 }
+
+@media only screen and (max-width: 500px) {
+  .privacyPolicyWrapper {
+    margin: 20px;
+  }
+  .privacyPolicyTitle {
+    font-size: 20px;
+  }
+
+  .privacyPolicy {
+    font-size: 12px;
+  }
+
+  .gcpaAct {
+    font-size: 20px;
+  }
+
+  .yourRight {
+    font-size: 16px;
+  }
+
+  .act {
+    font-size: 12px;
+  }
+}

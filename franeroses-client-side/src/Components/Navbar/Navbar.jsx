@@ -16,6 +16,7 @@ import { logoutNow } from "../../Context-Api/Authentication/Action";
 import { cartContext } from "./../../Context-Api/Cart/Context";
 import { wishlistContext } from "./../../Context-Api/Wishlist/Context";
 import axiosInstance from "./../../axios";
+import { useMediaQuery } from "react-responsive";
 
 function Navbar() {
   const [inputField, setInputField] = useState(false);
@@ -32,7 +33,9 @@ function Navbar() {
 
   const [color, setColor] = useState(false);
 
-  const { dispatch, homePage, products, blog } = useContext(PagesContext);
+  const [stopDropDownHover, setStopDropDownHover] = useState(false);
+
+  const { dispatch, homePage, products } = useContext(PagesContext);
 
   const { user, dispatch: userDispatch } = useContext(authContext);
 
@@ -41,6 +44,8 @@ function Navbar() {
   const { wishlist } = useContext(wishlistContext);
 
   const navigate = useNavigate();
+
+  const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
 
   //Render Pages as per Menu Items
   const RenderPages = useCallback(
@@ -245,7 +250,7 @@ function Navbar() {
               </div>
             </div>
           </div>
-          <div className="navbarcenterMenuItems">
+          {/*<div className="navbarcenterMenuItems">
             <Link to="/blog" className="links">
               <span
                 className={blog ? "navbarMenuBlog color" : "navbarMenuBlog"}
@@ -253,7 +258,7 @@ function Navbar() {
                 Blog
               </span>
             </Link>
-          </div>
+          </div>*/}
         </div>
         <div className="navbarRight" onClick={() => RenderPages("default")}>
           <div className="navbarSearchIcon">
@@ -350,7 +355,13 @@ function Navbar() {
               className="searchOutlinedIcon"
               onClick={() => setInputField(true)}
             >
-              <SearchOutlinedIcon />
+              {ismaxWidth500 ? (
+                <SearchOutlinedIcon
+                  style={{ fontSize: 20, marginTop: "5px" }}
+                />
+              ) : (
+                <SearchOutlinedIcon />
+              )}
             </div>
           </div>
           {user && (
@@ -362,7 +373,11 @@ function Navbar() {
                 onMouseLeave={closeWishListMessage}
               >
                 <Badge badgeContent={wishlist?.length} color="primary">
-                  <FavoriteBorderOutlinedIcon />
+                  {ismaxWidth500 ? (
+                    <FavoriteBorderOutlinedIcon style={{ fontSize: 20 }} />
+                  ) : (
+                    <FavoriteBorderOutlinedIcon />
+                  )}
                 </Badge>
               </div>
               {wishListEmpty && (
@@ -382,7 +397,11 @@ function Navbar() {
               onMouseLeave={closeCartMessage}
             >
               <Badge badgeContent={cart?.length} color="primary">
-                <ShoppingCartOutlinedIcon />
+                {ismaxWidth500 ? (
+                  <ShoppingCartOutlinedIcon style={{ fontSize: 20 }} />
+                ) : (
+                  <ShoppingCartOutlinedIcon />
+                )}
               </Badge>
             </div>
             {cartEmpty && (
@@ -398,19 +417,43 @@ function Navbar() {
               Logout
             </span>
           ) : (
-            <div className="dropdown">
-              <div className="navbarIcon">
-                <MenuOutlinedIcon />
+            <div className={ismaxWidth500 ? "dropdown minScreen" : "dropdown"}>
+              <div
+                className="navbarIcon"
+                onClick={() => setStopDropDownHover(!stopDropDownHover)}
+              >
+                {ismaxWidth500 ? (
+                  <MenuOutlinedIcon
+                    style={{ fontSize: 20, marginTop: "5px" }}
+                  />
+                ) : (
+                  <MenuOutlinedIcon />
+                )}
               </div>
-              <div className="dropdown-content">
+              <div
+                className={
+                  stopDropDownHover
+                    ? "dropdown-content minScreen"
+                    : "dropdown-content"
+                }
+                onClick={() => setStopDropDownHover(!stopDropDownHover)}
+              >
                 <div className="dropdown-content-items">
-                  <LoginOutlinedIcon />
+                  {stopDropDownHover ? (
+                    <LoginOutlinedIcon style={{ fontSize: 20 }} />
+                  ) : (
+                    <LoginOutlinedIcon />
+                  )}
                   <Link to="/login" className="links">
                     <span className="Login">Login</span>
                   </Link>
                 </div>
                 <div className="dropdown-content-items">
-                  <PersonOutlineOutlinedIcon />
+                  {ismaxWidth500 ? (
+                    <PersonOutlineOutlinedIcon style={{ fontSize: 20 }} />
+                  ) : (
+                    <PersonOutlineOutlinedIcon />
+                  )}
                   <Link to="/signup" className="links">
                     <span className="createAccount">Create Account</span>
                   </Link>

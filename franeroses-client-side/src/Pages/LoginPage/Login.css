@@ -130,3 +130,70 @@
 .loginRightBcImg {
   height: 500px;
 }
+
+@media only screen and (max-width: 500px) {
+  .loginContainer {
+    width: 100vw;
+  }
+
+  .loginWrapper {
+    margin-top: 80px;
+  }
+
+  .loginLeft {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .loginTitle {
+    font-size: 16px;
+  }
+
+  .loginForm {
+    display: flex;
+  }
+
+  .loginInputItem {
+    width: 90%;
+    font-size: 12px;
+  }
+
+  .wrongLoginCredentials {
+    font-size: 12px;
+  }
+  .loginExtras {
+    max-width: 100%;
+  }
+
+  .rememberMe {
+    font-size: 12px;
+  }
+
+  .forgotPassword {
+    font-size: 12px;
+  }
+
+  .loginActionButtons {
+    max-width: 100%;
+  }
+
+  .loginNow {
+    font-size: 12px;
+  }
+
+  .signUp {
+    font-size: 12px;
+  }
+
+  .bySigningUp {
+    font-size: 12px;
+  }
+
+  .termsAndConditions {
+    font-size: 12px;
+  }
+
+  .loginRight {
+    display: none;
+  }
+}

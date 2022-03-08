@@ -1,7 +1,7 @@
 import "./CheckoutPage.css";
 import Badge from "@mui/material/Badge";
 import { useEffect, useContext, useState, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "./../../Components/Footer/Footer";
 import { cartContext } from "./../../Context-Api/Cart/Context";
 import { ordersContext } from "./../../Context-Api/Order/Context";
@@ -124,7 +124,7 @@ function CheckoutPage() {
               <span className="contactinformation">Contact information</span>
               <input
                 type="text"
-                className="inputItem"
+                className="inputItemx"
                 placeholder="Phone Number"
                 name="phone"
                 id="phone"
@@ -133,7 +133,7 @@ function CheckoutPage() {
               />
               <input
                 type="email"
-                className="inputItem"
+                className="inputItemx"
                 placeholder="Email"
                 name="email"
                 id="email"
@@ -214,7 +214,7 @@ function CheckoutPage() {
               </div>
               <input
                 type="text"
-                className="inputItem"
+                className="inputItemx"
                 placeholder="Neighborhood or Street"
                 name="apartment"
                 id="apartment"
@@ -223,7 +223,7 @@ function CheckoutPage() {
               />
               <input
                 type="text"
-                className="inputItem"
+                className="inputItemx"
                 placeholder="City"
                 name="city"
                 id="city"
@@ -242,9 +242,6 @@ function CheckoutPage() {
                 </label>
               </div>
             </form>
-            <Link to="/cart" className="links">
-              <button className="returnToCart">RETURN TO CART</button>
-            </Link>
           </div>
           <div className="checkoutRight">
             {cart?.map((c, index) => (

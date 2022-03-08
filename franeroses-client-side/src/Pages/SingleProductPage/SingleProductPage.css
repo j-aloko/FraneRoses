@@ -258,3 +258,42 @@
 .buySingleProduct.noUser {
   margin-top: -5px;
 }
+
+@media only screen and (max-width: 500px) {
+  .singleProductDown {
+    flex-direction: column;
+  }
+
+  .singleProductLeftImg {
+    height: auto;
+    width: 100%;
+  }
+
+  .singleProductDescription {
+    font-size: 12px;
+  }
+
+  .singleProductLeftInfo {
+    font-size: 12px;
+  }
+
+  .singleProductPrice {
+    font-size: 16px;
+  }
+
+  .singleProductSubtotalAmount {
+    font-size: 16px;
+  }
+
+  .singleProductAddToWishList {
+    font-size: 12px;
+  }
+
+  .buySingleProduct {
+    font-size: 12px;
+  }
+
+  .buySingleProduct.noUser {
+    margin-top: -5px;
+  }
+}

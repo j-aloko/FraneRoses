@@ -6,12 +6,14 @@ import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import { productsContext } from "./../../Context-Api/Products/Context";
 import { getAllProducts, getProducts } from "./../../ApiCalls/Products";
+import { useMediaQuery } from "react-responsive";
 
 function ProductsPage() {
   const { dispatch } = useContext(PagesContext);
   const { products, dispatch: productDispatch } = useContext(productsContext);
   const location = useLocation();
   const name = location?.pathname.split("/")[2];
+  const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -32,19 +34,23 @@ function ProductsPage() {
   const subCat = "subCat";
 
   useEffect(() => {
-    if (name === "all") {
+    if (ismaxWidth500) {
       getAllProducts(productDispatch);
-    } else if (
-      name === "Chocolate-Bars" ||
-      name === "Chocolate-Dragee" ||
-      name === "Drinking-Chocolate" ||
-      name === "Choco-Spread-Butter"
-    ) {
-      getProducts(productDispatch, cat, name);
     } else {
-      getProducts(productDispatch, subCat, name);
+      if (name === "all") {
+        getAllProducts(productDispatch);
+      } else if (
+        name === "Chocolate-Bars" ||
+        name === "Chocolate-Dragee" ||
+        name === "Drinking-Chocolate" ||
+        name === "Choco-Spread-Butter"
+      ) {
+        getProducts(productDispatch, cat, name);
+      } else {
+        getProducts(productDispatch, subCat, name);
+      }
     }
-  }, [productDispatch, cat, name]);
+  }, [productDispatch, cat, name, ismaxWidth500]);
 
   return (
     <>

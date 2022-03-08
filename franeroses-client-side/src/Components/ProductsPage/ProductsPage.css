@@ -50,7 +50,7 @@
   object-fit: cover;
   vertical-align: middle;
   border-radius: 10px;
-  animation: myImg 1s infinite;
+  animation: myImg 0.5s infinite;
 }
 
 @keyframes myImg {
@@ -75,4 +75,19 @@
 .productOldPrice {
   margin-left: 20px;
   opacity: 0.6;
+}
+
+@media only screen and (max-width: 500px) {
+  .productsPageContainer {
+    width: 100vw;
+  }
+
+  .productsInfo {
+    margin: 20px;
+  }
+
+  .productImg {
+    width: 100%;
+    height: auto;
+  }
 }

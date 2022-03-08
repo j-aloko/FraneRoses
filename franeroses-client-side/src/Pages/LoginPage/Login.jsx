@@ -89,9 +89,9 @@ function Login() {
                       onClick={handlePasswordVisibilty}
                     >
                       {PasswordVisibile ? (
-                        <VisibilityIcon />
+                        <VisibilityIcon style={{ fontSize: 20 }} />
                       ) : (
-                        <VisibilityOffIcon />
+                        <VisibilityOffIcon style={{ fontSize: 20 }} />
                       )}
                     </div>
                   </div>
@@ -101,7 +101,7 @@ function Login() {
                 </div>
                 <div className="loginExtras">
                   <div className="rememberMe">
-                    <input type="checkbox" name="remember" value="Yes" />
+                    <input type="checkbox" name="remember" value="yes" />
                     <label htmlFor="remember"> Remember me</label>
                     <br />
                   </div>
@@ -113,6 +113,7 @@ function Login() {
                   <button className="loginNow" type="submit">
                     {isFetching ? (
                       <CircularProgress
+                        size={15}
                         color="success"
                         style={{ backgroundColor: "transparent" }}
                       />

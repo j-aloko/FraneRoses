@@ -24,7 +24,7 @@ function DeliveriesRefund() {
   return (
     <>
       <div className="deliveries-Refund-Container">
-        <div className="deliveries-Refund-Wrapper">
+        <div className="deliveries-Refund-wrapper">
           <h1 className="deliveriesTitle">Deliveries & Refund</h1>
           <h3 className="internationalDeliveries">International Deliveries</h3>
           <p className="internationalTerms">

@@ -1,6 +1,5 @@
 .navbarContainer {
   height: 80px;
-  max-width: 100%;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -368,4 +367,85 @@
 
 .logout:hover {
   color: rgb(211, 196, 111);
+}
+
+@media only screen and (max-width: 500px) {
+  .navbarContainer {
+    width: 100vw;
+  }
+
+  .navbarLogoTitle {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .Chocolate-dropdown:hover .Chocolate-dropdown-content {
+    display: none;
+  }
+
+  .navbarcenterMenuItems {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .navbarIcon {
+    margin-right: 10px;
+  }
+
+  .navbarSearchIcon {
+    margin-left: 10px;
+  }
+
+  .wishlistEmptyMessage {
+    width: 200px;
+  }
+
+  .cartEmptyMessage {
+    width: 200px;
+  }
+
+  .noItemsMessage {
+    font-size: 12px;
+  }
+
+  .searchBar {
+    width: 100vw;
+  }
+
+  .searchInputField {
+    font-size: 12px;
+  }
+
+  .yourSearchFor {
+    font-size: 12px;
+  }
+
+  .seeProducts {
+    font-size: 12px;
+  }
+
+  .productResultName {
+    font-size: 12px;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: none;
+  }
+
+  .dropdown.minScreen .dropdown-content.minScreen {
+    display: block;
+  }
+
+  .Login {
+    font-size: 12px;
+  }
+
+  .createAccount {
+    font-size: 12px;
+  }
+
+  .logout {
+    font-size: 12px;
+    margin-right: 10px;
+  }
 }

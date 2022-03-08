@@ -75,3 +75,34 @@
   margin-left: 10px;
   font-size: 20px;
 }
+
+@media only screen and (max-width: 500px) {
+  .cartProducts {
+    width: 450px;
+  }
+
+  .cartProductName {
+    font-size: 15px;
+  }
+
+  .cartProductSizeFlavour {
+    font-size: 12px;
+  }
+
+  .cartProductCounter {
+    font-size: 12px;
+  }
+
+  .cartProductPrice {
+    font-size: 12px;
+  }
+
+  .cartProductTotal {
+    font-size: 12px;
+  }
+
+  .cartProductTotalAmt {
+    font-size: 12px;
+    margin-left: 20px;
+  }
+}

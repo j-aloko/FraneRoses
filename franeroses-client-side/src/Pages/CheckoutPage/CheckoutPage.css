@@ -24,7 +24,7 @@
   font-weight: 500;
 }
 
-.inputItem {
+.inputItemx {
   width: 60%;
   padding: 10px;
   margin-top: 15px;
@@ -65,18 +65,6 @@
   outline: none;
 }
 
-.returnToCart {
-  margin-top: 20px;
-  width: 170px;
-  padding: 15px 10px;
-  font-weight: 500;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  background-color: rgb(196, 50, 50);
-  cursor: pointer;
-}
-
 .checkoutRight {
   flex: 0.4;
   margin: 20px;
@@ -101,10 +89,6 @@
   align-items: center;
 }
 
-.checkoutProductAmt {
-  font-weight: bold;
-}
-
 .checkoutImgAndIcon {
   display: flex;
   flex-direction: column;
@@ -127,10 +111,6 @@
   display: flex;
   flex-direction: column;
   margin-left: 30px;
-}
-
-.checkoutProductName {
-  font-weight: bold;
 }
 
 .checkoutProductSizeFlavour {
@@ -199,4 +179,90 @@
   border-radius: 10px;
   background-color: rgb(4, 4, 65);
   cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .checkoutContainer {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .checkoutWrapper {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .checkoutLeft {
+    margin: 0;
+  }
+
+  .contactinformation {
+    font-size: 15px;
+  }
+
+  .inputItemx {
+    width: 90%;
+    font-size: 12px;
+  }
+
+  .newsLetter {
+    font-size: 12px;
+  }
+
+  .deliveryInformation {
+    font-size: 15px;
+  }
+  .selectionItems {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .firstNameLastName {
+    margin-top: 0;
+  }
+
+  .namefields {
+    margin-top: 15px;
+    margin-right: 10px;
+    width: 135px;
+    font-size: 12px;
+  }
+
+  .checkoutRight {
+    margin: 0;
+    margin-top: 40px;
+  }
+
+  .checkoutProductInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkoutProductName {
+    font-size: 12px;
+  }
+
+  .checkoutProductAmt {
+    font-size: 12px;
+  }
+
+  .checkoutProductSubtotalAmt {
+    font-size: 15px;
+  }
+
+  .checkoutProductDeliveryFeeAmt {
+    font-size: 15px;
+  }
+
+  .ToatalAmountTitle {
+    font-size: 16px;
+  }
+
+  .TotalAmount {
+    font-size: 16px;
+  }
+
+  .payNow {
+    font-size: 12px;
+  }
 }

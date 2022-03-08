@@ -90,3 +90,43 @@
 .signupRightBcImg {
   height: 500px;
 }
+
+@media only screen and (max-width: 500px) {
+  .signupContainer {
+    width: 100vw;
+  }
+
+  .signupWrapper {
+    margin-top: 80px;
+  }
+
+  .signupLeft {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .signUpTitle {
+    font-size: 16px;
+  }
+
+  .signupInputItem {
+    width: 90%;
+    font-size: 12px;
+  }
+
+  .signupActionButtons {
+    max-width: 100%;
+  }
+
+  .signupNow {
+    font-size: 12px;
+  }
+
+  .signupLogin {
+    font-size: 12px;
+  }
+
+  .signupRight {
+    display: none;
+  }
+}

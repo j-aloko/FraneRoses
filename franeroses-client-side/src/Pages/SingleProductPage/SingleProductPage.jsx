@@ -15,6 +15,7 @@ import { cartContext } from "../../Context-Api/Cart/Context";
 import { wishlistContext } from "../../Context-Api/Wishlist/Context";
 import { createWishList } from "../../ApiCalls/Wishlist";
 import { authContext } from "./../../Context-Api/Authentication/Context";
+import { useMediaQuery } from "react-responsive";
 
 function SingleProductPage() {
   const { dispatch } = useContext(PagesContext);
@@ -30,6 +31,8 @@ function SingleProductPage() {
   const path = location.pathname.split("/")[2];
 
   const navigate = useNavigate();
+
+  const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -109,10 +112,20 @@ function SingleProductPage() {
         <div className="singleProductWrapper">
           <div className="singleProductTop">
             <div className="singleProductTitles">
-              <h1 className="singleProductName">{product?.title}</h1>
-              <h3 className="singleProductRou">
-                Products / {product?.category} / {product?.title}
-              </h3>
+              {ismaxWidth500 ? (
+                <h2 className="singleProductName">{product?.title}</h2>
+              ) : (
+                <h1 className="singleProductName">{product?.title}</h1>
+              )}
+              {ismaxWidth500 ? (
+                <h4 className="singleProductRou">
+                  {product?.category} / {product?.title}
+                </h4>
+              ) : (
+                <h3 className="singleProductRou">
+                  {product?.category} / {product?.title}
+                </h3>
+              )}
             </div>
           </div>
           <div className="singleProductDown">
@@ -132,7 +145,11 @@ function SingleProductPage() {
             </div>
             <div className="singleProductDownRight">
               <div className="singleProduct-name-isocert">
-                <h1 className="singleProductRightTitle">{product?.title}</h1>
+                {ismaxWidth500 ? (
+                  <h3 className="singleProductRightTitle">{product?.title}</h3>
+                ) : (
+                  <h1 className="singleProductRightTitle">{product?.title}</h1>
+                )}
                 <img
                   src="/assets/iso.png"
                   alt=""

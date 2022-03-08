@@ -1,13 +1,17 @@
+.orderDetailsContainer {
+  margin-top: 100px;
+  width: 100vw;
+}
+
 .orderDetailsWrapper {
   display: flex;
-  margin-top: 100px;
+  margin: 20px;
 }
 
 .orderDetailsLeft {
   flex: 0.6;
   display: flex;
   flex-direction: column;
-  margin: 30px;
 }
 
 .orderId {
@@ -78,7 +82,7 @@ td {
 .downloadOrderReceipt {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 20px;
 }
 
 .downloadReceipt {
@@ -98,7 +102,7 @@ td {
   flex: 0.4;
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 50px;
 }
 
 .orderBillingAddress {
@@ -135,4 +139,104 @@ td {
 .deliveryTime {
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (max-width: 500px) {
+  .orderDetailsWrapper {
+    flex-direction: column;
+  }
+
+  .orderLeftCompanyTitle {
+    font-size: 16px;
+  }
+
+  .orderLeftReceiptTitle {
+    font-size: 13px;
+  }
+
+  .orderId {
+    font-size: 12px;
+  }
+
+  .orderDate {
+    font-size: 12px;
+  }
+
+  th {
+    font-size: 15px;
+  }
+
+  td {
+    font-size: 12px;
+  }
+
+  .subtotalWrapper {
+    font-size: 14px;
+  }
+
+  .deliveryWrapper {
+    font-size: 14px;
+  }
+
+  .orderTotalAmtWrapper {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .downloadOrderReceipt {
+    font-size: 12px;
+  }
+
+  .downloadReceipt {
+    font-size: 12px;
+  }
+
+  .orderDetailsRight {
+    margin: 0;
+  }
+
+  .orderDetailsRightTitle {
+    font-size: 15px;
+  }
+
+  .orderPymtStatus {
+    font-size: 13px;
+  }
+
+  .orderPymtResponse {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .deliveryPhone {
+    font-size: 12px;
+  }
+
+  .nameOnOrder {
+    font-size: 12px;
+  }
+
+  .deliveryEmail {
+    font-size: 12px;
+  }
+
+  .orderApartmentSuite {
+    font-size: 12px;
+  }
+
+  .orderRegion {
+    font-size: 12px;
+  }
+
+  .instructionFromCustomer {
+    font-size: 12px;
+  }
+
+  .estimatedDelivery {
+    font-size: 13px;
+  }
+
+  .deliveryTime {
+    font-size: 12px;
+  }
 }

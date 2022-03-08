@@ -38,25 +38,25 @@ function ResetPassword() {
         .required()
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setLoading(true);
       const client = users?.find((user) => user.email === values.email);
       const clientId = client?._id;
-      setTimeout(() => {
-        if (clientId) {
-          updateUser(clientId, dispatch, values);
-          setLoading(false);
-          setError(false);
-          setSuccess(true);
-          setTimeout(() => {
-            navigate("/login");
-          }, 2000);
-        } else {
+      if (clientId) {
+        await updateUser(clientId, dispatch, values);
+        setLoading(false);
+        setError(false);
+        setSuccess(true);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      } else {
+        setTimeout(() => {
           setError(true);
           setSuccess(false);
           setLoading(false);
-        }
-      }, 2000);
+        }, 2000);
+      }
     },
   });
 
@@ -105,7 +105,11 @@ function ResetPassword() {
                 className="visibilty"
                 onClick={() => handlePasswordVisibilty("password")}
               >
-                {PasswordVisibile ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                {PasswordVisibile ? (
+                  <VisibilityIcon style={{ fontSize: 20 }} />
+                ) : (
+                  <VisibilityOffIcon style={{ fontSize: 20 }} />
+                )}
               </div>
             </div>
             {formik.touched.password && formik.errors.password ? (
@@ -127,9 +131,9 @@ function ResetPassword() {
                 onClick={() => handlePasswordVisibilty("confirmPassword")}
               >
                 {confirmPasswordVisibile ? (
-                  <VisibilityIcon />
+                  <VisibilityIcon style={{ fontSize: 20 }} />
                 ) : (
-                  <VisibilityOffIcon />
+                  <VisibilityOffIcon style={{ fontSize: 20 }} />
                 )}
               </div>
             </div>
@@ -139,6 +143,7 @@ function ResetPassword() {
             <button className="submitRequestReset" type="submit">
               {loading ? (
                 <CircularProgress
+                  size={15}
                   color="secondary"
                   style={{ backgroundColor: "transparent" }}
                 />

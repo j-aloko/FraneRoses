@@ -29,7 +29,7 @@ function ForgotPassword() {
     initialValues: {
       from_email: "jaloko@st.ug.edu.gh",
       from_name: "FraneRoses Ventures",
-      subject: "PASSWORD RESET",
+      subject: "PASSWORD RESET LINK",
       to_email: "",
       reply_to: "jaloko@st.ug.edu.gh",
       message:
@@ -68,10 +68,12 @@ function ForgotPassword() {
             }
           );
       } else {
-        setSuccess(false);
-        setError(false);
-        setNoEmailFound(true);
-        setLoading(false);
+        setTimeout(() => {
+          setSuccess(false);
+          setError(false);
+          setNoEmailFound(true);
+          setLoading(false);
+        }, 2000);
       }
     },
   });
@@ -107,6 +109,7 @@ function ForgotPassword() {
             <button className="submitRequestPassword" type="submit">
               {loading ? (
                 <CircularProgress
+                  size={15}
                   color="secondary"
                   style={{ backgroundColor: "transparent" }}
                 />

@@ -102,3 +102,41 @@
   margin-left: 5px;
   font-size: 15px;
 }
+
+@media only screen and (max-width: 500px) {
+  .footerContainer {
+    height: 170px;
+    width: 100vw;
+  }
+
+  .footerLeft {
+    flex: 0.5;
+    margin-left: 10px;
+  }
+
+  .footerLeftbusinessItem {
+    margin-left: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .footerItem {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .gatewayItem {
+    height: 20px;
+    width: 30px;
+    object-fit: contain;
+    margin-left: 10px;
+  }
+
+  .footerCompanyName {
+    font-size: 12px;
+  }
+
+  .FooterYear {
+    font-size: 12px;
+  }
+}
