@@ -29,12 +29,21 @@ mongoose
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://franeroses.netlify.app/",
+      "https://franeroses-admin.netlify.app",
+    ],
     credentials: true,
   })
 );
 app.use(morgan("common"));
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/auth", authRoute);
