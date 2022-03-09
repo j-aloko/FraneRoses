@@ -1,11 +1,13 @@
 import "./AdminOrders.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { order } from "../../Data";
 import { Link } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
+import { ordersContext } from "./../../Context-Api/Order/Context";
 
 function AdminOrders() {
+  const { orders } = useContext(ordersContext);
+
   //scroll window to top on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -13,7 +15,7 @@ function AdminOrders() {
 
   const columns = [
     {
-      field: "id",
+      field: "_id",
       headerName: "ORDER ID",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
@@ -25,6 +27,15 @@ function AdminOrders() {
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       width: 220,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.userInfo?.firstName} {params.row.userInfo?.lastName}
+          </div>
+        );
+      },
     },
     {
       field: "total",
@@ -36,8 +47,8 @@ function AdminOrders() {
       width: 220,
     },
     {
-      field: "status",
-      headerName: "STATUS",
+      field: "delivery",
+      headerName: "DELIVERY STATUS",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       headerAlign: "center",
@@ -46,11 +57,11 @@ function AdminOrders() {
       renderCell: (params) => {
         return (
           <>
-            {params.row.status === "Pending" ? (
-              <span className="orderStatus">{params.row.status}....</span>
+            {params.row.delivery === "Pending" ? (
+              <span className="orderStatus">{params.row.delivery}....</span>
             ) : (
               <div className="orderFulfilled">
-                <span className="orderFulFilled">{params.row.status}</span>
+                <span className="orderFulFilled">{params.row.delivery}</span>
                 <CheckIcon />
               </div>
             )}
@@ -64,10 +75,12 @@ function AdminOrders() {
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       width: 220,
+      headerAlign: "center",
+      align: "center",
       renderCell: (params) => {
         return (
           <>
-            <Link to={`/order-detail/${params.row.id}`} className="link">
+            <Link to={`/order-detail/${params.row._id}`} className="link">
               <span className="viewDetails">View Details</span>
             </Link>
           </>
@@ -78,13 +91,16 @@ function AdminOrders() {
 
   return (
     <div className="adminOrdersContainer">
-      <div style={{ height: 700, width: "100%" }}>
+      <div style={{ width: "100%" }}>
         <DataGrid
-          rows={order}
+          autoHeight
+          {...orders}
+          rows={orders}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           disableSelectionOnClick
+          getRowId={(r) => r._id}
           sx={{
             "& .super-app-theme--header": {
               backgroundColor: "#8585d6",

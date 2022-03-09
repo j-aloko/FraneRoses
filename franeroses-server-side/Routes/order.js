@@ -54,7 +54,7 @@ router.get("/find:/userId", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const allOrders = await Orders.find();
+    const allOrders = await Order.find();
     res.status(200).json(allOrders);
   } catch (err) {
     res.status(500).json(err);

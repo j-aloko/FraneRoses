@@ -9,6 +9,9 @@ import {
   createOrderStart,
   createOrderSuccess,
   createOrderFailure,
+  updateOrderStart,
+  updateOrderSuccess,
+  updateOrderFailure,
 } from "./../Context-Api/Order/Action";
 
 //Create a new order
@@ -23,14 +26,30 @@ export const createOrder = async (dispatch, values) => {
   }
 };
 
-//get a single users order
-export const getOrder = async (dispatch, id) => {
+//get all orders
+export const getAllOrders = async (dispatch) => {
   dispatch(getOrdersStart());
   try {
-    const res = await axiosInstance.get("order/find/" + id);
-    dispatch(getOrdersSuccess(res.data));
+    const res = await axiosInstance.get("order");
+    dispatch(
+      getOrdersSuccess(
+        res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      )
+    );
   } catch (error) {
     dispatch(getOrdersFailure());
+  }
+};
+
+//Update Order
+
+export const updateOrder = async (dispatch, id, value) => {
+  dispatch(updateOrderStart());
+  try {
+    const res = await axiosInstance.put("order/" + id, value);
+    dispatch(updateOrderSuccess(res.data));
+  } catch (error) {
+    dispatch(updateOrderFailure());
   }
 };
 

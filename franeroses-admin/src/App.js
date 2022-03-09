@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./Pages/Homepage/Homepage";
@@ -11,8 +11,26 @@ import NewProduct from "./Pages/NewProduct/NewProduct";
 import EditUser from "./Pages/EditUser/EditUser";
 import OrderPage from "./Pages/OrderPage/OrderPage";
 import OrderDetail from "./Pages/OrderDetail/OrderDetail";
+import { productsContext } from "./Context-Api/Products/Context";
+import { getAllProducts } from "./ApiCalls/Products";
+import { ordersContext } from "./Context-Api/Order/Context";
+import { getAllOrders } from "./ApiCalls/Order";
 
 function App() {
+  const { dispatch } = useContext(productsContext);
+
+  const { dispatch: ordersDispatch } = useContext(ordersContext);
+
+  //fetch all products if this app mounts
+  useEffect(() => {
+    getAllProducts(dispatch);
+  }, [dispatch]);
+
+  //fetch all orders if this app mounts
+  useEffect(() => {
+    getAllOrders(ordersDispatch);
+  }, [ordersDispatch]);
+
   return (
     <BrowserRouter>
       <Navbar />

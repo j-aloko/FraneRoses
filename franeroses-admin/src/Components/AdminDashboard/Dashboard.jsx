@@ -63,7 +63,7 @@ function Dashboard() {
       field: "summary",
       headerName: "SUMMARY",
       headerClassName: "super-app-theme--header",
-      width: 330,
+      width: 200,
       headerAlign: "center",
       align: "center",
       cellClassName: "super-app-theme--cell",

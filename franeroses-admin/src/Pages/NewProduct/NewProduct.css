@@ -1,4 +1,5 @@
 .newProductContainer {
+  height: 100%;
   position: relative;
   left: 260px;
   flex: 0.8;

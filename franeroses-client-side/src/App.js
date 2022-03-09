@@ -45,14 +45,14 @@ function App() {
           <Route
             path="/cart"
             element={
-              cart.length < 1 ? <Navigate to="/products/all" /> : <CartPage />
+              cart?.length < 1 ? <Navigate to="/products/all" /> : <CartPage />
             }
           />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route
             path="/wishList"
             element={
-              wishlist.length < 1 ? (
+              wishlist?.length < 1 ? (
                 <Navigate to="/products/all" />
               ) : (
                 <WishListPage />

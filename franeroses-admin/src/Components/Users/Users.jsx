@@ -100,12 +100,14 @@ function Users() {
 
   return (
     <div className="usersContainer">
-      <div style={{ height: 700, width: "100%" }}>
+      <div style={{ width: "100%" }}>
         <DataGrid
+          autoHeight
+          {...users}
           rows={users}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           disableSelectionOnClick
           sx={{
             "& .super-app-theme--header": {

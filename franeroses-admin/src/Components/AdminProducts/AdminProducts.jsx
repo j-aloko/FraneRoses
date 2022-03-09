@@ -4,7 +4,6 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { productsContext } from "./../../Context-Api/Products/Context";
-import { getAllProducts } from "../../ApiCalls/Products";
 import { deleteProduct } from "./../../ApiCalls/Products";
 
 function AdminProducts() {
@@ -16,10 +15,6 @@ function AdminProducts() {
   }, []);
 
   //fetch all products when this component mounts
-
-  useEffect(() => {
-    getAllProducts(dispatch);
-  }, [dispatch]);
 
   const columns = [
     {
@@ -143,12 +138,14 @@ function AdminProducts() {
 
   return (
     <div className="AdminProductsContainer">
-      <div style={{ height: 700, width: "100%" }}>
+      <div style={{ width: "100%" }}>
         <DataGrid
+          autoHeight
+          {...products}
           rows={products}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           disableSelectionOnClick
           getRowId={(r) => r._id}
           sx={{
