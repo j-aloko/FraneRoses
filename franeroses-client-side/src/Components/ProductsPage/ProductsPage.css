@@ -108,6 +108,14 @@
     width: 100vw;
   }
 
+  .productsPageCategoryTitle {
+    font-size: 16px;
+  }
+
+  .productsPageCategoryType {
+    font-size: 13px;
+  }
+
   .productsInfo {
     margin: 10px;
     width: 360px;

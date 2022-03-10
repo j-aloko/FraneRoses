@@ -1,8 +1,7 @@
 import "./AdminEditProduct.css";
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { useLocation, Link } from "react-router-dom";
-import axiosInstance from "./../../axios";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { productsContext } from "./../../Context-Api/Products/Context";
 import { updateProducts } from "../../ApiCalls/Products";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -13,8 +12,11 @@ function AdminEditProduct() {
   const [img, setImg] = useState([]);
   const [update, setUpdate] = useState();
   const [preview, setPreview] = useState();
-  const { dispatch, updateIsFetching, updateError, updateSuccess } =
-    useContext(productsContext);
+  const { products } = useContext(productsContext);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   //handle image preview
 
@@ -78,24 +80,23 @@ function AdminEditProduct() {
   const path = location.pathname.split("/")[2];
 
   useEffect(() => {
-    //get single product
-    const getProduct = async () => {
-      try {
-        const res = await axiosInstance.get("products/find/" + path);
-        setItem(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getProduct();
-  }, [path]);
+    setItem(products?.find((product) => product?._id === path));
+  }, [products, path]);
 
   const updateProduct = async (e) => {
     e.preventDefault();
-    await updateProducts(dispatch, path, update);
-    setTimeout(() => {
-      window.location.replace("/products");
-    }, 1000);
+    try {
+      setLoading(true);
+      await updateProducts(path, update);
+      setError(false);
+      setSuccess(true);
+      setLoading(false);
+      setTimeout(() => {
+        navigate("/products");
+      }, 1000);
+    } catch {
+      setError(true);
+    }
   };
 
   return (
@@ -220,8 +221,9 @@ function AdminEditProduct() {
             ))}
           </div>
           <button className="updateProductButton" onClick={updateProduct}>
-            {updateIsFetching ? (
+            {loading ? (
               <CircularProgress
+                size={15}
                 color="success"
                 style={{ backgroundColor: "transparent" }}
               />
@@ -229,16 +231,10 @@ function AdminEditProduct() {
               "Update"
             )}
           </button>
-          {updateSuccess && (
-            <span className="upload-success">
-              Product uploaded successfully ✔️
-            </span>
+          {success && (
+            <span className="upload-success">Updated successfully</span>
           )}
-          {updateError && (
-            <span className="upload-error">
-              Error while updating product ❌
-            </span>
-          )}
+          {error && <span className="upload-error">update Failed</span>}
         </div>
       </div>
     </div>

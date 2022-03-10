@@ -4,14 +4,21 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import { ordersContext } from "./../../Context-Api/Order/Context";
+import { getAllOrders } from "../../ApiCalls/Order";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminOrders() {
-  const { orders } = useContext(ordersContext);
+  const { orders, dispatch } = useContext(ordersContext);
 
   //scroll window to top on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  //fetch all orders if this app mounts
+  useEffect(() => {
+    getAllOrders(dispatch);
+  }, [dispatch]);
 
   const columns = [
     {
@@ -91,34 +98,44 @@ function AdminOrders() {
 
   return (
     <div className="adminOrdersContainer">
-      <div style={{ width: "100%" }}>
-        <DataGrid
-          autoHeight
-          {...orders}
-          rows={orders}
-          columns={columns}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
-          disableSelectionOnClick
-          getRowId={(r) => r._id}
-          sx={{
-            "& .super-app-theme--header": {
-              backgroundColor: "#8585d6",
-              color: "white",
-              fontWeight: "bold",
-            },
-            "& .super-app-theme--cell": {
-              fontSize: "16px",
-              color: "#04061f",
-              fontWeight: "500",
-              backgroundColor: "#dedee0",
-              "&:hover": {
-                backgroundColor: "#d0d4db",
+      {orders?.length > 0 ? (
+        <div style={{ width: "100%" }}>
+          <DataGrid
+            autoHeight
+            {...orders}
+            rows={orders}
+            columns={columns}
+            pageSize={8}
+            rowsPerPageOptions={[8]}
+            disableSelectionOnClick
+            getRowId={(r) => r._id}
+            sx={{
+              "& .super-app-theme--header": {
+                backgroundColor: "#8585d6",
+                color: "white",
+                fontWeight: "bold",
               },
-            },
-          }}
-        />
-      </div>
+              "& .super-app-theme--cell": {
+                fontSize: "16px",
+                color: "#04061f",
+                fontWeight: "500",
+                backgroundColor: "#dedee0",
+                "&:hover": {
+                  backgroundColor: "#d0d4db",
+                },
+              },
+            }}
+          />
+        </div>
+      ) : (
+        <div className="circularProgress">
+          <CircularProgress
+            size={80}
+            color="secondary"
+            style={{ backgroundColor: "transparent" }}
+          />
+        </div>
+      )}
     </div>
   );
 }

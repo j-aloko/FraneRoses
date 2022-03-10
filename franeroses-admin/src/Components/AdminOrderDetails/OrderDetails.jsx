@@ -5,13 +5,16 @@ import { ordersContext } from "./../../Context-Api/Order/Context";
 import moment from "moment";
 import { updateOrder } from "./../../ApiCalls/Order";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from "react-router-dom";
 
 function OrderDetails() {
   const [customerOrder, setCustomerOrder] = useState();
   const [deliveryStatus, setDeliveryStatus] = useState("");
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const { orders, dispatch, isFetching } = useContext(ordersContext);
+  const [loading, setLoading] = useState(false);
+  const { orders } = useContext(ordersContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCustomerOrder(orders.find((o) => o._id === path));
@@ -19,11 +22,13 @@ function OrderDetails() {
 
   const handleUpdateStatus = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const value = {
       delivery: deliveryStatus,
     };
-    await updateOrder(dispatch, path, value);
-    window.location.replace("/orders");
+    await updateOrder(path, value);
+    setLoading(false);
+    navigate("/orders");
   };
 
   return (
@@ -110,7 +115,7 @@ function OrderDetails() {
               className="deliveryStatusUpdate"
               onClick={handleUpdateStatus}
             >
-              {isFetching ? (
+              {loading ? (
                 <CircularProgress
                   size={15}
                   color="success"

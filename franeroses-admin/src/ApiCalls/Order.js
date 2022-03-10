@@ -9,9 +9,6 @@ import {
   createOrderStart,
   createOrderSuccess,
   createOrderFailure,
-  updateOrderStart,
-  updateOrderSuccess,
-  updateOrderFailure,
 } from "./../Context-Api/Order/Action";
 
 //Create a new order
@@ -43,13 +40,11 @@ export const getAllOrders = async (dispatch) => {
 
 //Update Order
 
-export const updateOrder = async (dispatch, id, value) => {
-  dispatch(updateOrderStart());
+export const updateOrder = async (id, value) => {
   try {
-    const res = await axiosInstance.put("order/" + id, value);
-    dispatch(updateOrderSuccess(res.data));
+    await axiosInstance.put("order/" + id, value);
   } catch (error) {
-    dispatch(updateOrderFailure());
+    console.log(error);
   }
 };
 

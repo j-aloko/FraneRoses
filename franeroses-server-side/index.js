@@ -12,6 +12,7 @@ const productRoute = require("./Routes/product");
 const cartRoute = require("./Routes/cart");
 const orderRoute = require("./Routes/order");
 const wishlistRoute = require("./Routes/wishlist");
+const transactionRoute = require("./Routes/transaction");
 
 dotenv.config();
 
@@ -32,7 +33,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:3001",
-      "https://franeroses.netlify.app/",
+      "https://franeroses.netlify.app",
       "https://franeroses-admin.netlify.app",
     ],
     credentials: true,
@@ -52,3 +53,4 @@ app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/wishlist", wishlistRoute);
+app.use("/api/transaction", transactionRoute);

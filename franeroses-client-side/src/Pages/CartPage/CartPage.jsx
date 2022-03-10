@@ -94,7 +94,6 @@ function CartPage() {
               </p>
               <textarea
                 className="checkoutInstructions"
-                autoFocus={true}
                 onChange={(e) => setInstruction(e.target.value)}
               ></textarea>
               <p className="noteTobuyer">

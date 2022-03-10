@@ -1,3 +1,7 @@
+.AdminProductsContainer {
+  margin-top: -20px;
+}
+
 .AdminProductInfo {
   display: flex;
   align-items: center;
@@ -61,4 +65,11 @@
   font-weight: 500;
   color: white;
   cursor: pointer;
+}
+
+.circularProgress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
 }

@@ -172,8 +172,12 @@
   }
 
   .cartInfoTitle {
-    font-size: 25px;
+    font-size: 16px;
     margin-top: 10px;
+  }
+
+  .cartInfoSubTitle {
+    font-size: 13px;
   }
 
   .cartDown {

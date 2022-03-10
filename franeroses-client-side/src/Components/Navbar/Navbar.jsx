@@ -418,7 +418,7 @@ function Navbar() {
             </span>
           ) : (
             <div className={ismaxWidth500 ? "dropdown minScreen" : "dropdown"}>
-              <nav
+              <div
                 className="navbarIcon"
                 onClick={() => setStopDropDownHover(!stopDropDownHover)}
               >
@@ -429,7 +429,7 @@ function Navbar() {
                 ) : (
                   <MenuOutlinedIcon />
                 )}
-              </nav>
+              </div>
               <div
                 className={
                   stopDropDownHover

@@ -112,20 +112,10 @@ function SingleProductPage() {
         <div className="singleProductWrapper">
           <div className="singleProductTop">
             <div className="singleProductTitles">
-              {ismaxWidth500 ? (
-                <h2 className="singleProductName">{product?.title}</h2>
-              ) : (
-                <h1 className="singleProductName">{product?.title}</h1>
-              )}
-              {ismaxWidth500 ? (
-                <h4 className="singleProductRou">
-                  {product?.category} / {product?.title}
-                </h4>
-              ) : (
-                <h3 className="singleProductRou">
-                  {product?.category} / {product?.title}
-                </h3>
-              )}
+              <h1 className="singleProductName">{product?.title}</h1>
+              <h2 className="singleProductRou">
+                {product?.category} / {product?.title}
+              </h2>
             </div>
           </div>
           <div className="singleProductDown">
@@ -213,7 +203,12 @@ function SingleProductPage() {
                     className="singleProductAddToCart"
                     onClick={addItemsToCart}
                   >
-                    <AddShoppingCartIcon />
+                    {ismaxWidth500 ? (
+                      <AddShoppingCartIcon style={{ fontSize: 15 }} />
+                    ) : (
+                      <AddShoppingCartIcon />
+                    )}
+
                     <span className="AddToCart">ADD TO CART </span>
                   </div>
                   {user ? (
@@ -221,8 +216,12 @@ function SingleProductPage() {
                       className="singleProductAddToWishList"
                       onClick={addItemsToWishlist}
                     >
-                      <FavoriteBorderIcon />
-                      <span className="addToWishList">ADD TO WISH LIST</span>
+                      {ismaxWidth500 ? (
+                        <FavoriteBorderIcon style={{ fontSize: 15 }} />
+                      ) : (
+                        <FavoriteBorderIcon />
+                      )}
+                      <span className="addToWishList">ADD TO WISHLIST</span>
                     </div>
                   ) : (
                     <div className="buySingleProductNow" onClick={buyNow}>

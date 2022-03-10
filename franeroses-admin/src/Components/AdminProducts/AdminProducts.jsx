@@ -4,7 +4,8 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { productsContext } from "./../../Context-Api/Products/Context";
-import { deleteProduct } from "./../../ApiCalls/Products";
+import { deleteProduct, getAllProducts } from "./../../ApiCalls/Products";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminProducts() {
   const { products, dispatch } = useContext(productsContext);
@@ -14,7 +15,10 @@ function AdminProducts() {
     window.scrollTo(0, 0);
   }, []);
 
-  //fetch all products when this component mounts
+  //fetch all products if this app mounts
+  useEffect(() => {
+    getAllProducts(dispatch);
+  }, [dispatch]);
 
   const columns = [
     {
@@ -138,34 +142,44 @@ function AdminProducts() {
 
   return (
     <div className="AdminProductsContainer">
-      <div style={{ width: "100%" }}>
-        <DataGrid
-          autoHeight
-          {...products}
-          rows={products}
-          columns={columns}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
-          disableSelectionOnClick
-          getRowId={(r) => r._id}
-          sx={{
-            "& .super-app-theme--header": {
-              backgroundColor: "#8585d6",
-              color: "white",
-              fontWeight: "bold",
-            },
-            "& .super-app-theme--cell": {
-              fontSize: "16px",
-              color: "#04061f",
-              fontWeight: "500",
-              backgroundColor: "#dedee0",
-              "&:hover": {
-                backgroundColor: "#d0d4db",
+      {products?.length > 0 ? (
+        <div style={{ width: "100%" }}>
+          <DataGrid
+            autoHeight
+            {...products}
+            rows={products}
+            columns={columns}
+            pageSize={8}
+            rowsPerPageOptions={[8]}
+            disableSelectionOnClick
+            getRowId={(r) => r._id}
+            sx={{
+              "& .super-app-theme--header": {
+                backgroundColor: "#8585d6",
+                color: "white",
+                fontWeight: "bold",
               },
-            },
-          }}
-        />
-      </div>
+              "& .super-app-theme--cell": {
+                fontSize: "16px",
+                color: "#04061f",
+                fontWeight: "500",
+                backgroundColor: "#dedee0",
+                "&:hover": {
+                  backgroundColor: "#d0d4db",
+                },
+              },
+            }}
+          />
+        </div>
+      ) : (
+        <div className="circularProgress">
+          <CircularProgress
+            size={80}
+            color="secondary"
+            style={{ backgroundColor: "transparent" }}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -266,12 +266,19 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .singleProductName {
+    font-size: 16px;
+  }
+
+  .singleProductRou {
+    font-size: 13px;
+  }
   .singleProductDown {
     flex-direction: column;
   }
 
   .singleProductLeftImg {
-    height: auto;
+    height: 300px;
     width: 100%;
   }
 
@@ -300,6 +307,6 @@
   }
 
   .buySingleProduct.noUser {
-    margin-top: -5px;
+    margin-top: 2px;
   }
 }
