@@ -2,6 +2,7 @@ import {
   loginStart,
   loginFailure,
   loginSuccess,
+  logoutNow,
 } from "./../Context-Api/Authentication/Action";
 import axiosInstance from "./../axios";
 
@@ -21,4 +22,8 @@ export const Register = async (info) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const logout = async (dispatch) => {
+  dispatch(logoutNow());
 };

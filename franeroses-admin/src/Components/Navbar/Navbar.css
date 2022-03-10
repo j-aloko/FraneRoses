@@ -12,20 +12,14 @@
   padding: 0px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .logo {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bold;
   color: darkblue;
   cursor: pointer;
-}
-
-.topRight {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
 }
 
 .NavbarIcons {
@@ -38,5 +32,14 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.logout {
+  position: fixed;
+  right: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #141322;
   cursor: pointer;
 }

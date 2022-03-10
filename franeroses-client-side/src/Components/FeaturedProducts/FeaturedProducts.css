@@ -58,7 +58,7 @@
   vertical-align: middle;
   cursor: pointer;
   border-radius: 10px;
-  animation: myImg 0.5s infinite;
+  animation: myImg 1.5s infinite;
 }
 
 @keyframes myImg {

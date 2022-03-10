@@ -49,6 +49,10 @@
   color: rgb(122, 122, 122);
 }
 
+.chartTitle {
+  margin-bottom: 20px;
+}
+
 .dashboardUserAnalytics {
   margin-top: 80px;
 }

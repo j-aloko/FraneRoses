@@ -5,6 +5,7 @@ import {
   updateUsersStart,
   updateUsersSuccess,
   updateUsersFailure,
+  deleteUser,
 } from "./../Context-Api/Users/Action";
 import axiosInstance from "./../axios";
 
@@ -29,5 +30,16 @@ export const updateUser = async (id, dispatch, values) => {
     dispatch(updateUsersSuccess(res.data));
   } catch (error) {
     dispatch(updateUsersFailure());
+  }
+};
+
+//delete user
+
+export const deleteUserNow = async (dispatch, id) => {
+  try {
+    await axiosInstance.delete("user/" + id);
+    dispatch(deleteUser(id));
+  } catch (error) {
+    console.log(error);
   }
 };

@@ -5,12 +5,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ProductsContextProvider } from "./Context-Api/Products/Context";
 import { OrdersContextProvider } from "./Context-Api/Order/Context";
+import { UsersContextProvider } from "./Context-Api/Users/Context";
+import { AuthContextProvider } from "./Context-Api/Authentication/Context";
 
 ReactDOM.render(
   <React.StrictMode>
     <ProductsContextProvider>
       <OrdersContextProvider>
-        <App />
+        <UsersContextProvider>
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
+        </UsersContextProvider>
       </OrdersContextProvider>
     </ProductsContextProvider>
   </React.StrictMode>,

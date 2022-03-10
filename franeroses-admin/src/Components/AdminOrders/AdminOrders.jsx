@@ -1,5 +1,5 @@
 import "./AdminOrders.css";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminOrders() {
   const { orders, dispatch } = useContext(ordersContext);
+  const [isData, setIsData] = useState(true);
 
   //scroll window to top on initial render
   useEffect(() => {
@@ -19,6 +20,14 @@ function AdminOrders() {
   useEffect(() => {
     getAllOrders(dispatch);
   }, [dispatch]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (orders?.length === 0 || orders?.length > 0) {
+        setIsData(false);
+      }
+    }, 3000);
+  }, [orders]);
 
   const columns = [
     {
@@ -98,7 +107,15 @@ function AdminOrders() {
 
   return (
     <div className="adminOrdersContainer">
-      {orders?.length > 0 ? (
+      {isData ? (
+        <div className="circularProgress">
+          <CircularProgress
+            size={80}
+            color="secondary"
+            style={{ backgroundColor: "transparent" }}
+          />
+        </div>
+      ) : (
         <div style={{ width: "100%" }}>
           <DataGrid
             autoHeight
@@ -125,14 +142,6 @@ function AdminOrders() {
                 },
               },
             }}
-          />
-        </div>
-      ) : (
-        <div className="circularProgress">
-          <CircularProgress
-            size={80}
-            color="secondary"
-            style={{ backgroundColor: "transparent" }}
           />
         </div>
       )}

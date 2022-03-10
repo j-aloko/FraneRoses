@@ -23,3 +23,10 @@ export const updateUsersSuccess = (users) => ({
 export const updateUsersFailure = () => ({
   type: "UPDATE_USERS_FAILURE",
 });
+
+//DELETE USER
+
+export const deleteUser = (id) => ({
+  type: "DELETE_USER",
+  payload: id,
+});

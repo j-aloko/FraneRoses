@@ -26,9 +26,7 @@ function Footer() {
             ) : (
               <RoomIcon />
             )}
-            <span className="footerLeftbusinessItem">
-              Tema Community 25, Ghana
-            </span>
+            <span className="footerLeftbusinessItem">Tema Comm. 25, Ghana</span>
           </nav>
           <nav className="footerLeftItem">
             {ismaxWidth500 ? (
@@ -95,7 +93,7 @@ function Footer() {
             <img src="/assets/mastercard.png" alt="" className="gatewayItem" />
           </div>
           <div className="footerCopyRight">
-            <span className="footerCompanyName">FraneRoses Ventures</span>
+            <span className="footerCompanyName">FraneRoses</span>
             {ismaxWidth500 ? (
               <CopyrightIcon style={{ fontSize: 20 }} />
             ) : (

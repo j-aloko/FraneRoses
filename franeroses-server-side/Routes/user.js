@@ -1,9 +1,5 @@
 const router = require("express").Router();
 const User = require("../Models/User");
-const {
-  verifyTokenAndAuthorization,
-  verifyAndAdmin,
-} = require("../verifyToken");
 const CryptoJS = require("crypto-js");
 
 //Update Method
@@ -31,7 +27,7 @@ router.put("/:id", async (req, res) => {
 
 //Delete Method
 
-router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.status(200).json("User has been deleted");
@@ -42,7 +38,7 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
 
 //Get User Info
 
-router.get("/find/:id", verifyAndAdmin, async (req, res) => {
+router.get("/find/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     const { password, ...others } = user._doc;
@@ -68,7 +64,7 @@ router.get("/", async (req, res) => {
 
 //Get Stat
 
-router.get("/stats", verifyAndAdmin, async (req, res) => {
+router.get("/stats", async (req, res) => {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 

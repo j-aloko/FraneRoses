@@ -1,23 +1,36 @@
 import "./Users.css";
-import React, { useEffect } from "react";
-import { users } from "./../../Data";
+import React, { useEffect, useContext, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
+import { userContext } from "./../../Context-Api/Users/Context";
+import { deleteUserNow } from "./../../ApiCalls/Users";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Users() {
+  const { users, dispatch } = useContext(userContext);
+  const [isData, setIsData] = useState(true);
+
   //scroll window to top on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (users?.length === 0 || users?.length > 0) {
+        setIsData(false);
+      }
+    }, 3000);
+  }, [users]);
+
   const columns = [
     {
-      field: "username",
+      field: "fullname",
       headerName: "USERNAME",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
-      width: 170,
+      width: 300,
       renderCell: (params) => {
         return (
           <div className="userInfo">
@@ -26,7 +39,7 @@ function Users() {
               alt=""
               className="userImg"
             />
-            <span className="userName">{params.row.username}</span>
+            <span className="userName">{params.row.fullname}</span>
           </div>
         );
       },
@@ -36,38 +49,21 @@ function Users() {
       headerName: "Email",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
-      width: 200,
+      width: 300,
     },
-    {
-      field: "status",
-      headerName: "STATUS",
-      headerClassName: "super-app-theme--header",
-      width: 170,
-      headerAlign: "center",
-      align: "center",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "transaction",
-      headerName: "TRANSACTION",
-      headerClassName: "super-app-theme--header",
-      width: 200,
-      headerAlign: "center",
-      align: "center",
-      cellClassName: "super-app-theme--cell",
-    },
+
     {
       field: "edit",
       headerName: "EDIT",
       headerClassName: "super-app-theme--header",
-      width: 180,
+      width: 250,
       headerAlign: "center",
       align: "center",
       cellClassName: "super-app-theme--cell",
       renderCell: (params) => {
         return (
           <div className="actionWrapper">
-            <Link to={`/edit-user/${params.row.id}`} className="links">
+            <Link to={`/edit-user/${params.row._id}`} className="link">
               <span className="Actionedit">Edit</span>
             </Link>
           </div>
@@ -78,13 +74,18 @@ function Users() {
       field: "delete",
       headerName: "DELETE",
       headerClassName: "super-app-theme--header",
-      width: 180,
+      width: 250,
       headerAlign: "center",
       align: "center",
       cellClassName: "super-app-theme--cell",
-      renderCell: () => {
+      renderCell: (params) => {
         return (
-          <div className="actionWrapper">
+          <div
+            className="actionWrapper"
+            onClick={() => {
+              deleteUserNow(dispatch, params.row?._id);
+            }}
+          >
             <DeleteForeverIcon
               style={{
                 color: "red",
@@ -100,33 +101,44 @@ function Users() {
 
   return (
     <div className="usersContainer">
-      <div style={{ width: "100%" }}>
-        <DataGrid
-          autoHeight
-          {...users}
-          rows={users}
-          columns={columns}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
-          disableSelectionOnClick
-          sx={{
-            "& .super-app-theme--header": {
-              backgroundColor: "#8585d6",
-              color: "white",
-              fontWeight: "bold",
-            },
-            "& .super-app-theme--cell": {
-              fontSize: "16px",
-              color: "#04061f",
-              fontWeight: "500",
-              backgroundColor: "#dedee0",
-              "&:hover": {
-                backgroundColor: "#d0d4db",
+      {isData ? (
+        <div className="circularProgress">
+          <CircularProgress
+            size={80}
+            color="secondary"
+            style={{ backgroundColor: "transparent" }}
+          />
+        </div>
+      ) : (
+        <div style={{ width: "100%" }}>
+          <DataGrid
+            autoHeight
+            {...users}
+            rows={users}
+            columns={columns}
+            pageSize={8}
+            rowsPerPageOptions={[8]}
+            disableSelectionOnClick
+            getRowId={(r) => r._id}
+            sx={{
+              "& .super-app-theme--header": {
+                backgroundColor: "#8585d6",
+                color: "white",
+                fontWeight: "bold",
               },
-            },
-          }}
-        />
-      </div>
+              "& .super-app-theme--cell": {
+                fontSize: "16px",
+                color: "#04061f",
+                fontWeight: "500",
+                backgroundColor: "#dedee0",
+                "&:hover": {
+                  backgroundColor: "#d0d4db",
+                },
+              },
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -38,6 +38,10 @@ export const usersReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+    case "DELETE_USER":
+      return {
+        users: state.users.filter((user) => user._id !== action.payload),
+      };
     default:
       return {
         ...state,

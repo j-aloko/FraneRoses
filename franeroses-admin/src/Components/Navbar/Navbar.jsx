@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Navbar.css";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import Badge from "@mui/material/Badge";
+import { authContext } from "./../../Context-Api/Authentication/Context";
+import { logout } from "./../../ApiCalls/Auth";
 
 function Navbar() {
+  const { user, dispatch } = useContext(authContext);
+
+  const handleLogout = () => {
+    logout(dispatch);
+  };
+
   return (
     <div className="Navbar">
       <div className="NavbarWrapper">
         <div className="topLeft">
-          <span className="logo">FRANEROSES</span>
+          <span className="logo">FRANEROSES ADMIN DASHBOARD</span>
         </div>
-        <div className="topRight">
-          <div className="NavbarIcons">
-            <Badge badgeContent={4} color="primary" className="badge">
-              <NotificationsActiveIcon />
-            </Badge>
+        {user?.isAdmin && (
+          <div className="logout" onClick={handleLogout}>
+            <span className="logoutUser">Logout</span>
           </div>
-          <div className="profile">
-            <img src="/assets/avatar.png" alt="" />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

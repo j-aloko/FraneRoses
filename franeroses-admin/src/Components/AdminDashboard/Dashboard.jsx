@@ -1,5 +1,5 @@
 import "./Dashboard.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ArrowDownwardTwoToneIcon from "@mui/icons-material/ArrowDownwardTwoTone";
 import ArrowUpwardTwoToneIcon from "@mui/icons-material/ArrowUpwardTwoTone";
 import {
@@ -10,20 +10,27 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { userData } from "./../../Data";
 import { DataGrid } from "@mui/x-data-grid";
 import moment from "moment";
+import { userContext } from "./../../Context-Api/Users/Context";
+import { getUsers } from "./../../ApiCalls/Users";
 
-function Dashboard({ sales, cost, transaction }) {
+function Dashboard({ sales, cost, transaction, data, title, dataKey }) {
   const [monthlyCost, setMonthlyCost] = useState({});
   const [monthlySales, setMonthlySales] = useState({});
   const [prevMonthsCost, setPrevMonthsCost] = useState({});
   const [prevMonthsSales, setPrevMonthsSales] = useState({});
+  const { dispatch } = useContext(userContext);
 
   //scroll window to top on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  //get all users
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
 
   const todaysMonth = new Date().getMonth() + 1;
 
@@ -156,10 +163,12 @@ function Dashboard({ sales, cost, transaction }) {
                       ) / 100
                     : null}
                 </span>
-                {monthlySales?.total > prevMonthsSales?.total && (
+                {(monthlySales?.total ? monthlySales?.total : 0) >
+                  (prevMonthsSales?.total ? prevMonthsSales?.total : 0) && (
                   <ArrowUpwardTwoToneIcon style={{ color: "green" }} />
                 )}
-                {monthlySales?.total < prevMonthsSales?.total && (
+                {(monthlySales?.total ? monthlySales?.total : 0) <
+                  (prevMonthsSales?.total ? prevMonthsSales?.total : 0) && (
                   <ArrowDownwardTwoToneIcon style={{ color: "red" }} />
                 )}
               </div>
@@ -194,14 +203,14 @@ function Dashboard({ sales, cost, transaction }) {
           </div>
         </div>
         <div className="dashboardUserAnalytics">
-          <h1 className="chartTitle">User Analytics</h1>
-          <ResponsiveContainer width={"100%"} height={"auto"} aspect={4 / 0.5}>
-            <LineChart data={userData}>
+          <h1 className="chartTitle">{title}</h1>
+          <ResponsiveContainer width="100%" aspect={4 / 0.5}>
+            <LineChart data={data}>
               <CartesianGrid stroke="#e0dfdf" strokeDasharray="3 3" />
               <XAxis dataKey="name" stroke="#5550bd" />
               <Tooltip />
-              <Line type="monotone" dataKey="Active Users" stroke="#5550bd" />
-              <Line type="monotone" dataKey="Active Users" stroke="#82ca9d" />
+              <Line type="monotone" dataKey={dataKey} stroke="#5550bd" />
+              <Line type="monotone" dataKey={dataKey} stroke="#82ca9d" />
             </LineChart>
           </ResponsiveContainer>
         </div>

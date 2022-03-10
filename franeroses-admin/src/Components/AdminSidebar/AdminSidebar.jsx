@@ -17,19 +17,19 @@ function AdminSidebar() {
               <span className="sidebarMenuListPath">Dashboard</span>
             </li>
           </Link>
-          <Link className="link" to="/users">
+          <Link className="link" to="/admin-users">
             <li className="sidebarMenuList">
               <PersonOutlineTwoToneIcon style={{ fontSize: 25 }} />
               <span className="sidebarMenuListPath">Users</span>
             </li>
           </Link>
-          <Link className="link" to="/products">
+          <Link className="link" to="/admin-products">
             <li className="sidebarMenuList">
               <StorefrontTwoToneIcon style={{ fontSize: 25 }} />
               <span className="sidebarMenuListPath">Products</span>
             </li>
           </Link>
-          <Link className="link" to="/orders">
+          <Link className="link" to="/admin-orders">
             <li className="sidebarMenuList">
               <MonetizationOnTwoToneIcon style={{ fontSize: 25 }} />
               <span className="sidebarMenuListPath">Orders</span>

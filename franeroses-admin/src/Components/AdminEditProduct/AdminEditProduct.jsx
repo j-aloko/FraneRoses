@@ -5,6 +5,9 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { productsContext } from "./../../Context-Api/Products/Context";
 import { updateProducts } from "../../ApiCalls/Products";
 import CircularProgress from "@mui/material/CircularProgress";
+import ArrowDownwardTwoToneIcon from "@mui/icons-material/ArrowDownwardTwoTone";
+import ArrowUpwardTwoToneIcon from "@mui/icons-material/ArrowUpwardTwoTone";
+import axiosInstance from "./../../axios";
 
 function AdminEditProduct() {
   const [files, setFiles] = useState([]);
@@ -17,6 +20,9 @@ function AdminEditProduct() {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
+  const [sales, setSales] = useState([]);
+  const [monthlySales, setMonthlySales] = useState({});
+  const [prevMonthsSales, setPrevMonthsSales] = useState({});
 
   //handle image preview
 
@@ -99,6 +105,35 @@ function AdminEditProduct() {
     }
   };
 
+  //get monthly sales of this Item
+
+  const todaysMonth = new Date().getMonth() + 1;
+
+  const prevMonth = new Date().getMonth();
+
+  useEffect(() => {
+    const getIncome = async () => {
+      try {
+        const res = await axiosInstance.get(`order/income?pid=${path}`);
+        setSales(res?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getIncome();
+  }, [path]);
+
+  //get current month sales
+  useEffect(() => {
+    setMonthlySales(sales?.find((s) => s?._id === todaysMonth));
+  }, [sales, todaysMonth]);
+
+  //get prev Months sales
+
+  useEffect(() => {
+    setPrevMonthsSales(sales?.find((s) => s?._id === prevMonth));
+  }, [sales, prevMonth]);
+
   return (
     <div className="editProductWrapper">
       <Link className="link" to="/new-product">
@@ -116,9 +151,35 @@ function AdminEditProduct() {
           <div className="editProductName">{item?.title}</div>
         </div>
         <div className="editProductInfo">
+          <span className="monthlyStats">Monthly Stats</span>
+          <span className="lastMonth">Compared to last Month</span>
           <div className="editProductInfoItem">
             <span className="editProductLineItem">Sales:</span>
-            <span className="editProductLineItem2">569</span>
+            <span className="editProductLineItem2">
+              {monthlySales?.total || 0}
+            </span>
+            <div className="comparedToLastMonth">
+              {(monthlySales?.total ? monthlySales?.total : 0) >
+                (prevMonthsSales?.total ? prevMonthsSales?.total : 0) && (
+                <ArrowUpwardTwoToneIcon style={{ color: "green" }} />
+              )}
+              {(monthlySales?.total ? monthlySales?.total : 0) <
+                (prevMonthsSales?.total ? prevMonthsSales?.total : 0) && (
+                <ArrowDownwardTwoToneIcon style={{ color: "red" }} />
+              )}
+              <span className="diffenceFigure">
+                {prevMonthsSales?.total
+                  ? Math.round(
+                      ((((monthlySales?.total ? monthlySales?.total : 0) -
+                        prevMonthsSales?.total) /
+                        prevMonthsSales?.total) *
+                        (100 / 100) +
+                        Number.EPSILON) *
+                        100
+                    ) / 100
+                  : null}
+              </span>
+            </div>
           </div>
           <div className="editProductInfoItem">
             <span className="editProductLineItem">Active:</span>

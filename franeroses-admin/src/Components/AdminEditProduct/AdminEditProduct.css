@@ -48,7 +48,7 @@
 .editProductInfo {
   display: flex;
   flex-direction: column;
-  max-width: 150px;
+  max-width: 200px;
   margin-top: 20px;
 }
 
@@ -57,6 +57,26 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
+  position: relative;
+}
+
+.monthlyStats {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.lastMonth {
+  opacity: 0.6;
+}
+
+.comparedToLastMonth {
+  position: absolute;
+  right: -100px;
+  display: flex;
+  align-items: center;
+}
+.diffenceFigure {
+  margin-left: 10px;
 }
 
 .editProductDown {

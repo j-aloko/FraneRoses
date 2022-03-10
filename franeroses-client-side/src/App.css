@@ -19,6 +19,10 @@
   color: inherit;
 }
 
+.links:active {
+  color: inherit;
+}
+
 .links:hover {
   color: inherit;
 }
