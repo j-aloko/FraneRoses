@@ -18,7 +18,6 @@ import LoginPage from "./Pages/LoginPage/LoginPage";
 function App() {
   const [sales, setSales] = useState([]);
   const [cost, setCost] = useState([]);
-  const [transaction, setTransaction] = useState([]);
   const { user } = useContext(authContext);
 
   //get monthly sales
@@ -47,19 +46,6 @@ function App() {
     getCost();
   }, []);
 
-  //get latest transaction
-  useEffect(() => {
-    const getTransaction = async () => {
-      try {
-        const res = await axiosInstance.get("transaction");
-        setTransaction(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getTransaction();
-  }, []);
-
   return (
     <BrowserRouter>
       {user?.isAdmin && <Navbar />}
@@ -77,17 +63,44 @@ function App() {
               !user?.isAdmin ? (
                 <Navigate to="/login" />
               ) : (
-                <Homepage sales={sales} cost={cost} transaction={transaction} />
+                <Homepage sales={sales} cost={cost} />
               )
             }
           />
-          <Route path="/admin-users" element={<Userspage />} />
-          <Route path="/admin-products" element={<ProductsPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/new-product" element={<NewProduct />} />
-          <Route path="/edit-user/:id" element={<EditUser />} />
-          <Route path="/admin-orders" element={<OrderPage />} />
-          <Route path="/order-detail/:id" element={<OrderDetail />} />
+          <Route
+            path="/admin-users"
+            element={!user?.isAdmin ? <Navigate to="/login" /> : <Userspage />}
+          />
+          <Route
+            path="/admin-products"
+            element={
+              !user?.isAdmin ? <Navigate to="/login" /> : <ProductsPage />
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              !user?.isAdmin ? <Navigate to="/login" /> : <ProductPage />
+            }
+          />
+          <Route
+            path="/new-product"
+            element={!user?.isAdmin ? <Navigate to="/login" /> : <NewProduct />}
+          />
+          <Route
+            path="/edit-user/:id"
+            element={!user?.isAdmin ? <Navigate to="/login" /> : <EditUser />}
+          />
+          <Route
+            path="/admin-orders"
+            element={!user?.isAdmin ? <Navigate to="/login" /> : <OrderPage />}
+          />
+          <Route
+            path="/order-detail/:id"
+            element={
+              !user?.isAdmin ? <Navigate to="/login" /> : <OrderDetail />
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>

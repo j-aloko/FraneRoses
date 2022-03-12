@@ -21,7 +21,7 @@ function Users() {
       if (users?.length === 0 || users?.length > 0) {
         setIsData(false);
       }
-    }, 3000);
+    }, 1500);
   }, [users]);
 
   const columns = [

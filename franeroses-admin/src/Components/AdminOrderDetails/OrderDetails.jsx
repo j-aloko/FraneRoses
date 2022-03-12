@@ -9,16 +9,28 @@ import { useNavigate } from "react-router-dom";
 
 function OrderDetails() {
   const [customerOrder, setCustomerOrder] = useState();
+  const [pymtStatus, setPymtStatus] = useState("");
   const [deliveryStatus, setDeliveryStatus] = useState("");
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [loading, setLoading] = useState(false);
-  const { orders } = useContext(ordersContext);
+  const [updatingPymt, setUpdatingPymt] = useState(false);
+  const { orders, dispatch } = useContext(ordersContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     setCustomerOrder(orders.find((o) => o._id === path));
   }, [orders, path]);
+
+  const handlePaymentStatus = async (e) => {
+    e.preventDefault();
+    setUpdatingPymt(true);
+    const value = {
+      status: pymtStatus,
+    };
+    await updateOrder(dispatch, path, value);
+    setUpdatingPymt(false);
+  };
 
   const handleUpdateStatus = async (e) => {
     e.preventDefault();
@@ -26,9 +38,9 @@ function OrderDetails() {
     const value = {
       delivery: deliveryStatus,
     };
-    await updateOrder(path, value);
+    await updateOrder(dispatch, path, value);
     setLoading(false);
-    navigate("/orders");
+    navigate("/admin-orders");
   };
 
   return (
@@ -88,8 +100,42 @@ function OrderDetails() {
         <div className="orderBillingAddress">
           <h3 className="orderDetailsRightTitle">Billing Address</h3>
           <div className="orderPymtStatusWrapper">
-            <h3 className="orderPymtStatus">Payment status:</h3>
-            <h4 className="orderPymtResponse">{customerOrder?.status}</h4>
+            <div className="paidOrNot">
+              <h3 className="orderPymtStatus">Payment status:</h3>
+              <h4
+                className={
+                  customerOrder?.status === "Paid"
+                    ? "orderPymtResponse"
+                    : "orderPymtResponse pending"
+                }
+              >
+                {customerOrder?.status}
+              </h4>
+            </div>
+            <div className="PaymentStatusWrapper">
+              <select
+                className="changeFulfillmentStatus"
+                onChange={(e) => setPymtStatus(e.target.value)}
+              >
+                <option>Change Payment Status</option>
+                <option value="Paid">Paid</option>
+                <option value="Cash on delivery">Cash on delivery</option>
+              </select>
+              <button
+                className="paymentStatusUpdate"
+                onClick={handlePaymentStatus}
+              >
+                {updatingPymt ? (
+                  <CircularProgress
+                    size={15}
+                    color="success"
+                    style={{ backgroundColor: "transparent" }}
+                  />
+                ) : (
+                  "Update"
+                )}
+              </button>
+            </div>
           </div>
           <span className="nameOnOrder">
             {customerOrder?.userInfo?.firstName}{" "}

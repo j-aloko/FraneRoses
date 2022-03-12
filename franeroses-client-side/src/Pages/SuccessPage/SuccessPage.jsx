@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { ordersContext } from "./../../Context-Api/Order/Context";
 import html2pdf from "html2pdf-jspdf2";
 import CircularProgress from "@mui/material/CircularProgress";
+import { deleteAllCart } from "./../../ApiCalls/Cart";
+import { cartContext } from "./../../Context-Api/Cart/Context";
 
 function SuccessPage() {
   const [customerOrder, setCustomerOrder] = useState({});
@@ -12,6 +14,11 @@ function SuccessPage() {
   const location = useLocation();
   const email = location?.state;
   const htmlContent = useRef();
+  const { dispatch } = useContext(cartContext);
+
+  useEffect(() => {
+    deleteAllCart(dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     setCustomerOrder(orders.find((o) => o?.email === email));
@@ -104,7 +111,15 @@ function SuccessPage() {
               <h2 className="orderDetailsRightTitle">Delivery Information</h2>
               <div className="orderPymtStatusWrapper">
                 <h3 className="orderPymtStatus">Payment status:</h3>
-                <h4 className="orderPymtResponse">{customerOrder?.status}</h4>
+                <h4
+                  className={
+                    customerOrder?.status === "Paid"
+                      ? "orderPymtResponse"
+                      : "orderPymtResponse pending"
+                  }
+                >
+                  {customerOrder?.status}
+                </h4>
               </div>
               <span className="nameOnOrder">
                 {customerOrder?.userInfo?.firstName}{" "}

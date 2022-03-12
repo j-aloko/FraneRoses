@@ -14,17 +14,32 @@ import { DataGrid } from "@mui/x-data-grid";
 import moment from "moment";
 import { userContext } from "./../../Context-Api/Users/Context";
 import { getUsers } from "./../../ApiCalls/Users";
+import axiosInstance from "./../../axios";
 
-function Dashboard({ sales, cost, transaction, data, title, dataKey }) {
+function Dashboard({ sales, cost, data, title, dataKey }) {
   const [monthlyCost, setMonthlyCost] = useState({});
   const [monthlySales, setMonthlySales] = useState({});
   const [prevMonthsCost, setPrevMonthsCost] = useState({});
   const [prevMonthsSales, setPrevMonthsSales] = useState({});
   const { dispatch } = useContext(userContext);
+  const [transaction, setTransaction] = useState([]);
 
   //scroll window to top on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  //get latest transaction
+  useEffect(() => {
+    const getTransaction = async () => {
+      try {
+        const res = await axiosInstance.get("/order/transaction");
+        setTransaction(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getTransaction();
   }, []);
 
   //get all users
@@ -80,7 +95,9 @@ function Dashboard({ sales, cost, transaction, data, title, dataKey }) {
               alt=""
               className="customerImg"
             />
-            <span className="customerName">{params.row.fullname}</span>
+            <span className="customerName">
+              {params.row.userInfo?.firstName} {params.row.userInfo?.lastName}
+            </span>
           </div>
         );
       },
@@ -110,10 +127,19 @@ function Dashboard({ sales, cost, transaction, data, title, dataKey }) {
       field: "status",
       headerName: "SUMMARY",
       headerClassName: "super-app-theme--header",
-      width: 200,
+      width: 220,
       headerAlign: "center",
       align: "center",
       cellClassName: "super-app-theme--cell",
+      renderCell: (params) => {
+        return (
+          <div
+            className={params.row.status !== "Paid" && "cashOnDeliveryColor"}
+          >
+            {params.row.status}
+          </div>
+        );
+      },
     },
   ];
 

@@ -89,8 +89,14 @@ td {
 
 .orderPymtStatusWrapper {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-top: 10px;
+}
+
+.paidOrNot {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .orderPymtStatus {
@@ -98,7 +104,27 @@ td {
 }
 
 .orderPymtResponse {
-  opacity: 0.6;
+  color: green;
+}
+
+.orderPymtResponse.pending {
+  color: rgb(172, 13, 13);
+}
+.PaymentStatusWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.paymentStatusUpdate {
+  width: 160px;
+  background-color: rgb(19, 4, 85);
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .orderShippingAddress {

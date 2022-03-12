@@ -131,6 +131,10 @@ td {
   font-weight: 500;
 }
 
+.orderPymtResponse.pending {
+  color: #ce0707;
+}
+
 .instructionFromCustomer {
   margin-top: 20px;
   margin-bottom: 10px;

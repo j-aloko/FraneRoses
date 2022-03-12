@@ -181,6 +181,30 @@
   cursor: pointer;
 }
 
+.orOption {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.cashOnDeliveryButton {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cashButton {
+  padding: 10px 10px;
+  font-weight: 500;
+  font-size: 18px;
+  width: 220px;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(4, 4, 65);
+  cursor: pointer;
+}
+
 .redirecting {
   position: fixed;
   top: 300px;
@@ -276,6 +300,14 @@
   }
 
   .payNow {
+    font-size: 12px;
+  }
+
+  .orOption {
+    font-size: 15px;
+  }
+
+  .cashButton {
     font-size: 12px;
   }
   .redirecting {

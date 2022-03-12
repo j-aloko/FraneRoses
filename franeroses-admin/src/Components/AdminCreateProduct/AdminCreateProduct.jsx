@@ -72,22 +72,11 @@ function AdminCreateProduct() {
     [product]
   );
 
-  const handleSelectSizes = useCallback(
-    (e) => {
-      let value = Array.from(
-        e.target.selectedOptions,
-        (option) => option.value
-      );
-      setProduct({ ...product, [e.target.name]: value });
-    },
-    [product]
-  );
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await postProducts(dispatch, product);
     setTimeout(() => {
-      navigate("/products");
+      navigate("/admin-products");
     }, 1000);
   };
 
@@ -181,9 +170,9 @@ function AdminCreateProduct() {
           name="category"
           id="category"
           required
-          multiple
-          onChange={handleSelectSizes}
+          onChange={handleInputs}
         >
+          <option>Categories</option>
           <option value="Chocolate-Bars" className="categoryItem">
             Chocolate Bars
           </option>
@@ -205,9 +194,9 @@ function AdminCreateProduct() {
           name="subCategory"
           id="subCategory"
           required
-          multiple
-          onChange={handleSelectSizes}
+          onChange={handleInputs}
         >
+          <option>sub-categories</option>
           <option value="Kingsbite" className="categoryItem">
             Kingsbite
           </option>
@@ -319,6 +308,7 @@ function AdminCreateProduct() {
           <button className="createProductButton" type="submit">
             {createIsFetching ? (
               <CircularProgress
+                size={15}
                 color="success"
                 style={{ backgroundColor: "transparent" }}
               />

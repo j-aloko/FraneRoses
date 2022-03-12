@@ -12,7 +12,6 @@ const productRoute = require("./Routes/product");
 const cartRoute = require("./Routes/cart");
 const orderRoute = require("./Routes/order");
 const wishlistRoute = require("./Routes/wishlist");
-const transactionRoute = require("./Routes/transaction");
 
 dotenv.config();
 
@@ -53,4 +52,3 @@ app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/wishlist", wishlistRoute);
-app.use("/api/transaction", transactionRoute);

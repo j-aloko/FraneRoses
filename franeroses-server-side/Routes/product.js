@@ -90,7 +90,7 @@ router.get("/cost", async (req, res) => {
     const cost = await Products.aggregate([
       {
         $match: {
-          createdAt: { $gte: previousMonth },
+          updatedAt: { $gte: previousMonth },
           ...(productId && {
             $elemMatch: { _id },
           }),
@@ -98,7 +98,7 @@ router.get("/cost", async (req, res) => {
       },
       {
         $project: {
-          month: { $month: "$createdAt" },
+          month: { $month: "$updatedAt" },
           cost: "$cost",
         },
       },

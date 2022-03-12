@@ -98,7 +98,7 @@ function AdminEditProduct() {
       setSuccess(true);
       setLoading(false);
       setTimeout(() => {
-        navigate("/products");
+        navigate("/admin-products");
       }, 1000);
     } catch {
       setError(true);

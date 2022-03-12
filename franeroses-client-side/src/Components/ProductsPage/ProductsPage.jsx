@@ -5,18 +5,20 @@ import Footer from "./../Footer/Footer";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
 import { productsContext } from "./../../Context-Api/Products/Context";
-import { getAllProducts, getProducts } from "./../../ApiCalls/Products";
 import { useMediaQuery } from "react-responsive";
+import { filterContext } from "./../../Context-Api/Filter/Context";
 
 function ProductsPage() {
   const { dispatch } = useContext(PagesContext);
-  const { products, dispatch: productDispatch } = useContext(productsContext);
+  const { products } = useContext(productsContext);
   const [showMore, setShowMore] = useState(8);
   const [showMore500px, setShowMore500px] = useState(4);
-  const location = useLocation();
-  const name = location?.pathname.split("/")[2];
   const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
   const scrollRef = useRef();
+  const { query } = useContext(filterContext);
+
+  const location = useLocation();
+  const name = location?.pathname.split("/")[2];
 
   //autoScroll window to top when this component renders
   useEffect(() => {
@@ -32,29 +34,6 @@ function ProductsPage() {
     dispatch(renderProductsPage());
   }, [dispatch]);
 
-  //fetch all products when this component mounts
-  const cat = "cat";
-  const subCat = "subCat";
-
-  useEffect(() => {
-    if (ismaxWidth500) {
-      getAllProducts(productDispatch);
-    } else {
-      if (name === "all") {
-        getAllProducts(productDispatch);
-      } else if (
-        name === "Chocolate-Bars" ||
-        name === "Chocolate-Dragee" ||
-        name === "Drinking-Chocolate" ||
-        name === "Choco-Spread-Butter"
-      ) {
-        getProducts(productDispatch, cat, name);
-      } else {
-        getProducts(productDispatch, subCat, name);
-      }
-    }
-  }, [productDispatch, cat, name, ismaxWidth500]);
-
   const handleShowMore = (e) => {
     e.preventDefault();
     if (ismaxWidth500) {
@@ -65,8 +44,10 @@ function ProductsPage() {
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
-  }, [showMore, showMore500px]);
+    if (!ismaxWidth500) {
+      scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
+    }
+  }, [showMore, showMore500px, ismaxWidth500]);
 
   return (
     <>
@@ -83,7 +64,12 @@ function ProductsPage() {
           <div className="productsPageDown">
             <div className="productsPageDownContents">
               {products
-                ?.slice(0, ismaxWidth500 ? showMore500px : showMore)
+                ?.filter(
+                  (p) =>
+                    p?.category.toLowerCase().includes(query.toLowerCase()) ||
+                    p?.subCategory.toLowerCase().includes(query.toLowerCase())
+                )
+                .slice(0, ismaxWidth500 ? showMore500px : showMore)
                 .map((p) => (
                   <div className="productsInfo" key={p._id} ref={scrollRef}>
                     <Link to={`/product/${p._id}`} className="links">

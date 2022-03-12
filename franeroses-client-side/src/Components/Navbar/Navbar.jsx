@@ -17,6 +17,8 @@ import { cartContext } from "./../../Context-Api/Cart/Context";
 import { wishlistContext } from "./../../Context-Api/Wishlist/Context";
 import axiosInstance from "./../../axios";
 import { useMediaQuery } from "react-responsive";
+import { filterContext } from "./../../Context-Api/Filter/Context";
+import { filterNow } from "./../../Context-Api/Filter/Action";
 
 function Navbar() {
   const [inputField, setInputField] = useState(false);
@@ -32,6 +34,8 @@ function Navbar() {
   const [items, setItems] = useState([]);
 
   const [color, setColor] = useState(false);
+
+  const { dispatch: queryDispatch } = useContext(filterContext);
 
   const [stopDropDownHover, setStopDropDownHover] = useState(false);
 
@@ -172,6 +176,7 @@ function Navbar() {
                   className={
                     products ? "navbarMenuChoc color" : "navbarMenuChoc"
                   }
+                  onClick={() => queryDispatch(filterNow(""))}
                 >
                   Products
                 </span>
@@ -185,59 +190,143 @@ function Navbar() {
                   />
                   <div className="dropDown">
                     <Link to="/products/Chocolate-Bars " className="links">
-                      <h4 className="dropDownTitle">Chocolate Bars</h4>
+                      <h4
+                        className="dropDownTitle"
+                        onClick={() =>
+                          queryDispatch(filterNow("Chocolate-Bars"))
+                        }
+                      >
+                        Chocolate Bars
+                      </h4>
                     </Link>
                     <ul className="dropDownItems">
                       <Link to="/products/Kingsbite" className="links">
-                        <li className="dropDownLineItem">Kingsbite</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Kingsbite"))}
+                        >
+                          Kingsbite
+                        </li>
                       </Link>
                       <Link to="/products/TQ Premium Dark" className="links">
-                        <li className="dropDownLineItem">TQ Premium Dark</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() =>
+                            queryDispatch(filterNow("TQ Premium Dark"))
+                          }
+                        >
+                          TQ Premium Dark
+                        </li>
                       </Link>
                       <Link to="/products/Akuafo" className="links">
-                        <li className="dropDownLineItem">Akuafo Bar</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Akuafo"))}
+                        >
+                          Akuafo Bar
+                        </li>
                       </Link>
                       <Link to="/products/Oranco" className="links">
-                        <li className="dropDownLineItem">Oranco</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Oranco"))}
+                        >
+                          Oranco
+                        </li>
                       </Link>
                     </ul>
                   </div>
                   <div className="dropDown">
                     <Link to="/products/Chocolate-Dragee" className="links">
-                      <h4 className="dropDownTitle">Chocolate Dragee</h4>
+                      <h4
+                        className="dropDownTitle"
+                        onClick={() =>
+                          queryDispatch(filterNow("Chocolate-Dragee"))
+                        }
+                      >
+                        Chocolate Dragee
+                      </h4>
                     </Link>
                     <ul className="dropDownItems">
                       <Link to="/products/Pebbles" className="links">
-                        <li className="dropDownLineItem">Pebbles</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Pebbles"))}
+                        >
+                          Pebbles
+                        </li>
                       </Link>
                       <Link to="/products/Nutty Chocs" className="links">
-                        <li className="dropDownLineItem">Nutty Chocs</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() =>
+                            queryDispatch(filterNow("Nutty Chocs"))
+                          }
+                        >
+                          Nutty Chocs
+                        </li>
                       </Link>
                     </ul>
                   </div>
                   <div className="dropDown">
                     <Link to="/products/Drinking-Chocolate" className="links">
-                      <h4 className="dropDownTitle">Drinking Chocolate</h4>
+                      <h4
+                        className="dropDownTitle"
+                        onClick={() =>
+                          queryDispatch(filterNow("Drinking-Chocolate"))
+                        }
+                      >
+                        Drinking Chocolate
+                      </h4>
                     </Link>
                     <ul className="dropDownItems">
                       <Link to="/products/Alltime" className="links">
-                        <li className="dropDownLineItem">Alltime</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Alltime"))}
+                        >
+                          Alltime
+                        </li>
                       </Link>
                       <Link to="/products/Royale" className="links">
-                        <li className="dropDownLineItem">Royale</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Royale"))}
+                        >
+                          Royale
+                        </li>
                       </Link>
                     </ul>
                   </div>
                   <div className="dropDown">
                     <Link to="/products/Choco-Spread-Butter" className="links">
-                      <h4 className="dropDownTitle">Choco Spread / Butter</h4>
+                      <h4
+                        className="dropDownTitle"
+                        onClick={() =>
+                          queryDispatch(filterNow("Choco-Spread-Butter"))
+                        }
+                      >
+                        Choco Spread / Butter
+                      </h4>
                     </Link>
                     <ul className="dropDownItems">
                       <Link to="/products/Chocolate Spread" className="links">
-                        <li className="dropDownLineItem">Chocolate Spread</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() =>
+                            queryDispatch(filterNow("Chocolate Spread"))
+                          }
+                        >
+                          Chocolate Spread
+                        </li>
                       </Link>
                       <Link to="/products/Butter" className="links">
-                        <li className="dropDownLineItem">Cocoa Butter</li>
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Butter"))}
+                        >
+                          Cocoa Butter
+                        </li>
                       </Link>
                     </ul>
                   </div>

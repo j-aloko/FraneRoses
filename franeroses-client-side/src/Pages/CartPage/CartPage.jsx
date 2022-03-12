@@ -6,6 +6,8 @@ import Footer from "./../../Components/Footer/Footer";
 import { cartContext } from "../../Context-Api/Cart/Context";
 import Cart from "../../Components/Cart/Cart";
 import { useNavigate } from "react-router-dom";
+import { filterNow } from "./../../Context-Api/Filter/Action";
+import { filterContext } from "./../../Context-Api/Filter/Context";
 
 function CartPage() {
   const [region, setRegion] = useState("Northern Region");
@@ -13,6 +15,7 @@ function CartPage() {
   const [fetching, setFetching] = useState(false);
   const { cart } = useContext(cartContext);
   const [instruction, setInstruction] = useState("");
+  const { dispatch: queryDispatch } = useContext(filterContext);
 
   const navigate = useNavigate();
 
@@ -78,7 +81,13 @@ function CartPage() {
                 ))}
                 <div className="continue-Update">
                   <Link to="/products/all" className="links">
-                    <button className="contShop-UpadteCart">
+                    <button
+                      className="contShop-UpadteCart"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        queryDispatch(filterNow(""));
+                      }}
+                    >
                       CONTINUE SHOPPING
                     </button>
                   </Link>

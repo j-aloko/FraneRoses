@@ -14,7 +14,7 @@ function Navbar() {
     <div className="Navbar">
       <div className="NavbarWrapper">
         <div className="topLeft">
-          <span className="logo">FRANEROSES ADMIN DASHBOARD</span>
+          <span className="logo">FRANEROSES DASHBOARD</span>
         </div>
         {user?.isAdmin && (
           <div className="logout" onClick={handleLogout}>

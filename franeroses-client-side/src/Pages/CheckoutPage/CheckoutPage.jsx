@@ -7,17 +7,16 @@ import { ordersContext } from "./../../Context-Api/Order/Context";
 import { PaystackConsumer } from "react-paystack";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 import { createOrder } from "./../../ApiCalls/Order";
-import { deleteAllCart } from "./../../ApiCalls/Cart";
 import CircularProgress from "@mui/material/CircularProgress";
-import { getTransactions } from "./../../ApiCalls/Transaction";
 
 function CheckoutPage() {
-  const { cart, dispatch: cartDispatch } = useContext(cartContext);
+  const { cart } = useContext(cartContext);
   const [deliveryFee, setDeliveryFee] = useState();
   const [userInfo, setUserInfo] = useState({});
   const { dispatch } = useContext(ordersContext);
   const { user } = useContext(authContext);
   const [loading, setLoading] = useState(false);
+  const [loadingCashOnDelivery, setLoadingCashOnDelivery] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -99,15 +98,8 @@ function CheckoutPage() {
       status: "Paid",
       instruction,
     };
-    const transaction = {
-      fullname: firstName.current?.value,
-      total: subtotal + deliveryFee,
-      status: "Paid",
-    };
     setRedirecting(true);
     await createOrder(dispatch, values);
-    await getTransactions(transaction);
-    await deleteAllCart(cartDispatch);
     setRedirecting(false);
     navigate("/order-success", { state: email.current?.value });
   };
@@ -122,6 +114,45 @@ function CheckoutPage() {
     text: "Paystack Button Implementation",
     onSuccess: (reference) => handleSuccess(reference),
     onClose: handleClose,
+  };
+
+  const handleCashOnDelivery = async (e) => {
+    e.preventDefault();
+    const mailformat =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!email.current?.value) {
+      alert("Email field is required");
+    } else if (!email.current?.value.match(mailformat)) {
+      alert("Invalid email address");
+    } else if (!phone.current?.value) {
+      alert("Phone field is required");
+    } else if (!region.current?.value) {
+      alert("Region field is required");
+    } else if (!firstName.current?.value) {
+      alert("First Name field is required");
+    } else if (!lastName.current?.value) {
+      alert("Last Name field is required");
+    } else if (!apartment.current?.value) {
+      alert("Neighborhood field is required");
+    } else if (!city.current?.value) {
+      alert("City field is required");
+    } else {
+      setLoadingCashOnDelivery(true);
+      const values = {
+        userId: user?._id,
+        cart,
+        userInfo,
+        email: email.current?.value,
+        subtotal,
+        total: subtotal + deliveryFee,
+        deliveryFee,
+        status: "Cash on delivery",
+        instruction,
+      };
+      await createOrder(dispatch, values);
+      setLoadingCashOnDelivery(false);
+      navigate("/order-success", { state: email.current?.value });
+    }
   };
 
   return (
@@ -332,11 +363,24 @@ function CheckoutPage() {
                     {loading ? (
                       <CircularProgress color="success" size={20} />
                     ) : (
-                      "PURCHASE"
+                      "PAY NOW"
                     )}
                   </button>
                 )}
               </PaystackConsumer>
+            </div>
+            <h3 className="orOption">OR</h3>
+            <div
+              className="cashOnDeliveryButton"
+              onClick={handleCashOnDelivery}
+            >
+              <button className="cashButton">
+                {loadingCashOnDelivery ? (
+                  <CircularProgress color="success" size={15} />
+                ) : (
+                  "CASH ON DELIVERY"
+                )}
+              </button>
             </div>
           </div>
         </div>

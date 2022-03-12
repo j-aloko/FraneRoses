@@ -62,25 +62,11 @@ function AdminProducts() {
       },
     },
     {
-      field: "status",
-      headerName: "STATUS",
+      field: "cost",
+      headerName: "COST (GHS)",
       headerClassName: "super-app-theme--header",
       width: 180,
       cellClassName: "super-app-theme--cell",
-      renderCell: (params) => {
-        return (
-          <div className="productStatusWrapper">
-            <span
-              className={
-                params.row?.status === "passive"
-                  ? "productStatusCircle red"
-                  : "productStatusCircle"
-              }
-            ></span>
-            <span className="productStatus">{params.row?.status}</span>
-          </div>
-        );
-      },
     },
     {
       field: "price",
@@ -93,7 +79,7 @@ function AdminProducts() {
     },
     {
       field: "edit",
-      headerName: "Edit",
+      headerName: "EDIT",
       headerClassName: "super-app-theme--header",
       width: 160,
       headerAlign: "center",
@@ -111,7 +97,7 @@ function AdminProducts() {
     },
     {
       field: "delete",
-      headerName: "Delete",
+      headerName: "DELETE",
       headerClassName: "super-app-theme--header",
       width: 200,
       headerAlign: "center",

@@ -61,6 +61,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+//find all latest transactions
+
+router.get("/transaction", async (req, res) => {
+  try {
+    const transaction = await Order.find().sort({ createdAt: -1 }).limit(5);
+    res.status(200).json(transaction);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // GET MONTHLY INCOME
 
 router.get("/income", async (req, res) => {

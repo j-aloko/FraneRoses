@@ -32,11 +32,7 @@ export const getAllProducts = async (dispatch) => {
   dispatch(getProductsStart());
   try {
     const res = await axiosInstance.get("products");
-    dispatch(
-      getProductsSuccess(
-        res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      )
-    );
+    dispatch(getProductsSuccess(res.data));
   } catch (error) {
     dispatch(getProductsFailure());
   }

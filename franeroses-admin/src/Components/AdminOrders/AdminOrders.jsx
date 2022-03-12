@@ -2,7 +2,6 @@ import "./AdminOrders.css";
 import React, { useEffect, useContext, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import CheckIcon from "@mui/icons-material/Check";
 import { ordersContext } from "./../../Context-Api/Order/Context";
 import { getAllOrders } from "../../ApiCalls/Order";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -26,7 +25,7 @@ function AdminOrders() {
       if (orders?.length === 0 || orders?.length > 0) {
         setIsData(false);
       }
-    }, 3000);
+    }, 1500);
   }, [orders]);
 
   const columns = [
@@ -55,7 +54,7 @@ function AdminOrders() {
     },
     {
       field: "total",
-      headerName: "TOTAL AMOUNT",
+      headerName: "AMOUNT (GHS)",
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       headerAlign: "center",
@@ -78,7 +77,6 @@ function AdminOrders() {
             ) : (
               <div className="orderFulfilled">
                 <span className="orderFulFilled">{params.row.delivery}</span>
-                <CheckIcon />
               </div>
             )}
           </>

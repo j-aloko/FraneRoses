@@ -21,17 +21,25 @@ import { wishlistContext } from "./Context-Api/Wishlist/Context";
 import { getWishList } from "./ApiCalls/Wishlist";
 import { cartContext } from "./Context-Api/Cart/Context";
 import SuccessPage from "./Pages/SuccessPage/SuccessPage";
+import { productsContext } from "./Context-Api/Products/Context";
+import { getAllProducts } from "./ApiCalls/Products";
 
 function App() {
   const { user } = useContext(authContext);
   const { dispatch, wishlist } = useContext(wishlistContext);
   const { cart } = useContext(cartContext);
+  const { dispatch: productDispatch } = useContext(productsContext);
 
   //fetch user's wishList when this appliaction mounts
 
   useEffect(() => {
     getWishList(dispatch, user?._id);
   }, [dispatch, user?._id]);
+
+  //fetch all products
+  useEffect(() => {
+    getAllProducts(productDispatch);
+  }, [productDispatch]);
 
   return (
     <BrowserRouter>
@@ -44,19 +52,16 @@ function App() {
           <Route path="/products/:all" element={<ProductsPage />} />
           <Route
             path="/cart"
-            element={
-              cart?.length < 1 ? <Navigate to="/products/all" /> : <CartPage />
-            }
+            element={cart?.length < 1 ? <Navigate to="/" /> : <CartPage />}
           />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route
+            path="/checkout"
+            element={cart?.length > 0 ? <CheckoutPage /> : <Navigate to="/" />}
+          />
           <Route
             path="/wishList"
             element={
-              wishlist?.length < 1 ? (
-                <Navigate to="/products/all" />
-              ) : (
-                <WishListPage />
-              )
+              wishlist?.length < 1 ? <Navigate to="/" /> : <WishListPage />
             }
           />
           <Route

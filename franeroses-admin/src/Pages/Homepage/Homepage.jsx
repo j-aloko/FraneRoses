@@ -3,7 +3,7 @@ import Dashboard from "../../Components/AdminDashboard/Dashboard";
 import "./Homepage.css";
 import axiosInstance from "./../../axios";
 
-function Homepage({ sales, cost, transaction }) {
+function Homepage({ sales, cost }) {
   const Months = useMemo(
     () => [
       "Jan",
@@ -50,7 +50,6 @@ function Homepage({ sales, cost, transaction }) {
       <Dashboard
         sales={sales}
         cost={cost}
-        transaction={transaction}
         data={userStats}
         title="User Analytics"
         dataKey="New Users"
