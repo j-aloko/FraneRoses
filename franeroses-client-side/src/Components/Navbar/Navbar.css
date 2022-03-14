@@ -384,6 +384,18 @@
     display: none;
   }
 
+  .circle {
+    border: 3px solid rgb(211, 196, 111);
+    padding: 5px 7px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+
+  .navbarLogoTitle500 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
   .Chocolate-dropdown:hover .Chocolate-dropdown-content {
     display: none;
   }

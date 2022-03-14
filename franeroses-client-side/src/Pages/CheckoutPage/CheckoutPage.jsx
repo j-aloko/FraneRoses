@@ -20,6 +20,12 @@ function CheckoutPage() {
   const [redirecting, setRedirecting] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const [saveUser, setSaveUser] = useState(false);
+  const [savedUser, setSavedUser] = useState();
+
+  useEffect(() => {
+    setSavedUser(JSON.parse(localStorage.getItem("franeRosesSavedUser")));
+  }, []);
 
   const email = useRef();
   const phone = useRef();
@@ -79,7 +85,7 @@ function CheckoutPage() {
 
   const config = {
     reference: "" + Math.floor(Math.random() * 1000000000 + 1),
-    email: email.current?.value,
+    email: email.current?.value || savedUser?.email,
     amount: (subtotal + deliveryFee) * 100,
     currency: "GHS",
     publicKey: process.env.REACT_APP_PAYSTACK_KEY,
@@ -90,8 +96,8 @@ function CheckoutPage() {
     const values = {
       userId: user?._id,
       cart,
-      userInfo,
-      email: email.current?.value,
+      userInfo: savedUser || userInfo,
+      email: email.current?.value || savedUser?.email,
       subtotal,
       total: subtotal + deliveryFee,
       deliveryFee,
@@ -101,7 +107,12 @@ function CheckoutPage() {
     setRedirecting(true);
     await createOrder(dispatch, values);
     setRedirecting(false);
-    navigate("/order-success", { state: email.current?.value });
+    navigate("/order-success", {
+      state: {
+        email: email.current?.value || savedUser?.email,
+        amount: subtotal + deliveryFee,
+      },
+    });
   };
 
   // if payment tab is closed
@@ -141,8 +152,8 @@ function CheckoutPage() {
       const values = {
         userId: user?._id,
         cart,
-        userInfo,
-        email: email.current?.value,
+        userInfo: savedUser || userInfo,
+        email: email.current?.value || savedUser?.email,
         subtotal,
         total: subtotal + deliveryFee,
         deliveryFee,
@@ -151,7 +162,24 @@ function CheckoutPage() {
       };
       await createOrder(dispatch, values);
       setLoadingCashOnDelivery(false);
-      navigate("/order-success", { state: email.current?.value });
+      navigate("/order-success", {
+        state: {
+          email: email.current?.value || savedUser?.email,
+          amount: subtotal + deliveryFee,
+        },
+      });
+    }
+  };
+
+  //saving Info for next time
+  const handleSaveInfo = () => {
+    if (!savedUser) {
+      setSaveUser(true);
+      localStorage.setItem("franeRosesSavedUser", JSON.stringify(userInfo));
+    } else {
+      setSaveUser(false);
+      localStorage.removeItem("franeRosesSavedUser");
+      setSavedUser();
     }
   };
 
@@ -168,6 +196,7 @@ function CheckoutPage() {
                 placeholder="Phone Number"
                 name="phone"
                 id="phone"
+                defaultValue={savedUser?.phone}
                 onChange={handleInputs}
                 ref={phone}
               />
@@ -177,16 +206,12 @@ function CheckoutPage() {
                 placeholder="Email"
                 name="email"
                 id="email"
+                defaultValue={savedUser?.email}
                 ref={email}
                 onChange={handleInputs}
               />
               <div className="checkBox">
-                <input
-                  type="checkbox"
-                  id="newsLetter"
-                  name="newsLetter"
-                  value="subscribe"
-                />
+                <input type="checkbox" id="newsLetter" name="newsLetter" />
                 <label htmlFor="newsLetter" className="newsLetter">
                   Email me with news and offers
                 </label>
@@ -200,7 +225,17 @@ function CheckoutPage() {
                 onChange={handleInputs}
                 ref={region}
               >
-                <option className="checkoutregions">Select Region</option>
+                {savedUser ? (
+                  <option
+                    className="checkoutregions"
+                    selected="selected"
+                    defaultValue={savedUser?.region}
+                  >
+                    {savedUser?.region}
+                  </option>
+                ) : (
+                  <option className="checkoutregions">Select Region </option>
+                )}
                 <option value="Northern Region" className="checkoutregions">
                   Northern Region
                 </option>
@@ -239,6 +274,7 @@ function CheckoutPage() {
                   placeholder="First Name"
                   name="firstName"
                   id="firstName"
+                  defaultValue={savedUser?.firstName}
                   onChange={handleInputs}
                   ref={firstName}
                 />
@@ -247,6 +283,7 @@ function CheckoutPage() {
                   className="namefields"
                   placeholder="Last Name"
                   name="lastName"
+                  defaultValue={savedUser?.lastName}
                   id="lastName"
                   onChange={handleInputs}
                   ref={lastName}
@@ -258,6 +295,7 @@ function CheckoutPage() {
                 placeholder="Neighborhood or Street"
                 name="apartment"
                 id="apartment"
+                defaultValue={savedUser?.apartment}
                 onChange={handleInputs}
                 ref={apartment}
               />
@@ -267,15 +305,17 @@ function CheckoutPage() {
                 placeholder="City"
                 name="city"
                 id="city"
+                defaultValue={savedUser?.city}
                 onChange={handleInputs}
                 ref={city}
               />
               <div className="checkBox">
                 <input
+                  checked={saveUser || savedUser ? true : false}
                   type="checkbox"
                   id="saveInfo"
                   name="saveInfo"
-                  value="saveInfo"
+                  onChange={handleSaveInfo}
                 />
                 <label htmlFor="newsLetter" className="newsLetter">
                   Save this information for next time

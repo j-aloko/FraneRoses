@@ -41,7 +41,37 @@
   flex-direction: column;
   margin-left: 30px;
   margin-bottom: 30px;
+  position: relative;
   cursor: pointer;
+}
+
+.saveProduct {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  left: 0;
+  padding: 10px;
+  background-color: rgb(12, 45, 136);
+  text-align: center;
+  color: white;
+  font-size: 16px;
+}
+
+.saveProduct:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid white;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+}
+
+.saveProductText {
+  position: relative;
+  top: 10px;
 }
 
 .productImg {
@@ -119,6 +149,21 @@
   .productsInfo {
     margin: 10px;
     width: 360px;
+  }
+
+  .saveProduct {
+    height: 25px;
+    left: 0;
+    font-size: 12px;
+  }
+
+  .saveProduct:after {
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+  }
+
+  .saveProductText {
+    top: 5px;
   }
 
   .productImg {

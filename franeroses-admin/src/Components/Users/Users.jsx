@@ -1,5 +1,5 @@
 import "./Users.css";
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
@@ -8,21 +8,12 @@ import { deleteUserNow } from "./../../ApiCalls/Users";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function Users() {
-  const { users, dispatch } = useContext(userContext);
-  const [isData, setIsData] = useState(true);
+  const { users, dispatch, isFetching } = useContext(userContext);
 
   //scroll window to top on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (users?.length === 0 || users?.length > 0) {
-        setIsData(false);
-      }
-    }, 1500);
-  }, [users]);
 
   const columns = [
     {
@@ -101,7 +92,7 @@ function Users() {
 
   return (
     <div className="usersContainer">
-      {isData ? (
+      {isFetching ? (
         <div className="circularProgress">
           <CircularProgress
             size={80}

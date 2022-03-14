@@ -12,7 +12,8 @@ function SuccessPage() {
   const { orders } = useContext(ordersContext);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  const email = location?.state;
+  const email = location?.state?.email;
+  const amount = location?.state?.amount;
   const htmlContent = useRef();
   const { dispatch } = useContext(cartContext);
 
@@ -21,8 +22,10 @@ function SuccessPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    setCustomerOrder(orders.find((o) => o?.email === email));
-  }, [orders, email]);
+    setCustomerOrder(
+      orders.find((o) => o?.email === email && o?.total === amount)
+    );
+  }, [orders, email, amount]);
 
   //Downloading a copy of this receipt
 

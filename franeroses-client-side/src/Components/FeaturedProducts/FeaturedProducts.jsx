@@ -35,6 +35,15 @@ function FeaturedProducts() {
       <div className="featuredProductsWrapper">
         {items?.map((item) => (
           <div className="featuredProductsImg-SerachIcon" key={item?._id}>
+            <div className="save">
+              <span className="saveText">
+                Save{" "}
+                {Math.round(
+                  ((item?.oldPrice - item?.price) / item?.oldPrice) * 100
+                )}
+                %
+              </span>
+            </div>
             <Link to={`/product/${item?._id}`} className="links">
               <div className="featuredProductsSearchIcon" onClick={RenderPages}>
                 <SearchOutlinedIcon

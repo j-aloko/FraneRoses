@@ -1,5 +1,5 @@
 import "./AdminOrders.css";
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { ordersContext } from "./../../Context-Api/Order/Context";
@@ -7,8 +7,7 @@ import { getAllOrders } from "../../ApiCalls/Order";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminOrders() {
-  const { orders, dispatch } = useContext(ordersContext);
-  const [isData, setIsData] = useState(true);
+  const { orders, dispatch, isFetching } = useContext(ordersContext);
 
   //scroll window to top on initial render
   useEffect(() => {
@@ -19,14 +18,6 @@ function AdminOrders() {
   useEffect(() => {
     getAllOrders(dispatch);
   }, [dispatch]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (orders?.length === 0 || orders?.length > 0) {
-        setIsData(false);
-      }
-    }, 1500);
-  }, [orders]);
 
   const columns = [
     {
@@ -105,7 +96,7 @@ function AdminOrders() {
 
   return (
     <div className="adminOrdersContainer">
-      {isData ? (
+      {isFetching ? (
         <div className="circularProgress">
           <CircularProgress
             size={80}

@@ -8,7 +8,7 @@ import { deleteProduct, getAllProducts } from "./../../ApiCalls/Products";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminProducts() {
-  const { products, dispatch } = useContext(productsContext);
+  const { products, dispatch, isFetching } = useContext(productsContext);
 
   //scroll window to top on initial render
   useEffect(() => {
@@ -128,7 +128,15 @@ function AdminProducts() {
 
   return (
     <div className="AdminProductsContainer">
-      {products?.length > 0 ? (
+      {isFetching ? (
+        <div className="circularProgress">
+          <CircularProgress
+            size={80}
+            color="secondary"
+            style={{ backgroundColor: "transparent" }}
+          />
+        </div>
+      ) : (
         <div style={{ width: "100%" }}>
           <DataGrid
             autoHeight
@@ -155,14 +163,6 @@ function AdminProducts() {
                 },
               },
             }}
-          />
-        </div>
-      ) : (
-        <div className="circularProgress">
-          <CircularProgress
-            size={80}
-            color="secondary"
-            style={{ backgroundColor: "transparent" }}
           />
         </div>
       )}

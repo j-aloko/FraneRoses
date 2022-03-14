@@ -1,6 +1,6 @@
 import "./ProductsPage.css";
 import { Link, useLocation } from "react-router-dom";
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "./../Footer/Footer";
 import { PagesContext } from "./../../Context-Api/Pages/Context";
 import { renderProductsPage } from "./../../Context-Api/Pages/Actions";
@@ -14,7 +14,6 @@ function ProductsPage() {
   const [showMore, setShowMore] = useState(8);
   const [showMore500px, setShowMore500px] = useState(4);
   const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
-  const scrollRef = useRef();
   const { query } = useContext(filterContext);
 
   const location = useLocation();
@@ -43,12 +42,6 @@ function ProductsPage() {
     }
   };
 
-  useEffect(() => {
-    if (!ismaxWidth500) {
-      scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
-    }
-  }, [showMore, showMore500px, ismaxWidth500]);
-
   return (
     <>
       <div className="productsPageContainer">
@@ -71,7 +64,16 @@ function ProductsPage() {
                 )
                 .slice(0, ismaxWidth500 ? showMore500px : showMore)
                 .map((p) => (
-                  <div className="productsInfo" key={p._id} ref={scrollRef}>
+                  <div className="productsInfo" key={p._id}>
+                    <div className="saveProduct">
+                      <span className="saveProductText">
+                        Save{" "}
+                        {Math.round(
+                          ((p?.oldPrice - p?.price) / p?.oldPrice) * 100
+                        )}
+                        %
+                      </span>
+                    </div>
                     <Link to={`/product/${p._id}`} className="links">
                       <img
                         src={p?.img && p?.img[0]}

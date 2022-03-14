@@ -156,8 +156,13 @@ function Navbar() {
       <div className="navbarWrapper">
         <div className="navbarLeft">
           <Link to="/" className="links">
-            <h1 className="navbarLogoTitle">FraneRoses</h1>
+            <h1 className="navbarLogoTitle">Franeroses</h1>
           </Link>
+          {ismaxWidth500 && (
+            <div className="circle">
+              <h1 className="navbarLogoTitle500">FR</h1>
+            </div>
+          )}
         </div>
         <div className="navbarCenter">
           <nav className="navbarcenterMenuItems">
