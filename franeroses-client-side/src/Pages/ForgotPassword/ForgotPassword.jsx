@@ -27,13 +27,13 @@ function ForgotPassword() {
 
   const formik = useFormik({
     initialValues: {
-      from_email: "jaloko@st.ug.edu.gh",
-      from_name: "FraneRoses Ventures",
+      from_email: "rapeprah.s@gmail.com",
+      from_name: "Franeroses Ventures",
       subject: "PASSWORD RESET LINK",
       to_email: "",
-      reply_to: "jaloko@st.ug.edu.gh",
+      reply_to: "rapeprah.s@gmail.com",
       message:
-        "Click the link below to reset your password: http://localhost:3000/5121d2r55956cfe2842ffa0s144cecd7dtea0658c5e6bf77479fd64025b5956cfe2842f",
+        "Click the link below to reset your password: https://www.franeroses.com/5121d2r55956cfe2842ffa0s144cecd7dtea0658c5e6bf77479fd64025b5956cfe2842f",
     },
     validationSchema: Yup.object({
       to_email: Yup.string()

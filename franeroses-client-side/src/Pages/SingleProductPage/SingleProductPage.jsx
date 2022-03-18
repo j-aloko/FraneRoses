@@ -150,9 +150,7 @@ function SingleProductPage() {
               <div className="singleProductLeftInfo">
                 <div className="singleProductPriceWrapper">
                   <h4 className="singleProductPriceTitle">Price:</h4>
-                  <span className="singleProductPrice">
-                    GHS{product?.price}
-                  </span>
+                  <span className="singleProductPrice">₵{product?.price}</span>
                 </div>
                 <h4 className="singleProductInStock">
                   HURRY ONLY {product?.qty} IN STOCK
@@ -192,7 +190,7 @@ function SingleProductPage() {
                 <div className="singleProductSubtotal">
                   <h4 className="singleProductSubtotalTitle">Subtotal</h4>
                   <span className="singleProductSubtotalAmount">
-                    GHS
+                    ₵
                     {Math.round(
                       (product?.price * count + Number.EPSILON) * 100
                     ) / 100}

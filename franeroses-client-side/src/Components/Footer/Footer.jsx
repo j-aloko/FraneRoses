@@ -16,6 +16,11 @@ function Footer() {
 
   const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
 
+  //get full year
+
+  const d = new Date(Date.now());
+  let year = d.getFullYear();
+
   return (
     <footer className="footerContainer">
       <div className="footerWrapper">
@@ -26,7 +31,9 @@ function Footer() {
             ) : (
               <RoomIcon />
             )}
-            <span className="footerLeftbusinessItem">Tema Comm. 25, Ghana</span>
+            <span className="footerLeftbusinessItem">
+              New Dawhenya, Accra, Ghana
+            </span>
           </nav>
           <nav className="footerLeftItem">
             {ismaxWidth500 ? (
@@ -34,7 +41,9 @@ function Footer() {
             ) : (
               <LocalPhoneIcon />
             )}
-            <span className="footerLeftbusinessItem">(000)00-000-0000</span>
+            <a href="tel:+233244632389" className="link">
+              <span className="footerLeftbusinessItem">(+233)24 463 2389</span>
+            </a>
           </nav>
           <nav className="footerLeftItem">
             {ismaxWidth500 ? (
@@ -42,7 +51,11 @@ function Footer() {
             ) : (
               <EmailIcon />
             )}
-            <span className="footerLeftbusinessItem">example@gmail.com</span>
+            <a href="mailto:franerosesventures@gmail.com" className="link">
+              <span className="footerLeftbusinessItem">
+                franerosesventures@gmail.com
+              </span>
+            </a>
           </nav>
         </div>
         <div className="footerRight">
@@ -89,17 +102,18 @@ function Footer() {
           <div className="footerPaymentGateways">
             <img src="/assets/mtn.png" alt="" className="gatewayItem" />
             <img src="/assets/vodafone.png" alt="" className="gatewayItem" />
+            <img src="/assets/tigo.png" alt="" className="gatewayItem" />
             <img src="/assets/visa.png" alt="" className="gatewayItem" />
             <img src="/assets/mastercard.png" alt="" className="gatewayItem" />
           </div>
           <div className="footerCopyRight">
-            <span className="footerCompanyName">FraneRoses</span>
+            <span className="footerCompanyName">Franeroses</span>
             {ismaxWidth500 ? (
               <CopyrightIcon style={{ fontSize: 20 }} />
             ) : (
               <CopyrightIcon />
             )}
-            <span className="FooterYear">2022</span>
+            <span className="FooterYear">{year}</span>
           </div>
         </div>
       </div>

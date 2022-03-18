@@ -119,6 +119,9 @@ function AdminCreateProduct() {
           <option value="Oranco 20g" className="productTitle">
             Oranco 20g
           </option>
+          <option value="Aspire" className="productTitle">
+            Aspire
+          </option>
           <option value="TQ-Premium-Dark 90%" className="productTitle">
             TQ Premium Dark 90%
           </option>
@@ -205,6 +208,9 @@ function AdminCreateProduct() {
           </option>
           <option value="Akuafo" className="categoryItem">
             Akuafo
+          </option>
+          <option value="Aspire" className="categoryItem">
+            Aspire
           </option>
           <option value="TQ Premium Dark" className="categoryItem">
             TQ Premium Dark

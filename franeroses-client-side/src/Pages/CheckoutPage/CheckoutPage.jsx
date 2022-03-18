@@ -8,6 +8,8 @@ import { PaystackConsumer } from "react-paystack";
 import { authContext } from "./../../Context-Api/Authentication/Context";
 import { createOrder } from "./../../ApiCalls/Order";
 import CircularProgress from "@mui/material/CircularProgress";
+import { init } from "emailjs-com";
+import emailjs from "emailjs-com";
 
 function CheckoutPage() {
   const { cart } = useContext(cartContext);
@@ -22,6 +24,8 @@ function CheckoutPage() {
   const navigate = useNavigate();
   const [saveUser, setSaveUser] = useState(false);
   const [savedUser, setSavedUser] = useState();
+
+  init(process.env.REACT_APP_USER_ID);
 
   useEffect(() => {
     setSavedUser(JSON.parse(localStorage.getItem("franeRosesSavedUser")));
@@ -132,23 +136,45 @@ function CheckoutPage() {
     const mailformat =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (!email.current?.value) {
-      alert("Email field is required");
+      alert("Please provide your email address above");
     } else if (!email.current?.value.match(mailformat)) {
-      alert("Invalid email address");
+      alert("Your email address is invalid");
     } else if (!phone.current?.value) {
-      alert("Phone field is required");
+      alert("Please provide your phone number");
     } else if (!region.current?.value) {
-      alert("Region field is required");
+      alert("Please select your region");
     } else if (!firstName.current?.value) {
-      alert("First Name field is required");
+      alert("Please indicate your first name above");
     } else if (!lastName.current?.value) {
-      alert("Last Name field is required");
+      alert("Please indicate your last name above");
     } else if (!apartment.current?.value) {
-      alert("Neighborhood field is required");
+      alert("Please provide your neighborhood address");
     } else if (!city.current?.value) {
-      alert("City field is required");
+      alert("Please indicate your city");
     } else {
       setLoadingCashOnDelivery(true);
+      const initialValues = {
+        subject: `NEW ORDER FROM ${firstName.current?.value.toUpperCase()} ${lastName.current?.value.toUpperCase()}`,
+        message: `You have one new order for cash on delivery from ${
+          firstName.current?.value
+        } ${lastName.current?.value} worth ₵${subtotal + deliveryFee}`,
+      };
+
+      await emailjs
+        .send(
+          process.env.REACT_APP_SERVICE_ID,
+          process.env.REACT_APP_TEMPLATE_ID,
+          initialValues,
+          process.env.REACT_APP_USER_ID
+        )
+        .then(
+          function (response) {
+            console.log("SUCCESS!", response.status, response.text);
+          },
+          function (error) {
+            console.log("FAILED...", error);
+          }
+        );
       const values = {
         userId: user?._id,
         cart,
@@ -343,14 +369,14 @@ function CheckoutPage() {
                     </span>
                   </div>
                 </div>
-                <span className="checkoutProductAmt">GHS{c?.amount}</span>
+                <span className="checkoutProductAmt">₵{c?.amount}</span>
               </div>
             ))}
             <hr className="horizontalLine" />
             <div className="checkoutProductsSubtotal">
               <span className="checkoutProductsSubtotalTitle">Subtotal</span>
               <span className="checkoutProductSubtotalAmt">
-                GHS{subtotal && subtotal}
+                ₵{subtotal && subtotal}
               </span>
             </div>
             <div className="checkoutProductsDeliveryFee">
@@ -358,14 +384,14 @@ function CheckoutPage() {
                 Delivery fee
               </span>
               <span className="checkoutProductDeliveryFeeAmt">
-                {(deliveryFee && `GHS${deliveryFee}`) || "pending..."}
+                {(deliveryFee && `₵${deliveryFee}`) || "pending..."}
               </span>
             </div>
             <hr className="horizontalLine" />
             <div className="amountToBePaid">
               <span className="ToatalAmountTitle">TOTAL</span>
               <span className="TotalAmount">
-                GHS{subtotal + (deliveryFee && deliveryFee) || subtotal}
+                ₵{subtotal + (deliveryFee && deliveryFee) || subtotal}
               </span>
             </div>
             <div className="payButton">
@@ -378,21 +404,21 @@ function CheckoutPage() {
                       const mailformat =
                         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                       if (!email.current?.value) {
-                        alert("Email field is required");
+                        alert("Please provide your email address above");
                       } else if (!email.current?.value.match(mailformat)) {
-                        alert("Invalid email address");
+                        alert("Your email address is invalid");
                       } else if (!phone.current?.value) {
-                        alert("Phone field is required");
+                        alert("Please provide your phone number");
                       } else if (!region.current?.value) {
-                        alert("Region field is required");
+                        alert("Please select your region");
                       } else if (!firstName.current?.value) {
-                        alert("First Name field is required");
+                        alert("Please indicate your first name");
                       } else if (!lastName.current?.value) {
-                        alert("Last Name field is required");
+                        alert("please indicate your last name");
                       } else if (!apartment.current?.value) {
-                        alert("Neighborhood field is required");
+                        alert("Please indicate your neighborhood address");
                       } else if (!city.current?.value) {
-                        alert("City field is required");
+                        alert("please indicate your city");
                       } else {
                         setLoading(true);
                         await initializePayment(handleSuccess, handleClose);

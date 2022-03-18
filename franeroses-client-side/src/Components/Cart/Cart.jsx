@@ -29,13 +29,12 @@ function Cart({ c }) {
         </div>
         <div className="cartProductPrice">
           <span className="numOfPriceTitle">Price:</span>
-          <span className="cartProductPriceAmt">GHS{c?.price}</span>
+          <span className="cartProductPriceAmt">₵{c?.price}</span>
         </div>
         <span className="cartProductTotal">
           Total :
           <span className="cartProductTotalAmt">
-            GHS
-            {Math.round((c?.price * c?.quantity + Number.EPSILON) * 100) / 100}
+            ₵{Math.round((c?.price * c?.quantity + Number.EPSILON) * 100) / 100}
           </span>
         </span>
       </div>

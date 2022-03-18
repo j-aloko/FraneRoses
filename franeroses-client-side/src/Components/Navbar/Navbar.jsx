@@ -239,6 +239,14 @@ function Navbar() {
                           Oranco
                         </li>
                       </Link>
+                      <Link to="/products/Aspire" className="links">
+                        <li
+                          className="dropDownLineItem"
+                          onClick={() => queryDispatch(filterNow("Aspire"))}
+                        >
+                          Aspire
+                        </li>
+                      </Link>
                     </ul>
                   </div>
                   <div className="dropDown">

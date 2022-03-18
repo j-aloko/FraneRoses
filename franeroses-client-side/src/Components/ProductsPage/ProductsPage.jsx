@@ -82,11 +82,9 @@ function ProductsPage() {
                       />
                       <h3 className="productName">{p?.title}</h3>
                       <div className="productPriceWrapper">
-                        <span className="productCurrentPrice">
-                          GHS{p?.price}
-                        </span>
+                        <span className="productCurrentPrice">₵{p?.price}</span>
                         <span className="productOldPrice">
-                          <del>GHS{p?.oldPrice}</del>
+                          <del>₵{p?.oldPrice}</del>
                         </span>
                       </div>
                     </Link>

@@ -6,6 +6,7 @@ import html2pdf from "html2pdf-jspdf2";
 import CircularProgress from "@mui/material/CircularProgress";
 import { deleteAllCart } from "./../../ApiCalls/Cart";
 import { cartContext } from "./../../Context-Api/Cart/Context";
+import { useMediaQuery } from "react-responsive";
 
 function SuccessPage() {
   const [customerOrder, setCustomerOrder] = useState({});
@@ -16,6 +17,7 @@ function SuccessPage() {
   const amount = location?.state?.amount;
   const htmlContent = useRef();
   const { dispatch } = useContext(cartContext);
+  const ismaxWidth500 = useMediaQuery({ query: "(max-width: 500px)" });
 
   useEffect(() => {
     deleteAllCart(dispatch);
@@ -29,20 +31,51 @@ function SuccessPage() {
 
   //Downloading a copy of this receipt
 
+  var opt = {
+    margin: 1,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+  };
+
+  var opt2 = {
+    margin: 1,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "in", format: "letter", orientation: "landscape" },
+  };
+
   const downloadReceipt = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    await html2pdf()
-      .from(htmlContent.current)
-      .save(
-        "Franeroses Order-receipt-" +
-          new Date().getFullYear() +
-          "-" +
-          (new Date().getMonth() + 1) +
-          "-" +
-          new Date().getDate()
-      );
-    setLoading(false);
+    if (ismaxWidth500) {
+      setLoading(true);
+      await html2pdf()
+        .set(opt)
+        .from(htmlContent.current)
+        .save(
+          "Franeroses Order-receipt-" +
+            new Date().getFullYear() +
+            "-" +
+            (new Date().getMonth() + 1) +
+            "-" +
+            new Date().getDate()
+        );
+      setLoading(false);
+    } else {
+      setLoading(true);
+      await html2pdf()
+        .set(opt2)
+        .from(htmlContent.current)
+        .save(
+          "Franeroses Order-receipt-" +
+            new Date().getFullYear() +
+            "-" +
+            (new Date().getMonth() + 1) +
+            "-" +
+            new Date().getDate()
+        );
+      setLoading(false);
+    }
   };
 
   return (

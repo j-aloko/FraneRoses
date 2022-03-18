@@ -164,7 +164,7 @@ function CartPage() {
                 </button>
                 {region && rate && (
                   <span className="deliveryResult">
-                    Standard delivery rate is <b>GHS{rate}</b>
+                    Standard delivery rate is <b>₵{rate}</b>
                   </span>
                 )}
               </div>

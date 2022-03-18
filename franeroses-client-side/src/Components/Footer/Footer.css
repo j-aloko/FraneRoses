@@ -29,6 +29,12 @@
   margin-left: 20px;
   font-size: 18px;
   font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+.footerLeftbusinessItem:hover {
+  color: rgb(211, 196, 111);
 }
 
 .footerRight {
