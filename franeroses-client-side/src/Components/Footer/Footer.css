@@ -118,31 +118,31 @@
 
   .footerLeft {
     flex: 0.5;
-    margin-left: 10px;
+    margin-left: 0;
   }
 
   .footerLeftbusinessItem {
-    margin-left: 20px;
-    font-size: 12px;
+    margin-left: 12px;
+    font-size: 10px;
     font-weight: 500;
   }
 
   .footerItem {
     margin-left: 10px;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .gatewayItem {
     height: 20px;
-    width: 30px;
+    width: 25px;
     margin-left: 10px;
   }
 
   .footerCompanyName {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .FooterYear {
-    font-size: 12px;
+    font-size: 10px;
   }
 }

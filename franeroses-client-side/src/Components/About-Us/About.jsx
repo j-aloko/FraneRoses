@@ -7,22 +7,17 @@ function About() {
         <div className="aboutLeft">
           <h1 className="aboutLeftTitle">About</h1>
           <p className="aboutLeftDescription">
-            Duis lacinia mauris ut sem suscipit cursus. Praesent tincidunt dolor
-            eget pretium porttitor. Nam malesuada ipsum quis ligula porttitor
-            placerat. Vestibulum ante ipsum primis in faucibus orci luctus et
-            ultrices posuere cubilia curae; Morbi maximus auctor commodo.
-            Praesent rutrum purus ligula, fringilla dignissim eros pellentesque
-            sit amet. Integer vel odio rhoncus, dapibus felis ut, venenatis
-            arcu. Donec dapibus varius ligula et malesuada.
+            Franeroses is a chocolate distribution enterprise with decades of
+            experience in the chocolate industry. We trade in premium chocolate
+            products such as milk chocolates and flavoured chocolate bars,
+            drinking chocolate, chocolate dragee and semi-finished cocoa
+            products such as the cocoa butter, cocoa powder, and cocoa cake.
           </p>
           <p className="aboutLeftDescription">
-            Duis lacinia mauris ut sem suscipit cursus. Praesent tincidunt dolor
-            eget pretium porttitor. Nam malesuada ipsum quis ligula porttitor
-            placerat. Vestibulum ante ipsum primis in faucibus orci luctus et
-            ultrices posuere cubilia curae; Morbi maximus auctor commodo.
-            Praesent rutrum purus ligula, fringilla dignissim eros pellentesque
-            sit amet. Integer vel odio rhoncus, dapibus felis ut, venenatis
-            arcu. Donec dapibus varius ligula et malesuada.
+            We distribute our products to a dozen shopping malls and retail
+            shops. We have a wide customer base across Ghana and around the
+            world. Franeroses is your one stop supplier for all your premium
+            cocoa products.
           </p>
         </div>
         <div className="aboutRight">

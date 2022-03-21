@@ -27,7 +27,7 @@ function Footer() {
         <div className="footerLeft">
           <nav className="footerLeftItem">
             {ismaxWidth500 ? (
-              <RoomIcon style={{ fontSize: 20 }} />
+              <RoomIcon style={{ fontSize: 15 }} />
             ) : (
               <RoomIcon />
             )}
@@ -37,7 +37,7 @@ function Footer() {
           </nav>
           <nav className="footerLeftItem">
             {ismaxWidth500 ? (
-              <LocalPhoneIcon style={{ fontSize: 20 }} />
+              <LocalPhoneIcon style={{ fontSize: 15 }} />
             ) : (
               <LocalPhoneIcon />
             )}
@@ -47,7 +47,7 @@ function Footer() {
           </nav>
           <nav className="footerLeftItem">
             {ismaxWidth500 ? (
-              <EmailIcon style={{ fontSize: 20 }} />
+              <EmailIcon style={{ fontSize: 15 }} />
             ) : (
               <EmailIcon />
             )}
@@ -62,21 +62,21 @@ function Footer() {
           <div className="socialMediaHandles">
             <nav className="socialIcon">
               {ismaxWidth500 ? (
-                <FacebookIcon style={{ color: "#3b5998", fontSize: 20 }} />
+                <FacebookIcon style={{ color: "#3b5998", fontSize: 15 }} />
               ) : (
                 <FacebookIcon style={{ color: "#3b5998" }} />
               )}
             </nav>
             <nav className="socialIcon">
               {ismaxWidth500 ? (
-                <InstagramIcon style={{ fontSize: 20, color: "#c32aa3" }} />
+                <InstagramIcon style={{ fontSize: 15, color: "#c32aa3" }} />
               ) : (
                 <InstagramIcon style={{ color: "#c32aa3" }} />
               )}
             </nav>
             <nav className="socialIcon">
               {ismaxWidth500 ? (
-                <TwitterIcon style={{ fontSize: 20, color: "#1da1f2" }} />
+                <TwitterIcon style={{ fontSize: 15, color: "#1da1f2" }} />
               ) : (
                 <TwitterIcon style={{ color: "#1da1f2" }} />
               )}
