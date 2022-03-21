@@ -1,9 +1,45 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
 import Dashboard from "../../Components/AdminDashboard/Dashboard";
 import "./Homepage.css";
 import axiosInstance from "./../../axios";
+import { PagesContext } from "./../../Context-Api/Pages/Context";
+import { renderDashboard } from "./../../Context-Api/Pages/Actions";
 
-function Homepage({ sales, cost }) {
+function Homepage() {
+  const [sales, setSales] = useState([]);
+  const [cost, setCost] = useState([]);
+  const { dispatch } = useContext(PagesContext);
+
+  useEffect(() => {
+    dispatch(renderDashboard());
+  }, [dispatch]);
+
+  //get monthly sales
+  useEffect(() => {
+    const getIncome = async () => {
+      try {
+        const res = await axiosInstance.get("order/income");
+        setSales(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getIncome();
+  }, []);
+
+  //get monthly cost
+  useEffect(() => {
+    const getCost = async () => {
+      try {
+        const res = await axiosInstance.get("products/cost");
+        setCost(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCost();
+  }, []);
+
   const Months = useMemo(
     () => [
       "Jan",

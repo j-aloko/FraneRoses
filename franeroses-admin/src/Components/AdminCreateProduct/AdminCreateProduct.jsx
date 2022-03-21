@@ -82,7 +82,7 @@ function AdminCreateProduct() {
 
   return (
     <div className="createNewProductWrapper">
-      <h1 className="addProducts">Add New Product</h1>
+      <h1 className="addProductsTitle">Add New Product</h1>
       <form className="addProductsForm" onSubmit={handleSubmit}>
         <select
           className="productTitleSelection"
@@ -294,19 +294,19 @@ function AdminCreateProduct() {
         </div>
         <input
           type="number"
-          className="costPerItem"
-          placeholder="Cost of per Item"
-          name="cost"
-          id="cost"
+          className="quantity"
+          placeholder="Quantity in stock"
+          name="qty"
+          id="qty"
           required
           onChange={handleInputs}
         />
         <input
           type="number"
-          className="quantity"
-          placeholder="Quantity in stock"
-          name="qty"
-          id="qty"
+          className="costPerItem"
+          placeholder="Cost per quantity"
+          name="cost"
+          id="cost"
           required
           onChange={handleInputs}
         />

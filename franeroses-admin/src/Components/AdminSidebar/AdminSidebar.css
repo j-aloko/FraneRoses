@@ -40,6 +40,10 @@
   color: rgb(211, 196, 111);
 }
 
+.sidebarMenuList.color {
+  color: rgb(211, 196, 111);
+}
+
 .sidebarMenuListPath {
   margin-left: 20px;
   font-size: 20px;

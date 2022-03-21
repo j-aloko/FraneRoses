@@ -4,7 +4,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { productsContext } from "./../../Context-Api/Products/Context";
-import { deleteProduct, getAllProducts } from "./../../ApiCalls/Products";
+import { deleteProduct } from "./../../ApiCalls/Products";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminProducts() {
@@ -14,11 +14,6 @@ function AdminProducts() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  //fetch all products if this app mounts
-  useEffect(() => {
-    getAllProducts(dispatch);
-  }, [dispatch]);
 
   const columns = [
     {

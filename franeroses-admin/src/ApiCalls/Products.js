@@ -9,6 +9,9 @@ import {
   createProductStart,
   createProductSuccess,
   createProductFailure,
+  updateProductStart,
+  updateProductSuccess,
+  updateProductFailure,
 } from "./../Context-Api/Products/Action";
 
 //Create a new product
@@ -49,11 +52,13 @@ export const getProducts = async (dispatch, type, name) => {
 
 //update Products
 
-export const updateProducts = async (id, values) => {
+export const updateProducts = async (dispatch, id, values) => {
+  dispatch(updateProductStart());
   try {
-    await axiosInstance.put("products/" + id, values);
+    const res = await axiosInstance.put("products/" + id, values);
+    dispatch(updateProductSuccess(res.data));
   } catch (error) {
-    console.log(error);
+    dispatch(updateProductFailure());
   }
 };
 

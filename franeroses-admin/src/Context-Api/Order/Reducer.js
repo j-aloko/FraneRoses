@@ -64,9 +64,13 @@ export const ordersReducer = (state, action) => {
       };
     case "UPDATE_ORDER_SUCCESS":
       return {
-        orders: state.orders.map(
-          (order) => order._id === action.payload._id && action.payload
-        ),
+        orders: state.orders.map((order) => {
+          if (order._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return order;
+          }
+        }),
         isFetching: false,
         error: false,
       };

@@ -19,7 +19,7 @@ function OrderDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCustomerOrder(orders.find((o) => o._id === path));
+    setCustomerOrder(orders?.find((o) => o._id === path));
   }, [orders, path]);
 
   const handlePaymentStatus = async (e) => {

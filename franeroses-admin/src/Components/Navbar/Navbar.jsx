@@ -14,10 +14,11 @@ function Navbar() {
     <div className="Navbar">
       <div className="NavbarWrapper">
         <div className="topLeft">
-          <span className="logo">FRANEROSES DASHBOARD</span>
+          <span className="logo">FRANEROSES</span>
         </div>
         {user?.isAdmin && (
           <div className="logout" onClick={handleLogout}>
+            <span className="fullname">{user?.fullname}</span>
             <span className="logoutUser">Logout</span>
           </div>
         )}

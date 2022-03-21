@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Pages/Homepage/Homepage";
@@ -11,40 +11,34 @@ import NewProduct from "./Pages/NewProduct/NewProduct";
 import EditUser from "./Pages/EditUser/EditUser";
 import OrderPage from "./Pages/OrderPage/OrderPage";
 import OrderDetail from "./Pages/OrderDetail/OrderDetail";
-import axiosInstance from "./axios";
 import { authContext } from "./Context-Api/Authentication/Context";
 import LoginPage from "./Pages/LoginPage/LoginPage";
+import { ordersContext } from "./Context-Api/Order/Context";
+import { getAllOrders } from "./ApiCalls/Order";
+import { productsContext } from "./Context-Api/Products/Context";
+import { getAllProducts } from "./ApiCalls/Products";
+import { userContext } from "./Context-Api/Users/Context";
+import { getUsers } from "./ApiCalls/Users";
 
 function App() {
-  const [sales, setSales] = useState([]);
-  const [cost, setCost] = useState([]);
   const { user } = useContext(authContext);
+  const { dispatch } = useContext(ordersContext);
+  const { dispatch: productDispatch } = useContext(productsContext);
+  const { dispatch: usersDispatch } = useContext(userContext);
 
-  //get monthly sales
+  //fetch all orders if this component mounts
   useEffect(() => {
-    const getIncome = async () => {
-      try {
-        const res = await axiosInstance.get("order/income");
-        setSales(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getIncome();
-  }, []);
+    getAllOrders(dispatch);
+  }, [dispatch]);
 
-  //get monthly cost
+  //fetch all products if this app mounts
   useEffect(() => {
-    const getCost = async () => {
-      try {
-        const res = await axiosInstance.get("products/cost");
-        setCost(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCost();
-  }, []);
+    getAllProducts(productDispatch);
+  }, [productDispatch]);
+
+  useEffect(() => {
+    getUsers(usersDispatch);
+  }, [usersDispatch]);
 
   return (
     <BrowserRouter>
@@ -59,13 +53,7 @@ function App() {
           <Route
             exact
             path="/"
-            element={
-              !user?.isAdmin ? (
-                <Navigate to="/login" />
-              ) : (
-                <Homepage sales={sales} cost={cost} />
-              )
-            }
+            element={!user?.isAdmin ? <Navigate to="/login" /> : <Homepage />}
           />
           <Route
             path="/admin-users"

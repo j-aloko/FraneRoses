@@ -15,7 +15,7 @@ function AdminEditProduct() {
   const [img, setImg] = useState([]);
   const [update, setUpdate] = useState();
   const [preview, setPreview] = useState();
-  const { products } = useContext(productsContext);
+  const { products, dispatch } = useContext(productsContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -93,13 +93,11 @@ function AdminEditProduct() {
     e.preventDefault();
     try {
       setLoading(true);
-      await updateProducts(path, update);
+      await updateProducts(dispatch, path, update);
       setError(false);
       setSuccess(true);
       setLoading(false);
-      setTimeout(() => {
-        navigate("/admin-products");
-      }, 1000);
+      navigate("/admin-products");
     } catch {
       setError(true);
     }
@@ -226,19 +224,19 @@ function AdminEditProduct() {
             </div>
             <input
               type="number"
-              className="updateCostPerProduct"
-              name="cost"
-              id="cost"
-              onChange={handleInputs}
-              placeholder="Update average cost per prod..."
-            />
-            <input
-              type="number"
               className="editProductQuantity"
               name="qty"
               id="qty"
               onChange={handleInputs}
               placeholder="Update quantity"
+            />
+            <input
+              type="number"
+              className="updateCostPerProduct"
+              name="cost"
+              id="cost"
+              onChange={handleInputs}
+              placeholder="Update cost per quantity"
             />
             <div className="editProductFormInputs">
               <select

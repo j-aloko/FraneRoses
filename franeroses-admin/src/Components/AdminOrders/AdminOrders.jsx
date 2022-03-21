@@ -3,21 +3,15 @@ import React, { useEffect, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { ordersContext } from "./../../Context-Api/Order/Context";
-import { getAllOrders } from "../../ApiCalls/Order";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function AdminOrders() {
-  const { orders, dispatch, isFetching } = useContext(ordersContext);
+  const { orders, isFetching } = useContext(ordersContext);
 
   //scroll window to top on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  //fetch all orders if this app mounts
-  useEffect(() => {
-    getAllOrders(dispatch);
-  }, [dispatch]);
 
   const columns = [
     {

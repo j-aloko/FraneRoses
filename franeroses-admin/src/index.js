@@ -7,6 +7,7 @@ import { ProductsContextProvider } from "./Context-Api/Products/Context";
 import { OrdersContextProvider } from "./Context-Api/Order/Context";
 import { UsersContextProvider } from "./Context-Api/Users/Context";
 import { AuthContextProvider } from "./Context-Api/Authentication/Context";
+import { PagesContextProvider } from "./Context-Api/Pages/Context";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
       <OrdersContextProvider>
         <UsersContextProvider>
           <AuthContextProvider>
-            <App />
+            <PagesContextProvider>
+              <App />
+            </PagesContextProvider>
           </AuthContextProvider>
         </UsersContextProvider>
       </OrdersContextProvider>

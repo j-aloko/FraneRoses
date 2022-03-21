@@ -76,9 +76,13 @@ export const productsReducer = (state, action) => {
       };
     case "UPDATE_PRODUCT_SUCCESS":
       return {
-        products: state.products.map(
-          (product) => product._id === action.payload._id && action.payload
-        ),
+        products: state.products.map((product) => {
+          if (product._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return product;
+          }
+        }),
         updateIsFetching: false,
         updateError: false,
         updateSuccess: true,

@@ -4,6 +4,11 @@
   height: 100%;
 }
 
+.addProductsTitle {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 option {
   padding: 10px;
 }
@@ -17,7 +22,7 @@ option {
 .productTitleSelection {
   padding: 10px;
   border-radius: 5px;
-  width: 400px;
+  width: 420px;
   font-size: 16px;
   margin-top: 5px;
   border: 0.5px solid gray;
@@ -27,7 +32,7 @@ option {
 .addProductCategory {
   padding: 10px;
   border-radius: 5px;
-  width: 400px;
+  width: 420px;
   font-size: 16px;
   margin-top: 5px;
   border: 0.5px solid gray;
@@ -105,7 +110,7 @@ option {
   align-items: center;
 }
 .priceInput {
-  width: 400px;
+  width: 182px;
   margin-top: 15px;
   padding: 10px;
   border-radius: 5px;
@@ -116,18 +121,19 @@ option {
 }
 
 .costPerItem {
-  width: 400px;
+  width: 182px;
   padding: 10px;
   border-radius: 5px;
   font-size: 16px;
   margin-top: 15px;
+  margin-bottom: 20px;
   border: 0.5px solid gray;
   outline: none;
 }
 
 .quantity {
   padding: 10px;
-  width: 150px;
+  width: 182px;
   border-radius: 5px;
   font-size: 16px;
   border: 0.5px solid gray;
